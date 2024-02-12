@@ -1,0 +1,18 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+.bg-primary {
+  @apply bg-[#5200FF];
+}
+
+.bg-secondary {
+  @apply bg-slate-200 dark:bg-slate-800;
+}
+
+.text-primary {
+  @apply text-[#5200FF] dark:text-slate-100;
+}
+body {
+  @apply bg-secondary text-primary;
+}
