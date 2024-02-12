@@ -4,7 +4,8 @@ const initialState = {
   username: "",
   email: "",
   fullname: "",
-  token: "",
+  token: "joasefnvcljo",
+  isAuth: true,
   signInLoading: false,
   signInError: "",
   signUpLoading: false,
@@ -32,6 +33,8 @@ export const authReducer = (state = initialState, action: Action) => {
       return { ...state, signUpLoading: action.payload };
     case ActionTypes.SET_SIGNUP_ERROR:
       return { ...state, signUpError: action.payload };
+    case ActionTypes.IS_AUTH:
+      return { ...state, isAuth: action.payload };
     default:
       return state;
   }

@@ -3,7 +3,7 @@ import { ActionTypes } from "../../utils/ActionTypes";
 import { authReducer } from "./authReducer";
 
 const appReducer = combineReducers({
-  authReducer: authReducer,
+  auth: authReducer,
 });
 
 export const reducers = (state: any, action: any) => {
