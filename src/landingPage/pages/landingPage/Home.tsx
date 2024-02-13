@@ -1,10 +1,12 @@
-import React from 'react'
+import Header from '../../Components/Header'
 
-type Props = {}
 
-const Home = (props: Props) => {
+
+const Home = () => {
   return (
-    <div className=''>Home</div>
+    <div className=''>
+      <Header />
+    </div>
   )
 }
 

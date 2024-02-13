@@ -4,7 +4,7 @@ import AuthRoutes from "./auth/authRoutes";
 import LandingPageRoutes from "./landingPage/LandingPageRoutes";
 
 const Router = () => {
-  const newUser = false;
+  const newUser = true;
   return (
     <Routes>
       {newUser ? (

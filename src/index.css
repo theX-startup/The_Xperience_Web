@@ -1,9 +1,47 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+@import url('https://fonts.googleapis.com/css2?family=Inknut+Antiqua:wght@300;400;500;600;700;800;900&display=swap');
+
+.inknut-antiqua-regular {
+  font-family: "Inknut Antiqua", serif;
+  font-weight: 400;
+  font-style: normal;
+}
+
+.inknut-antiqua-medium {
+  font-family: "Inknut Antiqua", serif;
+  font-weight: 500;
+  font-style: normal;
+}
+
+.inknut-antiqua-semibold {
+  font-family: "Inknut Antiqua", serif;
+  font-weight: 600;
+  font-style: normal;
+}
+
+.inknut-antiqua-bold {
+  font-family: "Inknut Antiqua", serif;
+  font-weight: 700;
+  font-style: normal;
+}
+
+.inknut-antiqua-extrabold {
+  font-family: "Inknut Antiqua", serif;
+  font-weight: 800;
+  font-style: normal;
+}
+
+.inknut-antiqua-black {
+  font-family: "Inknut Antiqua", serif;
+  font-weight: 900;
+  font-style: normal;
+}
+
 
 .bg-primary {
-  @apply bg-[#5200FF];
+  @apply bg-[#5200FF] ;
 }
 
 .bg-secondary {
@@ -11,8 +49,38 @@
 }
 
 .text-primary {
-  @apply text-[#5200FF] dark:text-slate-100;
+  @apply text-slate-800 dark:text-slate-100;
 }
 body {
   @apply bg-secondary text-primary;
+  font-family: "Inknut Antiqua", serif;
 }
+
+.bg-tertiary {
+  @apply bg-slate-800 dark:bg-slate-100 text-white dark:text-slate-800;
+}
+
+.btn{
+  @apply text-white w-[100%] text-xs md:w-[75px] md:text-xs lg:w-[100px] h-[40px] rounded-sm flex justify-center items-center border border-white dark:border-slate-800;
+}
+
+.text-secondary {
+  @apply text-slate-100 dark:text-slate-800;
+}
+
+.mobile-nav {
+  @apply text-sm w-[70%] absolute top-[100%] right-0 py-2;
+}
+
+.desktop-nav {
+  @apply lg:gap-20 ;
+}
+
+.tablet-nav {
+  @apply md:w-auto md:gap-10 md:flex md:relative md:py-0;
+}
+
+.nav-item {
+  @apply p-3 md:p-0 ;
+}
+
