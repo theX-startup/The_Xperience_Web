@@ -6,7 +6,7 @@ const Cards = (props: Props) => {
   return (
     <div>
       <div className="p-5 text-center">
-        <h1>
+        <h1 className="text_sm">
           Both Interns, Companies And Professionals Are Happy With Us. You Think
           Its a Lie? Evidence Dey !!!
         </h1>
@@ -21,9 +21,9 @@ const Cards = (props: Props) => {
           return (
             <div
               key={index}
-              className="w-[170px] bg-tertiary p-2 sm:p-4 text-center rounded-sm"
+              className="w-[220px] bg-tertiary p-2 sm:p-4 text-center rounded-sm"
             >
-              <h1 className="text-[8px] sm:text-[10px]">{card.message}</h1>
+              <h1 className="text_sm lg:text-sm">{card.message}</h1>
               <h1 className="text-[12px] text-[#5200FF] text-left mt-2">{card.fullName}</h1>
             </div>
           );

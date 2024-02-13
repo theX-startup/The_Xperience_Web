@@ -1,12 +1,13 @@
 // import React from "react";
-import { Navigate, Route, Routes } from "react-router-dom";
+import { Navigate, Route, Routes, useLocation } from "react-router-dom";
 import AuthRoutes from "./auth/authRoutes";
 import LandingPageRoutes from "./landingPage/LandingPageRoutes";
 
 const Router = () => {
   const newUser = true;
+  const location = useLocation();
   return (
-    <Routes>
+    <Routes key={location.pathname} location={location}>
       {newUser ? (
         <>
           <Route path="landingPage/*" element={<LandingPageRoutes />} />

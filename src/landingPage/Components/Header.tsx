@@ -4,17 +4,17 @@ const Header = () => {
   return (
     <div className="">
       <div>
-        <img src={image1} alt="" className="vh-100  object-cover " />
+        <img src={image1} alt="" className="h-[60vh] md:h-[75vh] w-[100%] object-cover " />
       </div>
       <div className="sm:p-5 p-2 flex justify-center flex-col items-center gap-7 text-center ">
-        <h1 className="lg:text-[40px] md:text-[30px] text-[20px] inknut-antiqua-semibold">
+        <h1 className="text_lg inknut-antiqua-semibold">
           What's Next After Learning a Tech Skill?
         </h1>
-        <p className="lg:text-lg text-sm">
+        <p className="text_sm">
           Gain real-world working experience with our internships and mentorship
           programs from top companies and professionals.
         </p>
-        <p className="lg:text-lg text-sm">
+        <p className="text_sm">
           No more 845 mails plus begging just to get an internship position
         </p>
         <div className="bg-tertiary w-40 py-3 flex items-center justify-center rounded cursor-pointer">
@@ -22,38 +22,38 @@ const Header = () => {
         </div>
       </div>
       <div className="mt-14 text-center inknut-antiqua-semibold">
-        <h1>Trusted and Used By</h1>
+        <h1 className="text_sm">Trusted and Used By</h1>
       </div>
-      <div className="bg-tertiary flex w-[100%] h-[130px] items-center justify-between md:px-10 px-3 lg:px-40 inknut-antiqua-semibold mt-7">
-        <div className="flex flex-col items-center justify-center">
-          <h1 className=" text-[12px] md:text-[20px] sm:text-[18px] lg:text-[30px] text-[#5200FF]">
+      <div className="bg-tertiary flex w-[100%] h-[130px] items-center justify-between md:px-10 px-2 flex-wrap lg:px-40 inknut-antiqua-semibold mt-7">
+        <div className="flex flex-col items-center justify-center gap-2">
+          <h1 className=" text_md text-[#5200FF]">
             2, 437,006
           </h1>
-          <p className="text-[11px] sm:text-[18px] md:text-[20px] lg:text-[25px]">
+          <p className="text_sm">
             Interns
           </p>
         </div>
-        <div className="flex flex-col items-center justify-center">
-          <h1 className=" text-[12px] md:text-[20px] sm:text-[18px] lg:text-[30px] text-[#5200FF]">
+        <div className="flex flex-col items-center justify-center gap-2">
+          <h1 className=" text_md text-[#5200FF]">
             2, 437,006
           </h1>
-          <p className="text-[11px] sm:text-[18px] md:text-[20px] lg:text-[25px]">
+          <p className="text_sm">
             Interns
           </p>
         </div>
-        <div className="flex flex-col items-center justify-center">
-          <h1 className=" text-[12px] md:text-[20px] sm:text-[18px] lg:text-[30px] text-[#5200FF]">
+        <div className="flex flex-col items-center justify-center gap-2">
+          <h1 className=" text_md text-[#5200FF]">
             2, 437,006
           </h1>
-          <p className="text-[11px] sm:text-[18px] md:text-[20px] lg:text-[25px]">
+          <p className="text_sm">
             Interns
           </p>
         </div>
-        <div className="flex flex-col items-center justify-center">
-          <h1 className=" text-[12px] md:text-[20px] sm:text-[18px] lg:text-[30px] text-[#5200FF]">
+        <div className="flex flex-col items-center justify-center gap-2">
+          <h1 className=" text_md text-[#5200FF]">
             2, 437,006
           </h1>
-          <p className="text-[11px] sm:text-[18px] md:text-[20px] lg:text-[25px]">
+          <p className="text_sm">
             Interns
           </p>
         </div>

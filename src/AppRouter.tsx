@@ -1,8 +1,9 @@
 import { useSelector } from "react-redux";
-import { BrowserRouter, Route, Routes } from "react-router-dom";
+import { BrowserRouter, Route, Routes, useLocation } from "react-router-dom";
 import PrivtaeRoutes from "./App/Routes/PrivtaeRoutes";
 import Router from "./landingPage/Routes/Router";
 import App from "./App";
+import { AnimatePresence } from "framer-motion";
 
 // type Props = {};
 
@@ -12,15 +13,17 @@ const AppRouter = () => {
   console.log(token, isAuth);
   return (
     <BrowserRouter>
-      <Routes>
-        <Route element={<App />}>
-          {token && isAuth ? (
-            <Route path="/*" element={<PrivtaeRoutes />} />
-          ) : (
-            <Route path="/*" element={<Router />} />
-          )}
-        </Route>
-      </Routes>
+      <AnimatePresence>
+        <Routes>
+          <Route element={<App />}>
+            {token && isAuth ? (
+              <Route path="/*" element={<PrivtaeRoutes />} />
+            ) : (
+              <Route path="/*" element={<Router />} />
+            )}
+          </Route>
+        </Routes>
+      </AnimatePresence>
     </BrowserRouter>
   );
 };

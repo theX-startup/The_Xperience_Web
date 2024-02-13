@@ -1,7 +1,8 @@
+@import url("https://fonts.googleapis.com/css2?family=Inknut+Antiqua:wght@300;400;500;600;700;800;900&display=swap");
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
-@import url("https://fonts.googleapis.com/css2?family=Inknut+Antiqua:wght@300;400;500;600;700;800;900&display=swap");
+
 
 .inknut-antiqua-regular {
   font-family: "Inknut Antiqua", serif;
@@ -51,8 +52,10 @@
   @apply text-slate-800 dark:text-slate-100;
 }
 body {
-  @apply bg-secondary text-primary;
+  @apply bg-secondary text-primary h-[100%];
   font-family: "Inknut Antiqua", serif;
+  overflow-x: hidden;
+
 }
 
 .bg-tertiary {
@@ -85,4 +88,16 @@ body {
 
 .cards {
   @apply grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-10;
+}
+
+.text_lg {
+  @apply text-[1rem] md:text-[1.5rem] lg:text-[2rem]; 
+}
+
+.text_md {
+  @apply text-[0.75rem] md:text-[1rem] lg:text-[1.5rem];
+}
+
+.text_sm {
+  @apply text-[0.6rem] md:text-[0.75rem] lg:text-[1rem];
 }

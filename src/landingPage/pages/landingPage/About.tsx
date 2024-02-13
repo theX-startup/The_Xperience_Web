@@ -3,12 +3,12 @@ import AnimatedPage from '../../../utils/AnimatedPage'
 
 type Props = {}
 
-const Login = (props: Props) => {
+const About = (props: Props) => {
   return (
     <AnimatedPage>
-      <div>Login</div>
+        <div className='h-[79vh]'>About</div>
     </AnimatedPage>
   )
 }
 
-export default Login
+export default About

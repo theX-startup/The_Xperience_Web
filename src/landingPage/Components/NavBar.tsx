@@ -1,6 +1,7 @@
 import { useState } from "react";
 import logo from "../../assets/logos/logo.png";
 import logoBlack from "../../assets/logos/logoBlack.png";
+import { Link } from "react-router-dom";
 
 const NavBar = () => {
   const [active, setActive] = useState(false);
@@ -48,29 +49,27 @@ const NavBar = () => {
       >
         <div>
           <ul className="md:flex gap-5 text-secondary md:text-xs block lg:text-sm">
-            <a href="">
+            <Link to={""}>
               <li className="nav-item">Home</li>
-            </a>
-            <a href="">
-              <li className="nav-item">Why theXperience</li>
-            </a>
-            <a href="">
-              <li className="nav-item">Categories</li>
-            </a>
-            <a href="">
+            </Link>
+            <Link to={""}>
               <li className="nav-item">Company / Professionals</li>
-            </a>
-            <a href="">
+            </Link>
+            <Link to={"rosources"}>
               <li className="nav-item">Resources</li>
-            </a>
-            <a href="">
+            </Link>
+            <Link to={"about"}>
               <li className="nav-item">About us</li>
-            </a>
+            </Link>
           </ul>
         </div>
         <div className="flex lg:gap-5 md:flex-row flex-col md:gap-2 gap-2 p-4 md:p-0">
-          <div className="btn cursor-pointer text-secondary">Login</div>
-          <div className="btn cursor-pointer text-secondary">SignUp</div>
+          <Link to={"login"} className="btn cursor-pointer text-secondary">
+            Login
+          </Link>
+          <Link to={"register"} className="btn cursor-pointer text-secondary">
+            SignUp
+          </Link>
         </div>
       </div>
     </div>

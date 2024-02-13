@@ -1,11 +1,15 @@
 // import React from 'react'
 
+import AnimatedPage from "../../../utils/AnimatedPage";
+
 // type Props = {}
 
 const Register = () => {
   return (
-    <div>Register</div>
-  )
-}
+    <AnimatedPage>
+      <div>Register</div>
+    </AnimatedPage>
+  );
+};
 
-export default Register
+export default Register;

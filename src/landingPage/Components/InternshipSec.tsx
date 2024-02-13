@@ -28,7 +28,7 @@ const InternshipSec = (props: Props) => {
   return (
     <div className="py-8 px-2 inknut-antiqua-medium relative">
       <div className="text-center">
-        <h1>
+        <h1 className="text_sm">
           You Need Experience : We Have More Than 70 Internship Positions
           Available For You To Explore
         </h1>
@@ -50,16 +50,6 @@ const InternshipSec = (props: Props) => {
           );
         })}
       </div>
-      <IoIosArrowDropleftCircle
-        onClick={() => handleScroll("left")}
-        className=" absolute top-[20%] cursor-pointer text-secondary md:left-10"
-        size={50}
-      />
-      <IoIosArrowDroprightCircle
-        onClick={() => handleScroll("right")}
-        className=" absolute top-[20%] right-5 text-secondary cursor-pointer "
-        size={50}
-      />
     </div>
   );
 };

@@ -22,25 +22,12 @@ const InternshipComponent = (props: props) => {
         <h1>{data.companyName}</h1>
         <p>{data.price}</p>
       </div>
-      <div className="md:px-4 p-2 text-center text-sm">
+      <div className="md:px-4 p-2 py-4 text-center text-sm">
         <h1>{data.product}</h1>
       </div>
-      <div className="text-center">
-        <div className="flex flex-col items-center">
-          <h1>Skills to be tested</h1>
-          <div className="h-[1px] w-[100px] bg-[#5200FF]"></div>
-        </div>
-        <div className="flex flex-wrap text-sm justify-center">
-          {data.skills.map((item, index) => {
-            return (
-              <div key={index} className="p-2">
-                <p>{item},</p>
-              </div>
-            );
-          })}
-        </div>
+      {/* <div className="text-center mt-5">
         <div className="h-[40px] bg-[#5200FF] flex items-center justify-center text-white rounded-b-lg">Start Internship</div>
-      </div>
+      </div> */}
     </div>
   );
 };
