@@ -6,7 +6,7 @@ const NavBar = () => {
   const [active, setActive] = useState(false);
   return (
     <div
-      className="bg-tertiary lg:px-7 md:px-3 flex items-center justify-between relative border-b "
+      className="bg-tertiary lg:px-7 md:px-3 flex items-center justify-between relative border-b shadow-md "
       onScroll={() => {
         console.log("scroll");
       }}
@@ -42,7 +42,7 @@ const NavBar = () => {
       </div>
 
       <div
-        className={`inknut-antiqua-semibold mobile-nav desktop-nav tablet-nav  items-center bg-tertiary ${
+        className={`inknut-antiqua-semibold mobile-nav desktop-nav tablet-nav  items-center bg-tertiary shadow-lg md:shadow-none ${
           active ? "block" : "hidden"
         }`}
       >
