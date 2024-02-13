@@ -210,3 +210,32 @@ export const data = [
     ],
   },
 ];
+
+
+export const cards = [
+  {
+    fullName: "John Doe",
+    message : "Fantastic digital marketing internship! Supportive team, hands-on learning, and valuable insights into diverse strategies. Contributed meaningfully to projects, strategies. Contributed meaningfully to projects, strategies.",
+    profileImg: "",
+  },
+  {
+    fullName: "John Doe",
+    message : "Fantastic digital marketing internship! Supportive team, hands-on learning, and valuable insights into diverse strategies. Contributed meaningfully to projects, strategies. Contributed meaningfully to projects, strategies.",
+    profileImg: "",
+  },
+  {
+    fullName: "John Doe",
+    message : "Fantastic digital marketing internship! Supportive team, hands-on learning, and valuable insights into diverse strategies. Contributed meaningfully to projects, strategies. Contributed meaningfully to projects, strategies.",
+    profileImg: "",
+  },
+  {
+    fullName: "John Doe",
+    message : "Fantastic digital marketing internship! Supportive team, hands-on learning, and valuable insights into diverse strategies. Contributed meaningfully to projects, strategies. Contributed meaningfully to projects, strategies.",
+    profileImg: "",
+  },
+  {
+    fullName: "John Doe",
+    message : "Fantastic digital marketing internship! Supportive team, hands-on learning, and valuable insights into diverse strategies. Contributed meaningfully to projects, strategies. Contributed meaningfully to projects, strategies.",
+    profileImg: "",
+  },
+]

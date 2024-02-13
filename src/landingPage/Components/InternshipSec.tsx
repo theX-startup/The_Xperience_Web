@@ -35,9 +35,10 @@ const InternshipSec = (props: Props) => {
       </div>
       <div
         ref={scroll}
-        className="flex flex-nowrap overflow-x-hidden gap-5 py-5 md:px-5 px-2 relative "
+        className="flex flex-nowrap overflow-x-auto gap-5 py-5 md:px-5 px-2 relative "
         style={{
           scrollBehavior: "smooth",
+          scrollbarWidth: "none",
         }}
       >
         {data.map((item, index) => {
