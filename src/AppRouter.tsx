@@ -1,5 +1,5 @@
 import { useSelector } from "react-redux";
-import { BrowserRouter, Route, Routes, useLocation } from "react-router-dom";
+import { BrowserRouter, Route, Routes } from "react-router-dom";
 import PrivtaeRoutes from "./App/Routes/PrivtaeRoutes";
 import Router from "./landingPage/Routes/Router";
 import App from "./App";
