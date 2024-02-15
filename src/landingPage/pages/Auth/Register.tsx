@@ -11,7 +11,6 @@ import { useDispatch, useSelector } from "react-redux";
 // type Props = {}
 
 const Register = () => {
-  const [user, setuser] = useState("intern");
   const userNameCheck = useSelector(
     (state: any) => state.auth.userNameCheck.message
   );
