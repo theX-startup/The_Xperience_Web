@@ -1,24 +1,25 @@
 // import React from "react";
-import { Navigate, Route, Routes, useLocation } from "react-router-dom";
-import AuthRoutes from "./auth/authRoutes";
-import LandingPageRoutes from "./landingPage/LandingPageRoutes";
+import { Route, Routes, useLocation } from "react-router-dom";
+
+import Layout from "./Layout";
+import Home from "../pages/landingPage/Home";
+import About from "../pages/landingPage/About";
+import Resources from "../pages/landingPage/Resources";
+import Login from "../pages/Auth/Login";
+import Register from "../pages/Auth/Register";
 
 const Router = () => {
-  const newUser = true;
   const location = useLocation();
   return (
     <Routes key={location.pathname} location={location}>
-      {newUser ? (
-        <>
-          <Route path="landingPage/*" element={<LandingPageRoutes />} />
-          <Route path="*" element={<Navigate to="/landingPage" />} />
-        </>
-      ) : (
-        <>
-          <Route path="auth/*" element={<AuthRoutes />} />
-          <Route path="*" element={<Navigate to="/auth" />} />
-        </>
-      )}
+      <Route element={<Layout />}>
+        <Route path="home" element={<Home />} />
+        <Route path="about" element={<About />} />
+        <Route path="resources" element={<Resources />} />
+        <Route path="login" element={<Login />} />
+        <Route path="register" element={<Register />} />
+        <Route index element={<Home />} />
+      </Route>
       {/* <Route path='/' element={<div>Welcome to the landing page</div>} /> */}
     </Routes>
   );

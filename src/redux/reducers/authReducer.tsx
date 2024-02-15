@@ -1,15 +1,17 @@
 import { ActionTypes } from "../../utils/ActionTypes";
 
 const initialState = {
-  username: "",
-  email: "",
-  fullname: "",
-  token: "joasefnvcljo",
-  isAuth: true,
+  user: {},
+  token: "",
+  isAuth: false,
   signInLoading: false,
   signInError: "",
   signUpLoading: false,
   signUpError: "",
+  userNameCheck: {
+    loading: false,
+    message : "",
+  }
 };
 
 interface Action {
@@ -19,12 +21,8 @@ interface Action {
 
 export const authReducer = (state = initialState, action: Action) => {
   switch (action.type) {
-    case ActionTypes.SET_USERNAME:
-      return { ...state, username: action.payload };
-    case ActionTypes.SET_FULLNAME:
-      return { ...state, fullname: action.payload };
-    case ActionTypes.SET_EMAIL:
-      return { ...state, email: action.payload };
+    case ActionTypes.SET_USER:
+      return { ...state, user: action.payload };
     case ActionTypes.SET_SIGNIN_LOADING:
       return { ...state, signInLoading: action.payload };
     case ActionTypes.SET_SIGNIN_ERROR:
@@ -35,6 +33,10 @@ export const authReducer = (state = initialState, action: Action) => {
       return { ...state, signUpError: action.payload };
     case ActionTypes.IS_AUTH:
       return { ...state, isAuth: action.payload };
+    case ActionTypes.SET_TOKEN:
+      return { ...state, token: action.payload };
+    case ActionTypes.USERNAME_CHECK:
+      return { ...state, userNameCheck: action.payload };
     default:
       return state;
   }

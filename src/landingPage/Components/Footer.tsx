@@ -5,7 +5,7 @@ import { FaFacebook, FaInstagram, FaLinkedin } from "react-icons/fa";
 
 const Footer = () => {
   return (
-    <div className="shadow shadow-black mt-10 dark:shadow-white relative bottom-0 w-[100%]">
+    <div className="shadow shadow-black dark:shadow-white relative bottom-0 w-[100%]">
       <div></div>
       <div className="flex md:px-10 justify-between flex-col md:flex-row items-center">
         <div className="flex items-center">

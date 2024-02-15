@@ -125,7 +125,7 @@ body {
   border-radius: 1ex;
 }
 ::-webkit-scrollbar-thumb {
-  background: #0000ff;
+  @apply bg-slate-400
   /* -webkit-border-radius: 1ex; */
 }
 

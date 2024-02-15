@@ -10,6 +10,8 @@ import { AnimatePresence } from "framer-motion";
 const AppRouter = () => {
   const token = useSelector((state: any) => state.auth.token);
   const isAuth = useSelector((state: any) => state.auth.isAuth);
+
+  
   console.log(token, isAuth);
   return (
     <BrowserRouter>

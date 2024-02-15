@@ -49,13 +49,13 @@ const NavBar = () => {
       >
         <div>
           <ul className="md:flex gap-5 text-secondary md:text-xs block lg:text-sm">
-            <Link to={""}>
+            <Link to={"home"}>
               <li className="nav-item">Home</li>
             </Link>
             <Link to={""}>
               <li className="nav-item">Company / Professionals</li>
             </Link>
-            <Link to={"rosources"}>
+            <Link to={"resources"}>
               <li className="nav-item">Resources</li>
             </Link>
             <Link to={"about"}>

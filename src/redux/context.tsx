@@ -1,8 +1,9 @@
 import React, { createContext, useContext, useEffect } from "react";
 import { useDispatch } from "react-redux";
 import { ActionTypes } from "../utils/ActionTypes";
+import { getUser } from "../landingPage/pages/Auth/_request";
 
-const TOKEN_KEY = "TheX_User_Token";
+export const TOKEN_KEY = "TheX_User_Token";
 interface AuthState {
   onLogout: () => void;
 }
@@ -18,11 +19,12 @@ interface AuthProviderProps {
 
 export const AuthProvider = (props: AuthProviderProps) => {
   const children = props.children;
-  const dispatch = useDispatch();
+  const dispatch = useDispatch<any>();
 
   useEffect(() => {
     const token = localStorage.getItem(TOKEN_KEY);
     if (token) {
+      dispatch(getUser());
       dispatch({ type: ActionTypes.SET_TOKEN, payload: token });
       dispatch({ type: ActionTypes.IS_AUTH, payload: true });
     } else {

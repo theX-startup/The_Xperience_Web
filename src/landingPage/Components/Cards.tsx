@@ -1,8 +1,6 @@
 import { cards } from "../../utils/constant/internshipData";
 
-
 const Cards = () => {
- 
   return (
     <div>
       <div className="p-5 text-center">
@@ -21,10 +19,10 @@ const Cards = () => {
           return (
             <div
               key={index}
-              className="w-[220px] bg-tertiary p-2 sm:p-4 text-center rounded-sm"
+              className="w-[270px] bg-tertiary p-2 sm:p-4 text-center rounded-sm"
             >
-              <h1 className="text_sm lg:text-sm">{card.message}</h1>
-              <h1 className="text-[12px] text-[#5200FF] text-left mt-2">
+              <h1 className="text-[10px]">" {card.message} "</h1>
+              <h1 className="text-[12px] dark:text-[#5200FF] text-left mt-4">
                 {card.fullName}
               </h1>
             </div>

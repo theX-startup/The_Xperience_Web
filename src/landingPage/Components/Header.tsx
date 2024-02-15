@@ -4,7 +4,11 @@ const Header = () => {
   return (
     <div className="">
       <div>
-        <img src={image1} alt="" className="h-[60vh] md:h-[75vh] w-[100%] object-cover " />
+        <img
+          src={image1}
+          alt=""
+          className="h-[60vh] md:h-[75vh] w-[100%] object-cover "
+        />
       </div>
       <div className="sm:p-5 p-2 flex justify-center flex-col items-center gap-7 text-center ">
         <h1 className="text_lg inknut-antiqua-semibold">
@@ -26,36 +30,20 @@ const Header = () => {
       </div>
       <div className="bg-tertiary flex w-[100%] h-[130px] items-center justify-between md:px-10 px-2 flex-wrap lg:px-40 inknut-antiqua-semibold mt-7">
         <div className="flex flex-col items-center justify-center gap-2">
-          <h1 className=" text_md text-[#5200FF]">
-            2, 437,006
-          </h1>
-          <p className="text_sm">
-            Interns
-          </p>
+          <h1 className=" text_md dark:text-[#5200FF] font-sans">2, 437,006</h1>
+          <p className="text_sm">Interns</p>
         </div>
         <div className="flex flex-col items-center justify-center gap-2">
-          <h1 className=" text_md text-[#5200FF]">
-            2, 437,006
-          </h1>
-          <p className="text_sm">
-            Interns
-          </p>
+          <h1 className=" text_md dark:text-[#5200FF] font-sans">47</h1>
+          <p className="text_sm">Companies</p>
         </div>
         <div className="flex flex-col items-center justify-center gap-2">
-          <h1 className=" text_md text-[#5200FF]">
-            2, 437,006
-          </h1>
-          <p className="text_sm">
-            Interns
-          </p>
+          <h1 className=" text_md dark:text-[#5200FF] font-sans">105</h1>
+          <p className="text_sm">Professionals</p>
         </div>
         <div className="flex flex-col items-center justify-center gap-2">
-          <h1 className=" text_md text-[#5200FF]">
-            2, 437,006
-          </h1>
-          <p className="text_sm">
-            Interns
-          </p>
+          <h1 className=" text_md dark:text-[#5200FF] font-sans">10</h1>
+          <p className="text_sm">Tech Skills</p>
         </div>
       </div>
     </div>
