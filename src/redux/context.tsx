@@ -2,6 +2,7 @@ import React, { createContext, useContext, useEffect } from "react";
 import { useDispatch } from "react-redux";
 import { ActionTypes } from "../utils/ActionTypes";
 import { getUser } from "../landingPage/pages/Auth/_request";
+import { getInternships } from "../App/pages/dashboard/_request";
 
 export const TOKEN_KEY = "TheX_User_Token";
 interface AuthState {
@@ -30,6 +31,10 @@ export const AuthProvider = (props: AuthProviderProps) => {
     } else {
       dispatch({ type: ActionTypes.IS_AUTH, payload: false });
     }
+  }, []);
+
+  useEffect(() => {
+    dispatch(getInternships());
   }, []);
 
   const register = () => {};
