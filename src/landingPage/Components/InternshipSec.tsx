@@ -1,32 +1,42 @@
 import { useRef, useState } from "react";
-import { data } from "../../utils/constant/internshipData";
 import InternshipComponent from "../../App/Components/InternshipComponent";
 import { AnimatePresence, motion } from "framer-motion";
-
+import { useSelector } from "react-redux";
 
 interface Item {
-  companyName: string;
-  product: string;
-  price: string;
+  title: string;
+  company: {
+    name: string;
+    logo: string;
+  };
+  description: string;
   duration: string;
+  heading: string;
+  image: string;
   noOftasks: string;
-  img: string;
-  skills: string[];
+  price: string;
+  _id: string;
+  color: string;
 }
 
 const InternshipSec = () => {
   const scroll = useRef<HTMLDivElement>(null);
   const [selectedId, setSelectedId] = useState("");
+  const internships = useSelector(
+    (state: any) => state.internships.internships
+  );
   const [item, setItem] = useState<Item>({
-    companyName: "",
-    product: "",
-    price: "",
+    company: {} as any,
+    description: "",
     duration: "",
+    heading: "",
+    image: "",
     noOftasks: "",
-    img: "",
-    skills: [],
+    price: "",
+    title: "",
+    _id: "",
+    color: "",
   });
-
 
   return (
     <>
@@ -41,7 +51,7 @@ const InternshipSec = () => {
           ref={scroll}
           className="flex flex-nowrap overflow-x-auto overflow-y-hidden gap-5 py-5 md:px-5 px-2 relative "
         >
-          {data.map((item, index) => {
+          {internships.map((item: any, index: any) => {
             return (
               <motion.div
                 layoutId={index.toString()}
@@ -68,45 +78,48 @@ const InternshipSec = () => {
             onClick={() => {
               setSelectedId("");
               setItem({
-                companyName: "",
-                product: "",
-                price: "",
+                company: {} as any,
+                description: "",
                 duration: "",
+                heading: "",
+                image: "",
                 noOftasks: "",
-                img: "",
-                skills: [],
+                price: "",
+                title: "",
+                _id: "",
+                color: "",
               });
             }}
           >
             <motion.div className="w-full bg-secondary flex flex-col md:flex-row rounded-md">
               <motion.img
-                src={item.img}
+                src={item.image}
                 alt=""
                 className=" object-cover z-50 rounded-md"
               />
               <motion.div className="p-2">
                 <motion.div className="flex justify-between md:flex-col">
                   <motion.h1 className="text_md text-[#0000FF] dark:text-white">
-                    {item.companyName}
+                    {item.company.name}
                   </motion.h1>
                   <motion.p className="text_md text-[#0000FF] dark:text-white">
                     {item.price}
                   </motion.p>
                 </motion.div>
                 <motion.div className="py-4 ">
-                  <motion.h1 className="text_sm">{item.product}</motion.h1>
+                  <motion.h1 className="text_sm">{item.title}</motion.h1>
                 </motion.div>
               </motion.div>
               <motion.div className="text-center md:py-5 md:px-3 md:text-justify max-w-[400px]">
                 <motion.h1 className="underline text-center">Skills</motion.h1>
                 <div className="flex flex-wrap items-center justify-center py-5">
-                  {item.skills.map((skill, index) => {
+                  {/* {item.skills.map((skill, index) => {
                     return (
                       <motion.div key={index} className="p-2">
                         <motion.h1 className="text_sm">{skill}</motion.h1>
                       </motion.div>
                     );
-                  })}
+                  })} */}
                 </div>
               </motion.div>
             </motion.div>
