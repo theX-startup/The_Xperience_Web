@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import cardImg from "../../assets/images/cardimg.png";
 
 const Card = () => {
@@ -19,7 +20,7 @@ const Card = () => {
         <h1 className="text_sm inknut-antiqua-regular">
           Here, innovation is not just a concept; it's an experience.
         </h1>
-        <div className="btn cursor-pointer mt-5 text-secondary ">Get Started</div>
+        <Link to={"../register"} className="btn cursor-pointer mt-5 text-secondary ">Get Started</Link>
       </div>
       <div className="flex items-center justify-center">
         <img src={cardImg} alt="" />

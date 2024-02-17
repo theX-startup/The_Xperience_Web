@@ -55,7 +55,7 @@ const InternshipSec = () => {
             return (
               <motion.div
                 layoutId={index.toString()}
-                className="cursor-pointer"
+                className="cursor-pointer min-w-[300px]"
                 key={index}
                 onClick={() => {
                   setSelectedId(index.toString());

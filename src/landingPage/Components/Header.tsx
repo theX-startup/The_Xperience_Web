@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import image1 from "../../assets/images/header1.png";
 
 const Header = () => {
@@ -21,9 +22,9 @@ const Header = () => {
         <p className="text_sm">
           No more 845 mails plus begging just to get an internship position
         </p>
-        <div className="bg-tertiary w-40 py-3 flex items-center justify-center rounded cursor-pointer">
+        <Link to={"../register"} className="bg-tertiary w-40 py-3 flex items-center justify-center rounded cursor-pointer">
           Create Account
-        </div>
+        </Link>
       </div>
       <div className="mt-14 text-center inknut-antiqua-semibold">
         <h1 className="text_sm">Trusted and Used By</h1>
