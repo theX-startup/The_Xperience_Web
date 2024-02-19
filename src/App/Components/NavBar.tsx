@@ -43,7 +43,7 @@ const NavBar = () => {
                   transition={{ duration: 0.2 }}
                 >
                   <div className="min-h-[35px] w-full flex justify-between items-center pb-5">
-                    <div className="flex items-end gap-2">
+                    <div className="flex items-center gap-2">
                       {user.picturePath ? (
                         <img
                           src={user.picturePath}
@@ -183,12 +183,18 @@ const NavBar = () => {
               </div>
             )}
           </div>
-          <Link to={"/"}>
-            <img src={logo} alt="" className="w-[80px] hidden dark:block" />
-          </Link>
-          <Link to={"/"}>
-            <img src={logoBlack} alt="" className="w-[80px] dark:hidden" />
-          </Link>
+          <div>
+            <Link to={"/"}>
+              <img src={logo} alt="" className="w-[80px] hidden dark:block" />
+            </Link>
+            <Link to={"/"}>
+              <img
+                src={logoBlack}
+                alt=""
+                className="w-[80px] dark:hidden block"
+              />
+            </Link>
+          </div>
         </div>
         <div>
           <div className="w-full md:w-[450px] lg:w-[600px] h-[40px] bg-secondary border border-black dark:border-white rounded flex">

@@ -2,6 +2,7 @@ import { ActionTypes } from "../../utils/ActionTypes";
 
 const initialState = {
   internships: [],
+  internshipsLoading: false,
   internship: {},
   internshipLoading: false,
   internshipError: "",
@@ -56,6 +57,8 @@ export const internshipReducer = (state = initialState, action: Action) => {
       return { ...state, internshipDeleteError: action.payload };
     case ActionTypes.SET_USER_INTERNSHIPS:
       return { ...state, userInternships: action.payload };
+      case ActionTypes.SET_INTERNSHIPS_LOADING:
+        return { ...state, internshipsLoading: action.payload };
     default:
       return state;
   }

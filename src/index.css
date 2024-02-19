@@ -3,7 +3,6 @@
 @tailwind components;
 @tailwind utilities;
 
-
 .inknut-antiqua-regular {
   font-family: "Inknut Antiqua", serif;
   font-weight: 400;
@@ -45,29 +44,28 @@
 }
 
 .bg-secondary {
-  @apply bg-slate-200 dark:bg-slate-800 text-slate-800 dark:text-slate-100;
+  @apply bg-slate-200 dark:bg-gray-950 text-gray-950 dark:text-slate-100;
 }
 
 .text-primary {
-  @apply text-slate-800 dark:text-slate-100;
+  @apply text-gray-950 dark:text-slate-100;
 }
 body {
   @apply bg-secondary text-primary h-[100%];
   font-family: "Inknut Antiqua", serif;
   overflow-x: hidden;
-
 }
 
 .bg-tertiary {
-  @apply bg-slate-800 dark:bg-slate-100 text-white dark:text-slate-800;
+  @apply bg-gray-950 dark:bg-slate-100 text-white dark:text-gray-950;
 }
 
 .btn {
-  @apply text-white w-[100%] text-xs md:w-[75px] md:text-xs lg:w-[100px] h-[40px] rounded-sm flex justify-center items-center border border-white dark:border-slate-800;
+  @apply text-white w-[100%] text-xs md:w-[75px] md:text-xs lg:w-[100px] h-[40px] rounded-sm flex justify-center items-center border border-white dark:border-gray-950;
 }
 
 .text-secondary {
-  @apply text-slate-100 dark:text-slate-800;
+  @apply text-slate-100 dark:text-gray-950;
 }
 
 .mobile-nav {
@@ -91,7 +89,7 @@ body {
 }
 
 .text_lg {
-  @apply text-[1rem] md:text-[1.5rem] lg:text-[2rem]; 
+  @apply text-[1rem] md:text-[1.5rem] lg:text-[2rem];
 }
 
 .text_md {
@@ -126,7 +124,7 @@ body {
 }
 ::-webkit-scrollbar-thumb {
   @apply bg-slate-400
-  /* -webkit-border-radius: 1ex; */
+  /* -webkit-border-radius: 1ex; */;
 }
 
 ::-webkit-scrollbar-corner {

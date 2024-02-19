@@ -1,4 +1,5 @@
-import { CiBookmarkPlus } from "react-icons/ci"
+import { CiBookmarkPlus } from "react-icons/ci";
+import { useDispatch } from "react-redux";
 
 type props = {
   data: {
@@ -15,10 +16,14 @@ type props = {
     price: string;
     _id: string;
     color: string;
+    noOfStudents: number;
   };
+  index: number;
+  setId: any;
 };
 const InternshipComponent = (props: props) => {
-  const { data } = props;
+  const { data, index, setId } = props;
+  const dispatch = useDispatch();
 
   return (
     <div className="w-full md:max-w-[300px] bg-secondary rounded-lg relative">
@@ -38,12 +43,25 @@ const InternshipComponent = (props: props) => {
           </div>
           <h1 className="text-[10px]">{data.company?.name}</h1>
         </div>
-        <h1 className="text-[10px]">{data.title}</h1>
+        <h1
+          className="text-[10px] hover:text-[#0000ff] cursor-pointer transition-all duration-300 ease-in-out"
+          onClick={() => {
+            dispatch({
+              type: "SET_SELECTED_ID",
+              payload: index.toString(),
+            });
+            setId(data._id);
+          }}
+        >
+          {data.title}
+        </h1>
         <p className="text-[10px] font-sans">#{data.price}</p>
       </div>
       <div className="flex justify-between p-2">
         <div className="flex items-center gap-2">
-          <p className="text-[10px] font-sans">{data.noOfTasks} Weeks</p>
+          <p className="text-[10px] font-sans">
+            {data.noOfStudents} Enrolled students
+          </p>
         </div>
         <p className="text-[10px] font-sans">{data.duration}</p>
       </div>
