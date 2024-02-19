@@ -123,8 +123,8 @@ body {
   border-radius: 1ex;
 }
 ::-webkit-scrollbar-thumb {
-  @apply bg-slate-400
-  /* -webkit-border-radius: 1ex; */;
+  @apply bg-slate-400;
+  -webkit-border-radius: 1ex;
 }
 
 ::-webkit-scrollbar-corner {
