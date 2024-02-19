@@ -9,6 +9,7 @@ import { motion } from "framer-motion";
 import { IoMdClose } from "react-icons/io";
 import { IoIosArrowDown } from "react-icons/io";
 import { IoIosArrowUp } from "react-icons/io";
+import { useAuth } from "../../redux/context";
 
 const NavBar = () => {
   const user = useSelector((state: any) => state.auth.user);
@@ -19,6 +20,8 @@ const NavBar = () => {
   const [menuActive, setMenuActive] = useState(false);
   const [mobileMenuActive, setMobileMenuActive] = useState(false);
   const [activeMenu, setActiveMenu] = useState("");
+  const { onLogout } = useAuth();
+
   return (
     <div className="relative px-5 xl:px-[10rem] lg:px-[5rem] flex items-center justify-between">
       <div className="flex sm:items-center sm:flex-row flex-col w-full">
@@ -174,8 +177,11 @@ const NavBar = () => {
                     Community
                   </Link>
                   <Link
-                    to={"/logout"}
-                    className="block text-[10px] hover:text-[#0000ff] transition-all duration-500 ease-in-out text-slate-700 dark:text-slate-200"
+                    to={"../"}
+                    onClick={() => {
+                      onLogout();
+                    }}
+                    className=" cursor-pointer block text-[10px] hover:text-[#0000ff] transition-all duration-500 ease-in-out text-slate-700 dark:text-slate-200"
                   >
                     Logout
                   </Link>

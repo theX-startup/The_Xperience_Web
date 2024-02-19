@@ -1,4 +1,4 @@
-import { useDispatch, useSelector } from "react-redux";
+import { useSelector } from "react-redux";
 import InternshipComponent from "../../Components/InternshipComponent";
 import { AnimatePresence, motion } from "framer-motion";
 import { useState } from "react";
@@ -11,7 +11,6 @@ const Dashboard = () => {
   const internships = useSelector(
     (state: any) => state.internships.internships
   );
-  const dispatch = useDispatch();
   const selectedId = useSelector((state: any) => state.layout.selectedId);
   const [id, setId] = useState("");
   if (loading) {
@@ -38,12 +37,6 @@ const Dashboard = () => {
         {selectedId && (
           <motion.div
             layoutId={selectedId}
-            onClick={() => {
-              dispatch({
-                type: "SET_SELECTED_ID",
-                payload: "",
-              });
-            }}
           >
             <motion.div
               className={`fixed h-full top-0 left-0 w-full bg-secondary z-20 lg:px-[5rem] pt-[2rem] md:px-[2.5rem] px-[1rem]`}

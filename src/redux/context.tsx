@@ -37,14 +37,15 @@ export const AuthProvider = (props: AuthProviderProps) => {
     dispatch(getInternships());
   }, []);
 
-  const register = () => {};
-  const login = () => {};
-  const logout = () => {};
+  // const register = () => {};
+  // const login = () => {};
+  const logout = () => {
+    localStorage.removeItem(TOKEN_KEY);
+    window.location.reload();
+  };
 
-  const value = {
+  const value : AuthState = {
     onLogout: logout,
-    onLogin: login,
-    onRegister: register,
   };
 
   return <AuthContext.Provider value={value}>{children}</AuthContext.Provider>;

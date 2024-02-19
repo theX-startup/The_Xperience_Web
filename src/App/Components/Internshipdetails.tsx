@@ -28,7 +28,7 @@ const Internshipdetails = (props: props) => {
   );
   const { id } = props;
   const { isLoading } = useQuery<any>("internship", async () => {
-    if (internshipDetails) {
+    if (internshipDetails === null) {
       return internshipDetails;
     }
     await dispatch(fetchInternshipDetails(id));
