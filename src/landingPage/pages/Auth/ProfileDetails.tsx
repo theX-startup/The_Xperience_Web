@@ -7,6 +7,7 @@ import { useNavigate } from "react-router-dom";
 const ProfileDetails = () => {
   //   const user = useSelector((state: any) => state.auth.user);
   const fileRef = useRef<HTMLInputElement>(null);
+  const cloudName = "dc22hgqku";
   const [profilePic, setProfilePic] = useState("");
   const [selectedSkills, setSelectedSkills] = useState<string[]>([]);
   const [filteredSkills, setFilteredSkills] = useState<string[]>([]);
@@ -21,9 +22,22 @@ const ProfileDetails = () => {
 
   const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     if (e.target.files) {
-      const file = e.target.files[0];
-     setProfilePic(URL.createObjectURL(file));
-      
+      const fb = new FormData();
+      const unsignedUploadPreset = "nkvvezjy";
+      fb.append("file", e.target.files[0]);
+      fb.append('upload_preset', unsignedUploadPreset)
+      const url = `https://api.cloudinary.com/v1_1/${cloudName}/upload`
+      const xhr = new XMLHttpRequest();
+      xhr.open("POST", url, true);
+      xhr.setRequestHeader("X-Requested-With", "XMLHttpRequest");
+      xhr.send(fb);
+      xhr.onreadystatechange = function () {
+        if (xhr.readyState === 4 && xhr.status === 200) {
+          const response = JSON.parse(xhr.responseText);
+          console.log(response);
+          setProfilePic(response.secure_url);
+        }
+      };
     }
   };
 
@@ -40,8 +54,8 @@ const ProfileDetails = () => {
   const handleSubmit = async (e: any) => {
     e.preventDefault();
     const formData = new FormData();
-    // const picturePath = profilePic;
-    // formData.append("picturePath", picturePath);
+    const picturePath = profilePic;
+    formData.append("picturePath", picturePath);
     formData.append("skills", JSON.stringify(selectedSkills));
     const YOE = to !== "" ? (Number(to) - Number(from)).toString() : "";
     formData.append("YOE", YOE);
