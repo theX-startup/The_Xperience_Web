@@ -1,5 +1,5 @@
 import { useState } from "react";
-import img from "../../../assets/images/loginImg.png";
+// import img from "../../../assets/images/loginImg.png";
 import AnimatedPage from "../../../utils/AnimatedPage";
 import Input from "../../Components/Input";
 import { MdEmail } from "react-icons/md";
@@ -30,10 +30,7 @@ const Login = () => {
 
   return (
     <AnimatedPage>
-      <div className="min-h-[85vh] grid md:grid-cols-2 w-full">
-        <div className="h-[100%] hidden md:block">
-          <img src={img} className="h-[100%]" alt="" />
-        </div>
+      <div className="min-h-[85vh] w-full flex items-center">
         <form
           onSubmit={(e: any) => handleSubmit(e)}
           className="flex w-full flex-col justify-center items-center px-3 md:px-10 gap-4"

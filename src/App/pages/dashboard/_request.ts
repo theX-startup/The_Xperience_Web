@@ -17,7 +17,7 @@ export const getInternships = (): ThunkAction<void, any, any, any> => {
           payload: response.internships,
         });
         dispatch({
-          type: ActionTypes.SET_INTERNSHIP_LOADING,
+          type: ActionTypes.SET_INTERNSHIPS_LOADING,
           payload: false,
         });
       }

@@ -7,6 +7,8 @@ import { AuthProvider } from "./redux/context.tsx";
 import AppRouter from "./AppRouter.tsx";
 import { QueryClient } from "react-query";
 import { QueryClientProvider } from "react-query";
+import { ToastContainer } from "react-toastify";
+import 'react-toastify/dist/ReactToastify.css'
 
 const Client = new QueryClient();
 ReactDOM.createRoot(document.getElementById("root")!).render(
@@ -15,6 +17,7 @@ ReactDOM.createRoot(document.getElementById("root")!).render(
       <QueryClientProvider client={Client}>
         <AuthProvider>
           <AppRouter />
+          <ToastContainer />
         </AuthProvider>
       </QueryClientProvider>
     </Provider>

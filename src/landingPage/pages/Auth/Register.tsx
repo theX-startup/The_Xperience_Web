@@ -1,5 +1,4 @@
-import { useRef, useState } from "react";
-import img from "../../../assets/images/loginImg.png";
+import { useState } from "react";
 import AnimatedPage from "../../../utils/AnimatedPage";
 import Input from "../../Components/Input";
 import { FaLock, FaUser } from "react-icons/fa";
@@ -8,13 +7,11 @@ import { Link, useNavigate } from "react-router-dom";
 import { checkUsername, register } from "./_request";
 import { useDispatch, useSelector } from "react-redux";
 
-// type Props = {}
-
 const Register = () => {
   const userNameCheck = useSelector(
     (state: any) => state.auth.userNameCheck.message
   );
-  const fileRef = useRef<any>(null);
+  const signupLoading = useSelector((state: any) => state.auth.signUpLoading);
   const [formValues, setFormValues] = useState({
     username: "",
     fullname: "",
@@ -33,19 +30,7 @@ const Register = () => {
     });
   };
 
-  const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    if (e.target.files) {
-      const file = e.target.files[0];
-      const reader = new FileReader();
-      reader.onloadend = () => {
-        setFormValues({
-          ...formValues,
-          profilePic: reader.result as string,
-        });
-      };
-      reader.readAsDataURL(file);
-    }
-  };
+
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -57,10 +42,7 @@ const Register = () => {
   };
   return (
     <AnimatedPage>
-      <div className="min-h-[85vh] grid md:grid-cols-2 w-full">
-        <div className="h-full hidden md:flex">
-          <img src={img} className="object-cover h-full" alt="" />
-        </div>
+      <div className="min-h-[85vh] flex items-center w-full">
         <form
           className="max-h-[80vh] lg:max-h-[90vh] w-full justify-center overflow-y-auto items-center px-3 md:px-10 gap-4 grid grid-cols-1 pt-12 lg:pt-24"
           style={{
@@ -176,28 +158,20 @@ const Register = () => {
                   <FaUser />
                 </div>
               </div>
-              <div
-                ref={fileRef}
-                onClick={() => {
-                  if (fileRef.current) {
-                    fileRef.current.click();
-                  }
-                }}
-                className="w-full h-[45px] border-2 border-[#0000ff] dark:bg-slate-200 dark:border-transparent dark:text-black flex px-4 rounded-sm items-center justify-center text_sm cursor-pointer"
-              >
-                <input
-                  type="file"
-                  ref={fileRef}
-                  className="hidden"
-                  onChange={(e: any) => handleFileChange(e)}
-                  accept="image/*"
-                />
-                Upload Company/Professional Logo
-              </div>
             </div>
           )}
-          <button className="w-full h-[45px] bg-[#0000ff] text-white rounded-sm mb-5">
+          <button
+            className={`w-full h-[45px] bg-[#0000ff] text-white rounded-sm mb-5 flex items-center justify-center gap-5 ${
+              signupLoading ? "bg-opacity-40" : ""
+            }`}
+            style={{
+              cursor: signupLoading ? "not-allowed" : "pointer",
+            }}
+          >
             Create Account
+            {signupLoading && (
+              <div className="h-5 w-5 bg-white animate-spin"></div>
+            )}
           </button>
           <div className="flex w-full justify-center items-center gap-3 mb-5">
             <p className="text_sm">Already have an account?</p>

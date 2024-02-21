@@ -122,7 +122,7 @@ const NavBar = () => {
                   </div>
 
                   <Link
-                    to={"/logout"}
+                    to={"/internships"}
                     className="block pb-3 text-[10px] hover:text-[#0000ff] transition-all duration-500 ease-in-out text-slate-700 dark:text-slate-200"
                   >
                     Internships
@@ -244,60 +244,63 @@ const NavBar = () => {
             >
               <div className="absolute top-[120%] right-0 w-[170px] bg-tertiary rounded shadow-lg p-3 ">
                 <Link
-                  to={"/profile"}
+                  to={"/"}
                   className="block pb-3 text-[12px] hover:text-[#0000ff] dark:hover:text-[#0000ff] transition-all duration-500 ease-in-out dark:text-slate-700 text-slate-200"
                 >
                   Dashboard
                 </Link>
                 <div className="h-[1px] bg-secondary mb-3"></div>
                 <Link
-                  to={"/logout"}
+                  to={"/"}
                   className="block pb-3 text-[12px] hover:text-[#0000ff] dark:hover:text-[#0000ff] transition-all duration-500 ease-in-out dark:text-slate-700 text-slate-200"
                 >
                   Profile
                 </Link>
                 <Link
-                  to={"/logout"}
+                  to={"/"}
                   className="block pb-3 text-[12px] hover:text-[#0000ff] dark:hover:text-[#0000ff] transition-all duration-500 ease-in-out dark:text-slate-700 text-slate-200"
                 >
                   Certificate
                 </Link>
                 <Link
-                  to={"/logout"}
+                  to={"/"}
                   className="block pb-3 text-[12px] hover:text-[#0000ff] dark:hover:text-[#0000ff] transition-all duration-500 ease-in-out dark:text-slate-700 text-slate-200"
                 >
                   CV
                 </Link>
                 <div className="h-[1px] bg-secondary mb-3"></div>
                 <Link
-                  to={"/logout"}
+                  to={"/internships"}
                   className="block pb-3 text-[12px] hover:text-[#0000ff] dark:hover:text-[#0000ff] transition-all duration-500 ease-in-out dark:text-slate-700 text-slate-200"
                 >
                   Internships
                 </Link>
                 <div className="h-[1px] bg-secondary mb-3"></div>
                 <Link
-                  to={"/logout"}
+                  to={"/"}
                   className="block pb-3 text-[12px] hover:text-[#0000ff] dark:hover:text-[#0000ff] transition-all duration-500 ease-in-out dark:text-slate-700 text-slate-200"
                 >
                   Performance
                 </Link>
                 <Link
-                  to={"/logout"}
+                  to={"/"}
                   className="block pb-3 text-[12px] hover:text-[#0000ff] dark:hover:text-[#0000ff] transition-all duration-500 ease-in-out dark:text-slate-700 text-slate-200"
                 >
                   Leaderboard
                 </Link>
                 <div className="h-[1px] bg-secondary mb-3"></div>
                 <Link
-                  to={"/logout"}
+                  to={"/"}
                   className="block pb-3 text-[12px] hover:text-[#0000ff] dark:hover:text-[#0000ff] transition-all duration-500 ease-in-out dark:text-slate-700 text-slate-200"
                 >
                   Community
                 </Link>
                 <div className="h-[1px] bg-secondary mb-3"></div>
                 <Link
-                  to={"/logout"}
+                  to={"../"}
+                  onClick={() => {
+                    onLogout();
+                  }}
                   className="block text-[12px] hover:text-[#0000ff] dark:hover:text-[#0000ff] transition-all duration-500 ease-in-out dark:text-slate-700 text-slate-200"
                 >
                   Logout

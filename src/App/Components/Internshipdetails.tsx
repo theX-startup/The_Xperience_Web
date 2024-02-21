@@ -5,6 +5,8 @@ import { IoStar } from "react-icons/io5";
 import { IoMdStarOutline } from "react-icons/io";
 import { CgEditBlackPoint } from "react-icons/cg";
 import { IoMdClose } from "react-icons/io";
+import { useNavigate } from "react-router-dom";
+import Loader from "./Loader";
 
 type props = {
   id: string;
@@ -34,17 +36,17 @@ const Internshipdetails = (props: props) => {
     await dispatch(fetchInternshipDetails(id));
   });
 
-
+  const navigate = useNavigate();
 
   if (isLoading) {
-    return <div className="flex items-center justify-center">Loading...</div>;
+    return <Loader />;
   }
 
   return (
     <div className="p-0">
       <div className="flex flex-col mt-10 md:mt-5">
         <div
-          className={`md:h-full overflow-y-scroll h-[600px] sm:h-[800px]`}
+          className={`md:h-full overflow-y-scroll `}
           style={{
             scrollbarWidth: "none",
           }}
@@ -108,7 +110,16 @@ const Internshipdetails = (props: props) => {
               </div>
             </div>
           </div>
-          <div className="h-[50px] w-full bg-[#0000ff] text-white rounded-sm mt-5 flex items-center justify-center mb-10 md:mb-0 cursor-pointer">
+          <div
+            className="h-[50px] w-full bg-[#0000ff] text-white rounded-sm mt-5 flex items-center justify-center mb-10 md:mb-0 cursor-pointer"
+            onClick={() => {
+              dispatch({
+                type: "SET_SELECTED_ID",
+                payload: "",
+              });
+              navigate(`payment/${id}`);
+            }}
+          >
             Start Internship
           </div>
         </div>
