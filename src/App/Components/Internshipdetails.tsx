@@ -83,7 +83,7 @@ const Internshipdetails = (props: props) => {
           <div className="flex flex-col md:flex-row">
             <div className="md:w-[50%] mt-5 flex flex-col gap-2 md:items-start">
               <h1 className="text-[#0000ff]">What to gain</h1>
-              {internshipDetails.whatToGain.map((item: any, index: any) => {
+              {internshipDetails?.whatToGain?.map((item: any, index: any) => {
                 return (
                   <div key={index} className="flex gap-2 items-center">
                     <CgEditBlackPoint className="text-[#0000ff]" />
@@ -97,7 +97,7 @@ const Internshipdetails = (props: props) => {
             <div className="md:w-[50%]">
               <div className="flex flex-col gap-2 md:items-start mt-5 pb-10">
                 <h1 className="text-[#0000ff]">Tasks</h1>
-                {internshipDetails.task.map((item: any, index: any) => {
+                {internshipDetails.task?.map((item: any, index: any) => {
                   return (
                     <div key={index} className="flex gap-2 items-center">
                       <CgEditBlackPoint className="text-[#0000ff]" />

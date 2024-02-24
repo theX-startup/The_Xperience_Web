@@ -23,8 +23,8 @@ const NavBar = () => {
   const { onLogout } = useAuth();
 
   return (
-    <div className="relative px-5 xl:px-[10rem] lg:px-[5rem] flex items-center justify-between">
-      <div className="flex sm:items-center sm:flex-row flex-col w-full">
+    <div className="relative px-5 xl:px-[10rem] lg:px-[5rem] flex items-center justify-between py-5">
+      <div className="flex sm:items-center sm:flex-row flex-col w-full gap-5">
         <div className="flex items-center justify-between sm:justify-normal">
           <div>
             <MdOutlineMenu
@@ -226,7 +226,7 @@ const NavBar = () => {
             <img
               src={user.picturePath}
               alt=""
-              className="h-[40px] w-[40px] rounded-full"
+              className="h-[40px] w-[40px] rounded cursor-pointer"
             />
           ) : (
             <div className="w-[40px] h-[40px] bg-[#0000ff] rounded-md cursor-pointer items-center flex justify-center dark:bg-white dark:text-black text-white font-bold relative">

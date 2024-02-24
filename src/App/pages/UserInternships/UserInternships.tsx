@@ -1,5 +1,6 @@
 import { motion } from "framer-motion";
 import { useSelector } from "react-redux";
+import { useNavigate } from "react-router-dom";
 
 type Props = {
   active: string;
@@ -11,6 +12,7 @@ const UserInternships = (props: Props) => {
     (state: any) => state.internships.userInternships
   );
 
+  const navigate = useNavigate();
   const animation = {
     hidden: { opacity: 0, x: 100 },
     visible: { opacity: 1, x: 0 },
@@ -36,10 +38,10 @@ const UserInternships = (props: Props) => {
                 initial="hidden"
                 animate="visible"
                 transition={{ duration: 0.5 * (index + 1) }}
-                key={internship.id}
+                key={index}
                 className="w-full md:w-full bg-tertiary p-2 rounded-lg mb-5 max-h-[190px] flex cursor-pointer"
                 onClick={() => {
-                  console.log(internship.internshipId);
+                  navigate(`tasks/${internship.internshipId}`);
                 }}
               >
                 <img
@@ -81,10 +83,10 @@ const UserInternships = (props: Props) => {
                 initial="hidden"
                 animate="visible"
                 transition={{ duration: 0.5 * (index + 1) }}
-                key={internship.id}
+                key={index}
                 className="w-full md:w-full bg-tertiary p-2 rounded-lg mb-5 max-h-[190px] flex cursor-pointer"
                 onClick={() => {
-                  console.log(internship.internshipId);
+                  navigate(`tasks/${internship.internshipId}`);
                 }}
               >
                 <img
@@ -128,7 +130,7 @@ const UserInternships = (props: Props) => {
               key={index}
               className="w-full md:w-full bg-tertiary p-2 rounded-lg mb-5 max-h-[190px] flex cursor-pointer"
               onClick={() => {
-                console.log(internship.internshipId);
+                navigate(`tasks/${internship.internshipId}`);
               }}
             >
               <img

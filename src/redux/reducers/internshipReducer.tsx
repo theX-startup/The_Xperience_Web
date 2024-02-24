@@ -13,6 +13,11 @@ const initialState = {
   internshipDeleteLoading: false,
   internshipDeleteError: "",
   userInternships: [],
+  introduction: [],
+  introductionLoading: false,
+  tasks: {},
+  taskLoading: false,
+  task: {},
   categories: [
     "Software Development",
     "Data Science",
@@ -57,8 +62,18 @@ export const internshipReducer = (state = initialState, action: Action) => {
       return { ...state, internshipDeleteError: action.payload };
     case ActionTypes.SET_USER_INTERNSHIPS:
       return { ...state, userInternships: action.payload };
-      case ActionTypes.SET_INTERNSHIPS_LOADING:
-        return { ...state, internshipsLoading: action.payload };
+    case ActionTypes.SET_INTERNSHIPS_LOADING:
+      return { ...state, internshipsLoading: action.payload };
+    case ActionTypes.SET_TASKS:
+      return { ...state, tasks: action.payload };
+    case ActionTypes.SET_TASK:
+      return { ...state, task: action.payload };
+    case ActionTypes.SET_TASK_LOADING:
+      return { ...state, taskLoading: action.payload };
+    case ActionTypes.SET_INTRODUCTION:
+      return { ...state, introduction: action.payload };
+    case ActionTypes.SET_INTRODUCTION_LOADING:
+      return { ...state, introductionLoading: action.payload };
     default:
       return state;
   }

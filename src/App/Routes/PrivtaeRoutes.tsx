@@ -8,8 +8,7 @@ import PaymentPage from "../pages/StartInternship/PaymentPage";
 import UserInternships from "../pages/UserInternships/UserInternships";
 import SideBar from "../pages/UserInternships/SideBar";
 import { useState } from "react";
-
-
+import Tasks from "../pages/Tasks/Tasks";
 
 const PrivtaeRoutes = () => {
   const [active, setActive] = useState("inProgress");
@@ -25,9 +24,13 @@ const PrivtaeRoutes = () => {
         <Route path="profileDetails" element={<ProfileDetails />} />
         <Route path="payment/:id" element={<PaymentPage />} />
         <Route element={<SideBar setActive={setActive} />}>
-          <Route path="internships" element={<UserInternships active={active} />} />
+          <Route
+            path="internships"
+            element={<UserInternships active={active} />}
+          />
         </Route>
       </Route>
+      <Route path="internships/tasks/:id/*" element={<Tasks />} />
     </Routes>
   );
 };
