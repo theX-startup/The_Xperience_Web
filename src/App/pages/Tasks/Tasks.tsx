@@ -68,14 +68,14 @@ const Tasks = () => {
                   <img
                     src={logo}
                     alt=""
-                    className="w-[80px] hidden dark:block"
+                    className="h-[35px] md:h-[40px] lg:h-[45px] hidden dark:block"
                   />
                 </Link>
                 <Link to={"/"}>
                   <img
                     src={logoBlack}
                     alt=""
-                    className="w-[80px] dark:hidden block"
+                    className="h-[35px] md:h-[40px] lg:h-[45px] dark:hidden block"
                   />
                 </Link>
               </div>

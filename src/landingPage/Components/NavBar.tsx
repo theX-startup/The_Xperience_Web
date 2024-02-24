@@ -7,17 +7,17 @@ const NavBar = () => {
   const [active, setActive] = useState(false);
   return (
     <div
-      className="bg-tertiary lg:px-7 md:px-3 flex items-center justify-between relative border-b shadow-md "
+      className="bg-tertiary lg:px-7 md:px-3 flex items-center justify-between relative border-b shadow-md py-3"
       onScroll={() => {
         console.log("scroll");
       }}
     >
       <div>
-        <img src={logoBlack} alt="Logo" className="w-[60px] hidden dark:flex" />
+        <img src={logoBlack} alt="Logo" className="h-[35px] md:h-[40px] lg:h-[45px] hidden dark:flex" />
         <img
           src={logo}
           alt="Logo"
-          className="w-[60px] bg-tertiary dark:hidden"
+          className="h-[35px] md:h-[40px] lg:h-[45px] bg-tertiary dark:hidden"
         />
       </div>
 

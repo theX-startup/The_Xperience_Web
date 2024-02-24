@@ -49,7 +49,7 @@ export const AuthProvider = (props: AuthProviderProps) => {
   // const login = () => {};
   const logout = () => {
     localStorage.removeItem(TOKEN_KEY);
-    window.location.reload();
+    window.location.href = "/";
   };
 
   const value: AuthState = {
