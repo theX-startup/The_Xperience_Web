@@ -7,7 +7,7 @@ const NavBar = () => {
   const [active, setActive] = useState(false);
   return (
     <div
-      className="bg-tertiary lg:px-7 md:px-3 flex items-center justify-between relative border-b shadow-md py-3"
+      className="lg:px-7 md:px-3 flex items-center justify-between relative border-b shadow-md py-3"
       onScroll={() => {
         console.log("scroll");
       }}
@@ -17,7 +17,7 @@ const NavBar = () => {
         <img
           src={logo}
           alt="Logo"
-          className="h-[35px] md:h-[40px] lg:h-[45px] bg-tertiary dark:hidden"
+          className="h-[35px] md:h-[40px] lg:h-[45px] dark:hidden"
         />
       </div>
 
@@ -43,12 +43,12 @@ const NavBar = () => {
       </div>
 
       <div
-        className={`inknut-antiqua-semibold mobile-nav desktop-nav tablet-nav  items-center bg-tertiary shadow-lg md:shadow-none ${
+        className={`inknut-antiqua-semibold mobile-nav desktop-nav tablet-nav  items-center shadow-lg md:shadow-none ${
           active ? "block" : "hidden"
         }`}
       >
         <div>
-          <ul className="md:flex gap-5 text-secondary md:text-xs block lg:text-sm">
+          <ul className="md:flex gap-5 md:text-xs block lg:text-sm">
             <Link to={"home"}>
               <li className="nav-item">Home</li>
             </Link>
@@ -64,10 +64,10 @@ const NavBar = () => {
           </ul>
         </div>
         <div className="flex lg:gap-5 md:flex-row flex-col md:gap-2 gap-2 p-4 md:p-0">
-          <Link to={"login"} className="btn cursor-pointer text-secondary">
+          <Link to={"login"} className="btn cursor-pointer">
             Login
           </Link>
-          <Link to={"register"} className="btn cursor-pointer text-secondary">
+          <Link to={"register"} className="btn cursor-pointer">
             SignUp
           </Link>
         </div>

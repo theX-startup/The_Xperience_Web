@@ -50,7 +50,7 @@ const Register = () => {
           }}
           onSubmit={(e) => handleSubmit(e)}
         >
-          <div className="w-full h-[45px] border-2 border-[#0000ff] dark:bg-slate-200 dark:border-transparent dark:text-black flex px-4 rounded-sm">
+          <div className="w-full h-[45px] dark:bg-white dark:border-transparent dark:text-black flex rounded-sm">
             <Input
               type="text"
               name="username"
@@ -62,7 +62,7 @@ const Register = () => {
                 dispatch(checkUsername(formValues.username));
               }}
             />
-            <div className=" h-full flex items-center  dark:bg-slate-200 rounded-sm">
+            <div className=" h-full flex items-center  dark:bg-white px-2 rounded-sm">
               {userNameCheck === "" ? (
                 <FaUser />
               ) : userNameCheck === "Username is available" ? (
@@ -72,7 +72,7 @@ const Register = () => {
               )}
             </div>
           </div>
-          <div className="w-full h-[45px] border-2 border-[#0000ff] dark:bg-slate-200 dark:border-transparent dark:text-black flex px-4 rounded-sm">
+          <div className="w-full h-[45px] dark:bg-white dark:border-transparent dark:text-black flex rounded-sm">
             <Input
               type="email"
               name="email"
@@ -81,11 +81,11 @@ const Register = () => {
               class={`w-full text_sm`}
               placeholder="Email"
             />
-            <div className=" h-full flex items-center dark:bg-slate-200 rounded-sm">
+            <div className=" h-full flex items-center dark:bg-white px-2 rounded-sm">
               <MdEmail />
             </div>
           </div>
-          <div className="w-full h-[45px] border-2 border-[#0000ff] dark:bg-slate-200 dark:border-transparent dark:text-black flex px-4 rounded-sm">
+          <div className="w-full h-[45px] dark:bg-white dark:border-transparent dark:text-black flex rounded-sm">
             <Input
               type="password"
               name="password"
@@ -94,7 +94,7 @@ const Register = () => {
               class={`w-full text_sm`}
               placeholder="*************"
             />
-            <div className=" h-full flex items-center dark:bg-slate-200 rounded-sm">
+            <div className=" h-full flex items-center dark:bg-white px-2 rounded-sm">
               <FaLock />
             </div>
           </div>
@@ -128,7 +128,7 @@ const Register = () => {
           </div>
 
           {formValues.position === "intern" && (
-            <div className="w-full h-[45px] border-2 border-[#0000ff] dark:bg-slate-200 dark:border-transparent dark:text-black flex px-4 rounded-sm mt-3">
+            <div className="w-full h-[45px] dark:bg-white dark:border-transparent dark:text-black flex rounded-sm mt-3">
               <Input
                 type="text"
                 name="fullname"
@@ -137,7 +137,7 @@ const Register = () => {
                 class={`w-full text_sm`}
                 placeholder="Full Name"
               />
-              <div className=" h-full flex items-center dark:bg-slate-200 rounded-sm">
+              <div className=" h-full flex items-center dark:bg-white px-2 rounded-sm">
                 <FaUser />
               </div>
             </div>
@@ -145,7 +145,7 @@ const Register = () => {
 
           {formValues.position === "pro" && (
             <div className="grid gap-5 mt-3">
-              <div className="w-full h-[45px] border-2 border-[#0000ff] dark:bg-slate-200 dark:border-transparent dark:text-black flex px-4 rounded-sm">
+              <div className="w-full h-[45px] dark:bg-white dark:border-transparent dark:text-black flex rounded-sm">
                 <Input
                   type="text"
                   name="fullname"
@@ -154,7 +154,7 @@ const Register = () => {
                   class={`w-full text_sm`}
                   placeholder="Company Name/Professional Name"
                 />
-                <div className=" h-full flex items-center dark:bg-slate-200 rounded-sm">
+                <div className=" h-full flex items-center dark:bg-white px-2 rounded-sm">
                   <FaUser />
                 </div>
               </div>

@@ -34,7 +34,7 @@ const Tasks = () => {
   if (isLoading) return <Loader />;
   return (
     <>
-      <nav className="fixed top-0 z-50 w-full bg-white border-b border-gray-200 dark:bg-gray-800 dark:border-gray-700">
+      <nav className="fixed top-0 z-50 w-full bg-secondary border-b border-gray-300  dark:border-gray-700">
         <div className="px-3 py-3 lg:px-5 lg:pl-3">
           <div className="flex items-center justify-between">
             <div className="flex items-center justify-start rtl:justify-end">
@@ -143,10 +143,10 @@ const Tasks = () => {
         id="logo-sidebar"
         className={`fixed top-0 left-0 z-40 w-64 h-screen pt-20 transition-transform ${
           mobileIsOpen ? "translate-x-0" : "-translate-x-full"
-        } bg-white border-r border-gray-200 sm:translate-x-0 dark:bg-gray-800 dark:border-gray-700`}
+        }  border-r border-gray-200 sm:translate-x-0 bg-secondary dark:border-gray-700`}
         aria-label="Sidebar"
       >
-        <div className="h-full px-3 pb-4 overflow-y-auto bg-white dark:bg-gray-800">
+        <div className="h-full px-3 pb-4 overflow-y-auto bg-secondary">
           <div>
             <div className="w-full border flex items-center justify-center p-1 rounded">
               <img src={tasks.image} className="rounded" alt="" />
@@ -179,8 +179,8 @@ const Tasks = () => {
         </div>
       </aside>
 
-      <div className="p-4 sm:ml-64">
-        <div className="p-4 border-2 border-gray-200 border-dashed rounded-lg dark:border-gray-700 mt-14 min-h-[95vh]">
+      <div className="p-5 sm:ml-64 bg-secondary ">
+        <div className="p-4 border-2 border-gray-300 border-dashed rounded-lg dark:border-gray-700 mt-14 min-h-[95vh]">
           {selectedId === "" ? (
             <Introduction id={id} />
           ) : (
