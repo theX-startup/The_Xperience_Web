@@ -13,11 +13,11 @@ const NavBar = () => {
       }}
     >
       <div>
-        <img src={logoBlack} alt="Logo" className="h-[35px] md:h-[40px] lg:h-[45px] hidden dark:flex" />
+        <img src={logoBlack} alt="Logo" className="h-[35px] md:h-[40px] lg:h-[45px] dark:hidden" />
         <img
           src={logo}
           alt="Logo"
-          className="h-[35px] md:h-[40px] lg:h-[45px] dark:hidden"
+          className="h-[35px] md:h-[40px] lg:h-[45px] hidden dark:block"
         />
       </div>
 

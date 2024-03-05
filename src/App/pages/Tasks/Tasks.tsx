@@ -22,6 +22,10 @@ const Tasks = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [mobileIsOpen, setMobileIsOpen] = useState(false);
   const [selectedId, setSelectedId] = useState("");
+  const initials = user?.fullname
+    ?.split(" ")
+    .map((n: string) => n[0])
+    .join("");
 
   const animate = {
     hidden: { opacity: 0, y: -10 },
@@ -90,12 +94,18 @@ const Tasks = () => {
                     onClick={toggleDropdown}
                     data-dropdown-toggle="dropdown-user"
                   >
-                    <span className="sr-only">Open user menu</span>
-                    <img
-                      className="w-8 h-8 rounded"
-                      src={user.picturePath}
-                      alt="user photo"
-                    />
+                    {user.picturePath ? (
+                      <img
+                        src={user.picturePath}
+                        alt=""
+                        className="h-[40px] w-[40px] rounded cursor-pointer"
+                      />
+                    ) : (
+                      <div className="w-[40px] h-[40px] bg-black rounded-md cursor-pointer items-center flex justify-center dark:bg-white dark:text-black text-white font-bold relative">
+                        <span className="text-[14px]">{initials}</span>
+                        <span className="absolute p-1 border bg-green-600 rounded-full top-[80%] left-[80%]"></span>
+                      </div>
+                    )}
                   </button>
                 </div>
                 {isOpen && (

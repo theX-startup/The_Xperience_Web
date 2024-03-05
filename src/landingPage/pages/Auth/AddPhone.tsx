@@ -55,7 +55,7 @@ const AddPhone = () => {
           </div>
           <input
             type="text"
-            className="w-full text_sm outline-none bg-secondary"
+            className="w-full text_sm outline-none bg-secondary focus:outline-none focus:ring-0 border-0"
             placeholder="Country"
             value={selectedCountry.name}
             onFocus={() => setShowCountryList(true)}
@@ -114,7 +114,7 @@ const AddPhone = () => {
             </div>
             <input
               type="tel"
-              className="w-full text-[12px] outline-none bg-secondary px-2 font-sans"
+              className="w-full text-[12px] outline-none bg-secondary px-2 font-sans focus:outline-none focus:ring-0 border-0"
               placeholder="Phone Number"
               value={phone}
               onChange={(e) =>

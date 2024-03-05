@@ -2,7 +2,10 @@ import React, { createContext, useContext, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { ActionTypes } from "../utils/ActionTypes";
 import { getUser } from "../landingPage/pages/Auth/_request";
-import { getInternships } from "../App/pages/dashboard/_request";
+import {
+  fetchDashboardData,
+  getInternships,
+} from "../App/pages/dashboard/_request";
 import { fetchUserInternships } from "../App/pages/UserInternships/_request";
 
 export const TOKEN_KEY = "TheX_User_Token";
@@ -36,12 +39,19 @@ export const AuthProvider = (props: AuthProviderProps) => {
   }, []);
 
   useEffect(() => {
-    dispatch(getInternships());
-  }, []);
-  useEffect(() => {
     const userId = user?._id;
+    dispatch({ type: ActionTypes.SET_LOADING, payload: true });
     if (user) {
-      dispatch(fetchUserInternships(userId));
+      const login = async () => {
+        await dispatch(fetchUserInternships(userId));
+        if (user.position === "pro") {
+          await dispatch(fetchDashboardData());
+        } else {
+          await dispatch(getInternships());
+        }
+        dispatch({ type: ActionTypes.SET_LOADING, payload: false });
+      };
+      login();
     }
   }, [user]);
 

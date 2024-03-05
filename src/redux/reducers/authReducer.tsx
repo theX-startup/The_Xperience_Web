@@ -4,6 +4,7 @@ const initialState = {
   user: {},
   token: "",
   isAuth: false,
+  loading: true,
   signInLoading: false,
   signInError: "",
   signUpLoading: false,
@@ -37,6 +38,8 @@ export const authReducer = (state = initialState, action: Action) => {
       return { ...state, token: action.payload };
     case ActionTypes.USERNAME_CHECK:
       return { ...state, userNameCheck: action.payload };
+      case ActionTypes.SET_LOADING:
+      return { ...state, loading: action.payload };
     default:
       return state;
   }

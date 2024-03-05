@@ -34,7 +34,9 @@ export const getInternships = (): ThunkAction<void, any, any, any> => {
   };
 };
 
-export const fetchInternshipDetails = (id: string): ThunkAction<void, any, any, any> => {
+export const fetchInternshipDetails = (
+  id: string
+): ThunkAction<void, any, any, any> => {
   return async (dispatch: any) => {
     try {
       dispatch({
@@ -63,6 +65,48 @@ export const fetchInternshipDetails = (id: string): ThunkAction<void, any, any, 
         type: ActionTypes.SET_INTERNSHIP_LOADING,
         payload: false,
       });
+    }
+  };
+};
+
+export const fetchDashboardData = (): ThunkAction<void, any, any, any> => {
+  return async (dispatch: any) => {
+    try {
+      let urlPath = "/info";
+      let response = await RestApi.getCall(urlPath);
+      if (response) {
+        dispatch({
+          type: "GET_DASHBOARD_INFO",
+          payload: response,
+        });
+      }
+    } catch (error: any) {
+      dispatch({
+        type: "GET_DASHBOARD_INFO_ERROR",
+        payload: error.message,
+      });
+    }
+  };
+};
+
+export const addImpression = (body : any): ThunkAction<void, any, any, any> => {
+  return async () => {
+    try {
+      let urlPath = "/add/impression";
+      await RestApi.postCall(urlPath, body);
+    } catch (error: any) {
+      console.log(error);
+    }
+  };
+};
+
+export const addClick = (body: any): ThunkAction<void, any, any, any> => {
+  return async () => {
+    try {
+      let urlPath = "/add/click";
+      await RestApi.postCall(urlPath, body);
+    } catch (error: any) {
+      console.log(error);
     }
   };
 };
