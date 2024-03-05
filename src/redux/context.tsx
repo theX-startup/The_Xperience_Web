@@ -1,8 +1,9 @@
 import React, { createContext, useContext, useEffect } from "react";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { ActionTypes } from "../utils/ActionTypes";
 import { getUser } from "../landingPage/pages/Auth/_request";
 import { getInternships } from "../App/pages/dashboard/_request";
+import { fetchUserInternships } from "../App/pages/UserInternships/_request";
 
 export const TOKEN_KEY = "TheX_User_Token";
 interface AuthState {
@@ -21,6 +22,7 @@ interface AuthProviderProps {
 export const AuthProvider = (props: AuthProviderProps) => {
   const children = props.children;
   const dispatch = useDispatch<any>();
+  const user = useSelector((state: any) => state.auth.user);
 
   useEffect(() => {
     const token = localStorage.getItem(TOKEN_KEY);
@@ -36,15 +38,21 @@ export const AuthProvider = (props: AuthProviderProps) => {
   useEffect(() => {
     dispatch(getInternships());
   }, []);
+  useEffect(() => {
+    const userId = user?._id;
+    if (user) {
+      dispatch(fetchUserInternships(userId));
+    }
+  }, [user]);
 
   // const register = () => {};
   // const login = () => {};
   const logout = () => {
     localStorage.removeItem(TOKEN_KEY);
-    window.location.reload();
+    window.location.href = "/";
   };
 
-  const value : AuthState = {
+  const value: AuthState = {
     onLogout: logout,
   };
 

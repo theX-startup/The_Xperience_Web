@@ -30,12 +30,20 @@ export const login = (
           type: ActionTypes.IS_AUTH,
           payload: true,
         });
+        dispatch({
+          type: ActionTypes.SET_SIGNIN_LOADING,
+          payload: false,
+        });
         navigation("../../");
       }
     } catch (error: any) {
       dispatch({
         type: ActionTypes.SET_SIGNIN_ERROR,
         payload: error.message,
+      });
+      dispatch({
+        type: ActionTypes.SET_SIGNIN_LOADING,
+        payload: false,
       });
     }
   };
@@ -68,7 +76,15 @@ export const register = (
           type: ActionTypes.IS_AUTH,
           payload: true,
         });
-        navigate("/");
+        dispatch({
+          type: ActionTypes.SET_SIGNUP_LOADING,
+          payload: false,
+        });
+        if (response.user.position === "intern") {
+          navigate("../addPhone");
+        } else {
+          navigate("../profileDetails");
+        }
       }
     } catch (error: any) {
       dispatch({
@@ -122,6 +138,89 @@ export const checkUsername = (
       }
     } catch (error: any) {
       console.log(error);
+    }
+  };
+};
+
+export const createPaystackCustomer = (
+  formdata: any
+): ThunkAction<void, any, any, any> => {
+  return async (dispatch) => {
+    try {
+      let urlPath = "/CreateCustomer";
+      let response = await RestApi.postCall(urlPath, formdata);
+      if (response) {
+        dispatch({
+          type: ActionTypes.SET_USER,
+          payload: { ...response },
+        });
+      }
+    } catch (error: any) {
+      console.log(error);
+    }
+  };
+};
+
+export const addPhone = (
+  formdata: any,
+  navigate: any
+): ThunkAction<void, any, any, any> => {
+  return async (dispatch) => {
+    dispatch({
+      type: ActionTypes.SET_SIGNUP_LOADING,
+      payload: true,
+    });
+    try {
+      let urlPath = "/auth/addPhone";
+      let response = await RestApi.putCall(urlPath, formdata);
+      if (response) {
+        dispatch({
+          type: ActionTypes.SET_USER,
+          payload: { ...response.user },
+        });
+        dispatch({
+          type: ActionTypes.SET_SIGNUP_LOADING,
+          payload: false,
+        });
+        navigate("../");
+      }
+    } catch (error: any) {
+      dispatch({
+        type: ActionTypes.SET_SIGNUP_ERROR,
+        payload: error.message,
+      });
+    }
+  };
+};
+
+export const updateProfile = (
+  formdata: any,
+  navigate: any
+): ThunkAction<void, any, any, any> => {
+  return async (dispatch) => {
+    dispatch({
+      type: ActionTypes.SET_SIGNUP_LOADING,
+      payload: true,
+    });
+    try {
+      let urlPath = "/auth/updateUserData";
+      let response = await RestApi.putCall(urlPath, formdata);
+      if (response) {
+        dispatch({
+          type: ActionTypes.SET_USER,
+          payload: { ...response.user },
+        });
+        dispatch({
+          type: ActionTypes.SET_SIGNUP_LOADING,
+          payload: false,
+        });
+        navigate("../");
+      }
+    } catch (error: any) {
+      dispatch({
+        type: ActionTypes.SET_SIGNUP_ERROR,
+        payload: error.message,
+      });
     }
   };
 };

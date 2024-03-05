@@ -23,8 +23,8 @@ const NavBar = () => {
   const { onLogout } = useAuth();
 
   return (
-    <div className="relative px-5 xl:px-[10rem] lg:px-[5rem] flex items-center justify-between">
-      <div className="flex sm:items-center sm:flex-row flex-col w-full">
+    <div className="relative px-5 xl:px-[10rem] lg:px-[5rem] flex items-center justify-between py-5">
+      <div className="flex sm:items-center sm:flex-row flex-col w-full gap-5 lg:gap-8">
         <div className="flex items-center justify-between sm:justify-normal">
           <div>
             <MdOutlineMenu
@@ -68,7 +68,7 @@ const NavBar = () => {
                     />
                   </div>
                   <Link
-                    to={"/profile"}
+                    to={"/dashboard"}
                     className="block pb-3 text-[10px] hover:text-[#0000ff] transition-all duration-500 ease-in-out text-slate-700 dark:text-slate-200"
                   >
                     Dashboard
@@ -80,7 +80,7 @@ const NavBar = () => {
                   >
                     <div className="flex items-center justify-between pb-2">
                       <Link
-                        to={""}
+                        to={"profile"}
                         className="block text-[10px] hover:text-[#0000ff] text-slate-700 dark:text-slate-200"
                       >
                         Profile
@@ -107,13 +107,13 @@ const NavBar = () => {
                     </div>
                     <div className="bg-tertiary p-3 rounded">
                       <Link
-                        to={"/logout"}
+                        to={"certificate"}
                         className="block pb-3 text-[10px] hover:text-[#0000ff] transition-all duration-500 ease-in-out"
                       >
                         Certificate
                       </Link>
                       <Link
-                        to={"/logout"}
+                        to={"CV"}
                         className="block text-[10px] hover:text-[#0000ff] transition-all duration-500 ease-in-out"
                       >
                         CV
@@ -122,7 +122,7 @@ const NavBar = () => {
                   </div>
 
                   <Link
-                    to={"/logout"}
+                    to={"/internships"}
                     className="block pb-3 text-[10px] hover:text-[#0000ff] transition-all duration-500 ease-in-out text-slate-700 dark:text-slate-200"
                   >
                     Internships
@@ -136,7 +136,7 @@ const NavBar = () => {
                   >
                     <div className="flex items-center justify-between pb-2">
                       <Link
-                        to={""}
+                        to={"performance"}
                         className="block text-[10px] hover:text-[#0000ff] transition-all duration-500 ease-in-out text-slate-700 dark:text-slate-200"
                       >
                         Performance
@@ -163,7 +163,7 @@ const NavBar = () => {
                     </div>
                     <div className="bg-tertiary p-3 rounded">
                       <Link
-                        to={"/logout"}
+                        to={"leaderboard"}
                         className="block text-[10px] hover:text-[#0000ff] transition-all duration-500 ease-in-out "
                       >
                         Leaderboard
@@ -171,33 +171,36 @@ const NavBar = () => {
                     </div>
                   </div>
                   <Link
-                    to={"/logout"}
+                    to={"leaderboard"}
                     className="block pb-3 text-[10px] hover:text-[#0000ff] transition-all duration-500 ease-in-out text-slate-700 dark:text-slate-200"
                   >
                     Community
                   </Link>
-                  <Link
-                    to={"../"}
+                  <div
                     onClick={() => {
                       onLogout();
                     }}
                     className=" cursor-pointer block text-[10px] hover:text-[#0000ff] transition-all duration-500 ease-in-out text-slate-700 dark:text-slate-200"
                   >
                     Logout
-                  </Link>
+                  </div>
                 </motion.div>
               </div>
             )}
           </div>
           <div>
             <Link to={"/"}>
-              <img src={logo} alt="" className="w-[80px] hidden dark:block" />
+              <img
+                src={logo}
+                alt=""
+                className="h-[35px] md:h-[40px] lg:h-[45px] hidden dark:block"
+              />
             </Link>
             <Link to={"/"}>
               <img
                 src={logoBlack}
                 alt=""
-                className="w-[80px] dark:hidden block"
+                className="h-[35px] md:h-[40px] lg:h-[45px] dark:hidden block"
               />
             </Link>
           </div>
@@ -226,7 +229,7 @@ const NavBar = () => {
             <img
               src={user.picturePath}
               alt=""
-              className="h-[40px] w-[40px] rounded-full"
+              className="h-[40px] w-[40px] rounded cursor-pointer"
             />
           ) : (
             <div className="w-[40px] h-[40px] bg-[#0000ff] rounded-md cursor-pointer items-center flex justify-center dark:bg-white dark:text-black text-white font-bold relative">
@@ -244,64 +247,66 @@ const NavBar = () => {
             >
               <div className="absolute top-[120%] right-0 w-[170px] bg-tertiary rounded shadow-lg p-3 ">
                 <Link
-                  to={"/profile"}
+                  to={"dashboard"}
                   className="block pb-3 text-[12px] hover:text-[#0000ff] dark:hover:text-[#0000ff] transition-all duration-500 ease-in-out dark:text-slate-700 text-slate-200"
                 >
                   Dashboard
                 </Link>
                 <div className="h-[1px] bg-secondary mb-3"></div>
                 <Link
-                  to={"/logout"}
+                  to={"profile"}
                   className="block pb-3 text-[12px] hover:text-[#0000ff] dark:hover:text-[#0000ff] transition-all duration-500 ease-in-out dark:text-slate-700 text-slate-200"
                 >
                   Profile
                 </Link>
                 <Link
-                  to={"/logout"}
+                  to={"certificate"}
                   className="block pb-3 text-[12px] hover:text-[#0000ff] dark:hover:text-[#0000ff] transition-all duration-500 ease-in-out dark:text-slate-700 text-slate-200"
                 >
                   Certificate
                 </Link>
                 <Link
-                  to={"/logout"}
+                  to={"CV"}
                   className="block pb-3 text-[12px] hover:text-[#0000ff] dark:hover:text-[#0000ff] transition-all duration-500 ease-in-out dark:text-slate-700 text-slate-200"
                 >
                   CV
                 </Link>
                 <div className="h-[1px] bg-secondary mb-3"></div>
                 <Link
-                  to={"/logout"}
+                  to={"/internships"}
                   className="block pb-3 text-[12px] hover:text-[#0000ff] dark:hover:text-[#0000ff] transition-all duration-500 ease-in-out dark:text-slate-700 text-slate-200"
                 >
                   Internships
                 </Link>
                 <div className="h-[1px] bg-secondary mb-3"></div>
                 <Link
-                  to={"/logout"}
+                  to={"performance"}
                   className="block pb-3 text-[12px] hover:text-[#0000ff] dark:hover:text-[#0000ff] transition-all duration-500 ease-in-out dark:text-slate-700 text-slate-200"
                 >
                   Performance
                 </Link>
                 <Link
-                  to={"/logout"}
+                  to={"leaderboard"}
                   className="block pb-3 text-[12px] hover:text-[#0000ff] dark:hover:text-[#0000ff] transition-all duration-500 ease-in-out dark:text-slate-700 text-slate-200"
                 >
                   Leaderboard
                 </Link>
                 <div className="h-[1px] bg-secondary mb-3"></div>
                 <Link
-                  to={"/logout"}
+                  to={"leaderboard"}
                   className="block pb-3 text-[12px] hover:text-[#0000ff] dark:hover:text-[#0000ff] transition-all duration-500 ease-in-out dark:text-slate-700 text-slate-200"
                 >
                   Community
                 </Link>
                 <div className="h-[1px] bg-secondary mb-3"></div>
-                <Link
-                  to={"/logout"}
+                <div
+                  onClick={() => {
+                    onLogout();
+                  }}
                   className="block text-[12px] hover:text-[#0000ff] dark:hover:text-[#0000ff] transition-all duration-500 ease-in-out dark:text-slate-700 text-slate-200"
                 >
                   Logout
-                </Link>
+                </div>
               </div>
             </motion.div>
           )}

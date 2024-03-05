@@ -25,7 +25,7 @@ const Input = (props: props) => {
         props.onChange(e);
       }}
       type={props.type}
-      className={`bg-transparent focus:outline-none ${props.class}`}
+      className={`border-none bg-transparent w-full text_sm focus:outline-none ${props.class}`}
       onBlurCapture={props.onFocusOut}
     />
   );
