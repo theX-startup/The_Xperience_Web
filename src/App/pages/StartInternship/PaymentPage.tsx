@@ -9,14 +9,15 @@ const PaymentPage = () => {
   );
   const dispatch = useDispatch<any>();
   const user = useSelector((state: any) => state.auth.user);
+  console.log(internshipDetails.userId, "internshipDetails")
   const body = {
-    _id: user._id,
+    _id: internshipDetails.userId,
     internshipId: internshipDetails._id,
   };
 
   const componentProps = {
     email: user.email,
-    amount: 5000 * 100,
+    amount: Number(internshipDetails.price) * 100,
     metadata: {
       name: user.name,
       phone: user.mobileNo,

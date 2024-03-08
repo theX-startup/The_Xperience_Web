@@ -1,5 +1,8 @@
+import { useEffect } from "react";
 import { CiBookmarkPlus } from "react-icons/ci";
 import { useDispatch } from "react-redux";
+import { useNavigate } from "react-router-dom";
+import { addClick, addImpression } from "../pages/dashboard/_request";
 
 type props = {
   data: {
@@ -19,11 +22,20 @@ type props = {
     noOfStudents: number;
   };
   index: number;
-  setId: any;
 };
 const InternshipComponent = (props: props) => {
-  const { data, index, setId } = props;
-  const dispatch = useDispatch();
+  const { data } = props;
+  const navigate = useNavigate();
+  const dispatch = useDispatch<any>();
+
+  useEffect(() => {
+    if (props.data !== undefined) {
+      const body = {
+        _id: props.data._id,
+      };
+      dispatch(addImpression(body));
+    }
+  }, []);
 
   return (
     <div className="w-full md:max-w-[300px] bg-secondary rounded-lg relative">
@@ -46,11 +58,11 @@ const InternshipComponent = (props: props) => {
         <h1
           className="text-[10px] hover:text-[#0000ff] cursor-pointer transition-all duration-300 ease-in-out"
           onClick={() => {
-            dispatch({
-              type: "SET_SELECTED_ID",
-              payload: index.toString(),
-            });
-            setId(data._id);
+            const body = {
+              _id: data._id,
+            };
+            dispatch(addClick(body));
+            navigate(`/details/${data._id}`);
           }}
         >
           {data.title}

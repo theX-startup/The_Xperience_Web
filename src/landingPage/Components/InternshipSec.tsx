@@ -1,20 +1,14 @@
-import { useRef, useState } from "react";
+import { useRef } from "react";
 import InternshipComponent from "../../App/Components/InternshipComponent";
-import { AnimatePresence, motion } from "framer-motion";
+import {  motion } from "framer-motion";
 import { useSelector } from "react-redux";
-import Internshipdetails from "../../App/Components/Internshipdetails";
-
 
 
 const InternshipSec = () => {
   const scroll = useRef<HTMLDivElement>(null);
-  const selectedId = useSelector((state: any) => state.layout.selectedId);
   const internships = useSelector(
     (state: any) => state.internships.internships
   );
-
-  const [id, setId] = useState("");
-  
 
   return (
     <>
@@ -31,31 +25,14 @@ const InternshipSec = () => {
         >
           {internships.map((item: any, index: any) => {
             return (
-              <motion.div
-                layoutId={index.toString()}
-                className="cursor-pointer min-w-[300px]"
-                key={index}
-              >
-                <InternshipComponent index={index} setId={setId} data={item} />
+              <motion.div className="cursor-pointer min-w-[300px]" key={index}>
+                <InternshipComponent index={index} data={item} />
               </motion.div>
             );
           })}
           <div></div>
         </div>
       </div>
-      <AnimatePresence>
-        {selectedId && (
-          <motion.div
-            layoutId={selectedId}
-          >
-            <motion.div
-              className={`fixed h-full top-0 left-0 w-full bg-secondary z-20 lg:px-[5rem] pt-[2rem] md:px-[2.5rem] px-[1rem]`}
-            >
-              <Internshipdetails id={id} />
-            </motion.div>
-          </motion.div>
-        )}
-      </AnimatePresence>
     </>
   );
 };

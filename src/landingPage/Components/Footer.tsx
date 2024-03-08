@@ -8,16 +8,16 @@ const Footer = () => {
     <div className="shadow shadow-black dark:shadow-white relative bottom-0 w-[100%]">
       <div></div>
       <div className="flex md:px-10 justify-between flex-col md:flex-row items-center">
-        <div className="flex items-center">
+        <div className="flex items-center gap-5">
           <img
             src={logo}
             alt=""
-            className="w-14 h-14 md:w-20 md:h-20 object-cover object-center hidden dark:flex"
+            className="h-[35px] md:h-[40px] lg:h-[45px] object-cover object-center hidden dark:flex"
           />
           <img
             src={logoBlack}
             alt=""
-            className="w-14 h-14 md:w-20 md:h-20 object-cover object-center block dark:hidden"
+            className="h-[35px] md:h-[40px] lg:h-[45px] object-cover object-center block dark:hidden"
           />
           <p className="text-[12px]">
             © The Xperience, Inc. All rights reserved.

@@ -54,16 +54,16 @@ const NavBar = () => {
                           className="h-[40px] w-[40px] rounded-md"
                         />
                       ) : (
-                        <div className="w-[30px] h-[30px] bg-[#0000ff] rounded cursor-pointer items-center flex justify-center dark:bg-white dark:text-black text-white font-bold relative">
+                        <div className="w-[30px] h-[30px] bg-black rounded cursor-pointer items-center flex justify-center dark:bg-white dark:text-black text-white font-bold relative">
                           <span className="text-[10px]">{initials}</span>
                         </div>
                       )}
-                      <span className="text-[8px] uppercase text-[#0000ff] dark:text-white">
+                      <span className="text-[8px] text-black uppercase dark:text-white">
                         {user?.fullname}
                       </span>
                     </div>
                     <IoMdClose
-                      className="text-[20px] cursor-pointer"
+                      className="text-[20px] dark:text-white text-black cursor-pointer"
                       onClick={() => setMobileMenuActive(!mobileMenuActive)}
                     />
                   </div>
@@ -232,7 +232,7 @@ const NavBar = () => {
               className="h-[40px] w-[40px] rounded cursor-pointer"
             />
           ) : (
-            <div className="w-[40px] h-[40px] bg-[#0000ff] rounded-md cursor-pointer items-center flex justify-center dark:bg-white dark:text-black text-white font-bold relative">
+            <div className="w-[40px] h-[40px] bg-black rounded-md cursor-pointer items-center flex justify-center dark:bg-white dark:text-black text-white font-bold relative">
               <span className="text-[14px]">{initials}</span>
               <span className="absolute p-1 border bg-green-600 rounded-full top-[80%] left-[80%]"></span>
             </div>

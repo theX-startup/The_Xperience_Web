@@ -1,194 +1,110 @@
-import { Link, Outlet } from "react-router-dom";
+import {
+  Avatar,
+  Dropdown,
+  DropdownDivider,
+  DropdownHeader,
+  DropdownItem,
+  Navbar,
+  NavbarBrand,
+  NavbarToggle,
+} from "flowbite-react";
+import { useSelector } from "react-redux";
+import { Link } from "react-router-dom";
 import logo from "../../assets/logos/logo.png";
 import logoBlack from "../../assets/logos/logoBlack.png";
-import { useSelector } from "react-redux";
+import { useAuth } from "../../redux/context";
 
 const ProfessionalNavBar = () => {
   const user = useSelector((state: any) => state.auth.user);
+  const { onLogout } = useAuth();
+
   return (
-    <>
-      <nav className="fixed top-0 z-50 w-full  border-b border-gray-300 bg-secondary dark:border-gray-700">
-        <div className="px-3 py-3 lg:px-5 lg:pl-3">
-          <div className="flex items-center justify-between">
-            <div className="flex items-center justify-start rtl:justify-end">
-              <button
-                data-drawer-target="logo-sidebar"
-                data-drawer-toggle="logo-sidebar"
-                aria-controls="logo-sidebar"
-                type="button"
-                className="inline-flex items-center p-2 text-sm text-gray-500 rounded-lg sm:hidden hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200 dark:text-gray-400 dark:hover:bg-gray-700 dark:focus:ring-gray-600"
-              >
-                <span className="sr-only">Open sidebar</span>
-                <svg
-                  className="w-6 h-6"
-                  aria-hidden="true"
-                  fill="currentColor"
-                  viewBox="0 0 20 20"
-                  xmlns="http://www.w3.org/2000/svg"
-                >
-                  <path
-                    clip-rule="evenodd"
-                    fill-rule="evenodd"
-                    d="M2 4.75A.75.75 0 012.75 4h14.5a.75.75 0 010 1.5H2.75A.75.75 0 012 4.75zm0 10.5a.75.75 0 01.75-.75h7.5a.75.75 0 010 1.5h-7.5a.75.75 0 01-.75-.75zM2 10a.75.75 0 01.75-.75h14.5a.75.75 0 010 1.5H2.75A.75.75 0 012 10z"
-                  ></path>
-                </svg>
-              </button>
-              <div>
-                <Link to={"/"}>
-                  <img
-                    src={logo}
-                    alt=""
-                    className="h-[35px] md:h-[40px] lg:h-[45px] hidden dark:block"
-                  />
-                </Link>
-                <Link to={"/"}>
-                  <img
-                    src={logoBlack}
-                    alt=""
-                    className="h-[35px] md:h-[40px] lg:h-[45px] dark:hidden block"
-                  />
-                </Link>
-              </div>
-            </div>
-            <div className="flex items-center">
-              <div className="flex items-center ms-3">
-                <div>
-                  <button
-                    type="button"
-                    className="flex text-sm bg-gray-800 rounded-full focus:ring-4 focus:ring-gray-300 dark:focus:ring-gray-600"
-                    aria-expanded="false"
-                    data-dropdown-toggle="dropdown-user"
-                  >
-                    <span className="sr-only">Open user menu</span>
-                    <img
-                      className="w-8 h-8 rounded-full"
-                      src="https://flowbite.com/docs/images/people/profile-picture-5.jpg"
-                      alt="user photo"
-                    />
-                  </button>
-                </div>
-                <div
-                  className="z-50 hidden my-4 text-base list-none bg-white divide-y divide-gray-100 rounded shadow dark:bg-gray-700 dark:divide-gray-600"
-                  id="dropdown-user"
-                >
-                  <div className="px-4 py-3" role="none">
-                    <p
-                      className="text-sm text-gray-900 dark:text-white"
-                      role="none"
-                    >
-                      Neil Sims
-                    </p>
-                    <p
-                      className="text-sm font-medium text-gray-900 truncate dark:text-gray-300"
-                      role="none"
-                    >
-                      neil.sims@flowbite.com
-                    </p>
-                  </div>
-                  <ul className="py-1" role="none">
-                    <li>
-                      <a
-                        href="#"
-                        className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:text-gray-300 dark:hover:bg-gray-600 dark:hover:text-white"
-                        role="menuitem"
-                      >
-                        Dashboard
-                      </a>
-                    </li>
-                    <li>
-                      <a
-                        href="#"
-                        className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:text-gray-300 dark:hover:bg-gray-600 dark:hover:text-white"
-                        role="menuitem"
-                      >
-                        Settings
-                      </a>
-                    </li>
-                    <li>
-                      <a
-                        href="#"
-                        className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:text-gray-300 dark:hover:bg-gray-600 dark:hover:text-white"
-                        role="menuitem"
-                      >
-                        Earnings
-                      </a>
-                    </li>
-                    <li>
-                      <a
-                        href="#"
-                        className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:text-gray-300 dark:hover:bg-gray-600 dark:hover:text-white"
-                        role="menuitem"
-                      >
-                        Sign out
-                      </a>
-                    </li>
-                  </ul>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </nav>
-
-      <aside
-        id="logo-sidebar"
-        className="fixed top-0 left-0 z-40 w-64 h-screen pt-20 transition-transform -translate-x-full border-r border-gray-300 sm:translate-x-0 bg-secondary dark:border-gray-700"
-        aria-label="Sidebar"
+    <div className="bg-secondary border-b border-gray-300 dark:border-gray-700">
+      <Navbar
+        fluid
+        rounded
+        theme={{
+          root: {
+            base: "bg-secondary px-2 py-4 sm:px-4",
+          },
+        }}
       >
-        <div className="h-full px-3 pb-4 overflow-y-auto bg-secondary">
-          <ul className="space-y-2 font-medium">
-            <li>
-              <Link
-                to={"dashboard"}
-                className="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group"
-              >
-                <span className="ms-3">Dashboard</span>
-              </Link>
-            </li>
-            <li>
-              <Link
-                to={"analytics"}
-                className="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group"
-              >
-                <span className="flex-1 ms-3 whitespace-nowrap">Analytics</span>
-              </Link>
-            </li>
-            <li>
-              <Link
-                to={"earnings"}
-                className="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group"
-              >
-                <span className="flex-1 ms-3 whitespace-nowrap">Earnings</span>
-              </Link>
-            </li>
-            <li>
-              <Link
-                to={"proInternships"}
-                className="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group"
-              >
-                <span className="flex-1 ms-3 whitespace-nowrap">
-                  Internships
+        <NavbarBrand href="https://flowbite-react.com">
+          <Link to={"/"}>
+            <img
+              src={logo}
+              alt=""
+              className="h-[35px] md:h-[40px] lg:h-[45px] hidden dark:block"
+            />
+          </Link>
+          <Link to={"/"}>
+            <img
+              src={logoBlack}
+              alt=""
+              className="h-[35px] md:h-[40px] lg:h-[45px] dark:hidden block"
+            />
+          </Link>
+        </NavbarBrand>
+        <div className="flex md:order-2 gap-2">
+          <Dropdown
+            arrowIcon={false}
+            inline
+            label={
+              <Avatar
+                alt="User settings"
+                img={user.picturePath}
+                className="h-[40px] w-[40px]"
+                rounded
+              />
+            }
+          >
+            <DropdownHeader className="flex gap-3 items-center">
+              <Avatar
+                alt="User settings"
+                img={user.picturePath}
+                className="h-[40px] w-[40px]"
+                rounded
+              />
+              <div>
+                <span className="block text-sm">Bonnie Green</span>
+                <span className="block truncate text-sm font-medium">
+                  name@flowbite.com
                 </span>
-              </Link>
-            </li>
-            <li>
-              <Link
-                to={"orders"}
-                className="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group"
-              >
-                <span className="flex-1 ms-3 whitespace-nowrap">Orders</span>
-              </Link>
-            </li>
-          </ul>
+              </div>
+            </DropdownHeader>
+            <DropdownItem>
+              <Link to={"profile"}>Profile</Link>
+            </DropdownItem>
+            <DropdownDivider />
+            <DropdownItem
+              onClick={() => {
+                onLogout();
+              }}
+            >
+              Sign out
+            </DropdownItem>
+          </Dropdown>
+          <NavbarToggle />
         </div>
-      </aside>
-
-      <div className="p-4 sm:ml-64">
-        <div className="md:p-4 mt-14">
-          <Outlet />
-        </div>
-      </div>
-    </>
+        <Navbar.Collapse className="md:hidden">
+          <Navbar.Link href="#" active>
+            <Link to={"dashboard"}>Dashboard</Link>
+          </Navbar.Link>
+          <Navbar.Link>
+            <Link to={"analytics"}>Analytics</Link>
+          </Navbar.Link>
+          <Navbar.Link href="../">
+            <Link to={"earnings"}>Earnings</Link>
+          </Navbar.Link>
+          <Navbar.Link href="#">
+            <Link to={"proInternships"}>Internships</Link>
+          </Navbar.Link>
+          <Navbar.Link href="#">
+            <Link to={"orders"}>Orders</Link>
+          </Navbar.Link>
+        </Navbar.Collapse>
+      </Navbar>
+    </div>
   );
 };
 

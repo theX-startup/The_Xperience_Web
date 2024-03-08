@@ -13,17 +13,30 @@ export const addInternship = (body: {
       //   payload: true,
       // });
       let urlPath = `/addInternship`;
-      await RestApi.postCall(urlPath, body);
-      toast.success("Internship Added Successfully", {
-        position: "top-right",
-        autoClose: 3000,
-        hideProgressBar: true,
-        closeOnClick: true,
-        pauseOnHover: false,
-        draggable: true,
-        progress: undefined,
-        theme: "light",
-      });
+      const res = await RestApi.postCall(urlPath, body);
+      if (res) {
+        toast.success("Internship Added Successfully", {
+          position: "top-right",
+          autoClose: 3000,
+          hideProgressBar: true,
+          closeOnClick: true,
+          pauseOnHover: false,
+          draggable: true,
+          progress: undefined,
+          theme: "light",
+        });
+      } else {
+        toast.error("Error in adding Internship", {
+          position: "top-right",
+          autoClose: 3000,
+          hideProgressBar: true,
+          closeOnClick: true,
+          pauseOnHover: false,
+          draggable: true,
+          progress: undefined,
+          theme: "light",
+        });
+      }
     } catch (error: any) {
       dispatch({
         type: "SET_ERROR",
