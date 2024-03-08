@@ -1,5 +1,5 @@
 // import React from "react";
-import { Navigate, Route, Routes, useLocation } from "react-router-dom";
+import { Route, Routes, useLocation } from "react-router-dom";
 
 import Layout from "./Layout";
 import Home from "../pages/landingPage/Home";
@@ -21,7 +21,7 @@ const Router = () => {
           <Route path="login" element={<Login />} />
           <Route path="register" element={<Register />} />
         </Route>
-        <Route index element={<Navigate to={"home"} />} />
+        <Route index element={<Home />} />
       </Route>
       {/* <Route path='/' element={<div>Welcome to the landing page</div>} /> */}
     </Routes>

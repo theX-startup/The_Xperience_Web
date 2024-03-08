@@ -1,4 +1,58 @@
+import { useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { getOrders } from "./_request";
+import { MiniLoader } from "../Analytics/Index";
+
 const Orders = () => {
+  const dispatch = useDispatch<any>();
+  const orders = useSelector((state: any) => state.professional.Orders);
+  const loading = useSelector((state: any) => state.professional.ordersLoading);
+  const error = useSelector((state: any) => state.professional.ordersError);
+  console.log(orders);
+
+  const convertDateFormat = (inputDate: any) => {
+    const months = [
+      "Jan",
+      "Feb",
+      "Mar",
+      "Apr",
+      "May",
+      "Jun",
+      "Jul",
+      "Aug",
+      "Sep",
+      "Oct",
+      "Nov",
+      "Dec",
+    ];
+
+    const dateObject = new Date(inputDate);
+    const day = dateObject.getDate();
+    const month = months[dateObject.getMonth()];
+    const year = dateObject.getFullYear();
+
+    const suffix =
+      day === 1 || day === 21 || day === 31
+        ? "st"
+        : day === 2 || day === 22
+        ? "nd"
+        : day === 3 || day === 23
+        ? "rd"
+        : "th";
+    const formattedDate = `${day}${suffix} ${month}, ${year}`;
+
+    return formattedDate;
+  };
+
+  useEffect(() => {
+    dispatch(getOrders());
+  }, []);
+  if (loading) {
+    return <MiniLoader />;
+  }
+  if (error) {
+    return <div>{error}</div>;
+  }
   return (
     <div>
       <div className="relative overflow-x-auto shadow-md sm:rounded-lg">
@@ -23,18 +77,53 @@ const Orders = () => {
             </tr>
           </thead>
           <tbody>
-            <tr className="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
-              <th
-                scope="row"
-                className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white"
-              >
-                #0000001
-              </th>
-              <td className="px-6 py-4">27th Feb, 2024</td>
-              <td className="px-6 py-4">Successful</td>
-              <td className="px-6 py-4">#5000</td>
-              <td className="px-6 py-4 text-primary cursor-pointer">view</td>
-            </tr>
+            {orders.map(
+              (
+                order: {
+                  orderBy: {
+                    name: string;
+                    email: string;
+                    userId: string;
+                  };
+                  orderFor: {
+                    name: string;
+                    email: string;
+                    userId: string;
+                  };
+                  orderDate: any;
+                  orderId: string;
+                  orderStatus: string;
+                  orderItems: {
+                    internshipId: string;
+                  };
+                  totalPrice: number;
+                },
+                index: number
+              ) => (
+                <tr
+                  className="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600 text_sm"
+                  key={index}
+                >
+                  <th
+                    scope="row"
+                    className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white font-sans uppercase"
+                  >
+                    #{order.orderId}
+                  </th>
+                  <td className="px-6 py-4">{convertDateFormat(order.orderDate)}</td>
+                  <td className="px-6 py-4">{order.orderStatus}</td>
+                  <td className="px-6 py-4">
+                    {order.totalPrice.toLocaleString("en-NG", {
+                      style: "currency",
+                      currency: "NGN",
+                    })}
+                  </td>
+                  <td className="px-6 py-4 text-primary cursor-pointer">
+                    view
+                  </td>
+                </tr>
+              )
+            )}
           </tbody>
         </table>
 

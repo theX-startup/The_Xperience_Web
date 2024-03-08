@@ -1,6 +1,9 @@
+import { useEffect } from "react";
 import { MdError } from "react-icons/md";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
+import { fetchDashboardData } from "./_request";
+import { MiniLoader } from "../Analytics/Index";
 
 type infoProps = {
   dashboard: {
@@ -39,9 +42,28 @@ type infoProps = {
 };
 
 const ProDashboard = () => {
+  const dispatch = useDispatch<any>();
   const info: infoProps = useSelector(
     (state: any) => state.professional.dashboardInfo
   );
+  const loading = useSelector(
+    (state: any) => state.professional.dashboardLoading
+  );
+  const error = useSelector(
+    (state: any) => state.professional.dashboardInfoError
+  );
+
+  useEffect(() => {
+    dispatch(fetchDashboardData());
+  }, []);
+
+  if (loading) {
+    return <MiniLoader />;
+  }
+
+  if (error) {
+    return <div>{error}</div>;
+  }
   if (info) {
     return (
       <div className="w-full flex justify-between flex-col md:flex-row">
@@ -49,7 +71,7 @@ const ProDashboard = () => {
           <div className="w-full">
             <h1 className="text_md ">Dashboard</h1>
             {info?.dashboard ? (
-              <div className="dark:bg-slate-800 bg-slate-300 w-full rounded p-4 mt-2 grid grid-cols-2 md:grid-cols-3 text_sm gap-5 lg:gap-10">
+              <div className="dark:bg-slate-800 bg-slate-300 w-full rounded p-4 mt-2 grid grid-cols-2 lg:grid-cols-3 text-[10px] gap-5 lg:gap-10">
                 <div className="flex flex-col justify-center items-center gap-5">
                   <div className="flex items-center gap-1">
                     <span className="text-nowrap ">Total Earnings</span>
@@ -131,19 +153,14 @@ const ProDashboard = () => {
                 </div>
                 <div className="flex flex-col justify-center items-center gap-5">
                   <div className="flex items-center gap-1">
-                    <span className="text-nowrap ">
-                      No. of interns / mentees
-                    </span>
+                    <span className="text-nowrap ">No. of interns</span>
                     <MdError />
                   </div>
                   <span>{info?.dashboard?.NoOfInterns}</span>
                 </div>
                 <div className="flex flex-col justify-center items-center gap-5">
                   <div className="flex items-center gap-1">
-                    <span className="text-nowrap">
-                      {" "}
-                      Internships / mentorships
-                    </span>
+                    <span className="text-nowrap"> Internships</span>
                     <MdError />
                   </div>
                   <span>{info?.dashboard?.NoOfInternships}</span>
@@ -158,7 +175,7 @@ const ProDashboard = () => {
               </div>
             ) : (
               <div className="min-h-[200px] flex items-center justify-center text_sm">
-                <p>No pending evaluation</p>
+                <p>No Infomation to display</p>
               </div>
             )}
           </div>
@@ -194,7 +211,7 @@ const ProDashboard = () => {
             <div className="dark:bg-slate-800 bg-slate-300 w-full rounded p-4 mt-2 flex flex-col gap-7">
               {info?.recentOrders?.map((item, index) => (
                 <div
-                  className="flex justify-between  w-full items-end"
+                  className="flex justify-between  w-full items-center gap-2 flex-wrap border-b pb-2"
                   key={index}
                 >
                   <div className="text-[10px] flex flex-col gap-2">
@@ -209,7 +226,7 @@ const ProDashboard = () => {
                       </h1>
                     </div>
                   </div>
-                  <div className="text_sm bg-tertiary p-2 px-5 rounded-sm">
+                  <div className="text_sm bg-tertiary p-1 px-3 rounded-sm">
                     <Link to={""} className="">
                       View
                     </Link>

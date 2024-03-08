@@ -7,7 +7,7 @@ const NavBar = () => {
   const [active, setActive] = useState(false);
   return (
     <div
-      className="lg:px-7 md:px-3 flex items-center justify-between relative border-b shadow-md py-3"
+      className="lg:px-7 px-3 flex items-center justify-between relative border-b shadow-md py-3"
       onScroll={() => {
         console.log("scroll");
       }}
@@ -26,24 +26,24 @@ const NavBar = () => {
         onClick={() => setActive(!active)}
       >
         <div
-          className={`h-0.5 w-5 bg-secondary transform transition-all duration-300 ${
+          className={`h-0.5 w-5 bg-black transform transition-all duration-300 ${
             active ? "rotate-45 translate-y-1" : ""
           }`}
         ></div>
         <div
-          className={`h-0.5 w-5 bg-secondary transform transition-all duration-300 ${
+          className={`h-0.5 w-5 bg-black transform transition-all duration-300 ${
             active ? "opacity-0" : ""
           }`}
         ></div>
         <div
-          className={`h-0.5 w-5 bg-secondary transform transition-all duration-300 ${
+          className={`h-0.5 w-5 bg-black transform transition-all duration-300 ${
             active ? "-rotate-45 -translate-y-2" : ""
           }`}
         ></div>
       </div>
 
       <div
-        className={`inknut-antiqua-semibold mobile-nav desktop-nav tablet-nav  items-center shadow-lg md:shadow-none ${
+        className={`inknut-antiqua-semibold bg-secondary mobile-nav desktop-nav tablet-nav  items-center shadow-lg md:shadow-none ${
           active ? "block" : "hidden"
         }`}
       >

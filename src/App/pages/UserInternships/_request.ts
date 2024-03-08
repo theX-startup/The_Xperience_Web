@@ -22,3 +22,44 @@ export const fetchUserInternships = (
     }
   };
 };
+
+export const getProInternships =
+  (): ThunkAction<void, any, any, any> => async (dispatch) => {
+    try {
+      dispatch({
+        type: ActionTypes.SET_PRO_INTERNSHIP_LOADING,
+        payload: true,
+      });
+
+      let urlPath = "/proInternshipInfo";
+      let response = await RestApi.getCall(urlPath);
+      if (response) {
+        dispatch({
+          type: ActionTypes.SET_PRO_INTERNSHIP,
+          payload: response,
+        });
+        dispatch({
+          type: ActionTypes.SET_PRO_INTERNSHIP_LOADING,
+          payload: false,
+        });
+      } else {
+        dispatch({
+          type: ActionTypes.SET_PRO_INTERNSHIP_ERROR,
+          payload: "Error fetching internships",
+        });
+        dispatch({
+          type: ActionTypes.SET_PRO_INTERNSHIP_LOADING,
+          payload: false,
+        });
+      }
+    } catch (error: any) {
+      dispatch({
+        type: ActionTypes.SET_PRO_INTERNSHIP_ERROR,
+        payload: error.message,
+      });
+      dispatch({
+        type: ActionTypes.SET_PRO_INTERNSHIP_LOADING,
+        payload: false,
+      });
+    }
+  };

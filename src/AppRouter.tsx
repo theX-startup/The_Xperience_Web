@@ -15,7 +15,7 @@ const AppRouter = () => {
   return (
     <BrowserRouter>
       <AnimatePresence>
-        <Routes>
+        <Routes >
           <Route element={<App />}>
             {token && isAuth ? (
               <Route path="/*" element={<PrivtaeRoutes />} />

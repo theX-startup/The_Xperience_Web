@@ -66,10 +66,10 @@ const ProfessionalNavBar = () => {
                 rounded
               />
               <div>
-                <span className="block text-sm">Bonnie Green</span>
-                <span className="block truncate text-sm font-medium">
-                  name@flowbite.com
-                </span>
+                <span className="block text-sm">{user.username}</span>
+                <Link to={"profile"} className="block truncate text-sm font-medium">
+                  {user.email}
+                </Link>
               </div>
             </DropdownHeader>
             <DropdownItem>

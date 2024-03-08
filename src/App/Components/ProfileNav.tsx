@@ -55,9 +55,9 @@ const ProfileNav = () => {
               rounded
             />
             <div>
-              <span className="block text-sm">Bonnie Green</span>
+              <span className="block text-sm">{user.username}</span>
               <span className="block truncate text-sm font-medium">
-                name@flowbite.com
+                {user.email}
               </span>
             </div>
           </DropdownHeader>

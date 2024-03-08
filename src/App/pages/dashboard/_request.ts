@@ -72,17 +72,32 @@ export const fetchInternshipDetails = (
 export const fetchDashboardData = (): ThunkAction<void, any, any, any> => {
   return async (dispatch: any) => {
     try {
+      dispatch({
+        type: ActionTypes.SET_DASHBOARD_LOADING,
+        payload: true,
+      });
       let urlPath = "/info";
       let response = await RestApi.getCall(urlPath);
       if (response) {
         dispatch({
-          type: "GET_DASHBOARD_INFO",
+          type: ActionTypes.SET_DASHBOARD_INFO,
           payload: response,
         });
+        dispatch({
+          type: ActionTypes.SET_DASHBOARD_LOADING,
+          payload: false,
+
+        })
+      }else{
+        dispatch({
+          type: ActionTypes.SET_DASHBOARD_INFO_ERROR,
+          payload: "Error fetching dashboard data",
+        });
+        
       }
     } catch (error: any) {
       dispatch({
-        type: "GET_DASHBOARD_INFO_ERROR",
+        type: ActionTypes.SET_DASHBOARD_INFO_ERROR,
         payload: error.message,
       });
     }

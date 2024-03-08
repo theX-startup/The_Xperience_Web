@@ -1,13 +1,19 @@
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import InternshipComponent from "../../Components/InternshipComponent";
 import { motion } from "framer-motion";
 import SubMenu from "../../Components/SubMenu";
+import { useEffect } from "react";
+import { getInternships } from "./_request";
 
 const InternDashboard = () => {
   const internships = useSelector(
     (state: any) => state.internships.internships
   );
+  const dispatch = useDispatch<any>();
 
+  useEffect(() => {
+    dispatch(getInternships());
+  }, []);
   return (
     <div>
       <div>

@@ -1,6 +1,55 @@
+import { useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
+import { MiniLoader } from "../Analytics/Index";
+import { getProInternships } from "./_request";
+
+type ProfessionalInternshipProps = {
+  result: [
+    {
+      title: string;
+      clicks: number;
+      impression: number;
+      noOfBookmarks: number;
+      noOfOrders: number;
+      price: number;
+      Earnings: number;
+    }
+  ];
+  totalInfo: {
+    activeInternships: number;
+    denied: number;
+    draft: number;
+    totalInternships: number;
+    totalOrders: number;
+  };
+};
 
 const ProfessionalInternship = () => {
+  const dispatch = useDispatch<any>();
+  const internships: ProfessionalInternshipProps = useSelector(
+    (state: any) => state.professional.ProInternships
+  );
+  const loading = useSelector(
+    (state: any) => state.professional.proInternshipsLoading
+  );
+  const error = useSelector(
+    (state: any) => state.professional.proInternshipsError
+  );
+  useEffect(() => {
+    dispatch(getProInternships());
+  }, []);
+  if (loading) {
+    return <MiniLoader />;
+  }
+  if (error) {
+    return (
+      <div>
+        <h1>{error}</h1>
+      </div>
+    );
+  }
+
   return (
     <div className="min-h-[90vh]">
       <div className="relative overflow-x-auto shadow-md sm:rounded-lg min-h-full">
@@ -17,7 +66,7 @@ const ProfessionalInternship = () => {
                 Active
               </th>
               <th scope="col" className="px-6 py-3 text-primary">
-                Paused
+                Draft
               </th>
               <th scope="col" className="px-6 py-3 text-primary">
                 Denied
@@ -27,12 +76,16 @@ const ProfessionalInternship = () => {
           <tbody>
             <tr className="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
               <th scope="row" className="px-6 py-4 ">
-                800
+                {internships?.totalInfo?.totalOrders}
               </th>
-              <td className="px-6 py-4">7</td>
-              <td className="px-6 py-4">5</td>
-              <td className="px-6 py-4">1</td>
-              <td className="px-6 py-4">1</td>
+              <td className="px-6 py-4">
+                {internships?.totalInfo?.totalInternships}
+              </td>
+              <td className="px-6 py-4">
+                {internships?.totalInfo?.totalInternships}
+              </td>
+              <td className="px-6 py-4">{internships?.totalInfo?.draft}</td>
+              <td className="px-6 py-4">{internships?.totalInfo?.denied}</td>
             </tr>
           </tbody>
         </table>
@@ -40,7 +93,7 @@ const ProfessionalInternship = () => {
 
       <div className="relative overflow-x-auto shadow-md sm:rounded-lg mt-10">
         <div className="flex flex-column sm:flex-row flex-wrap space-y-4 sm:space-y-0 items-center justify-between pb-4">
-          <div>
+          {/* <div>
             <button
               id="dropdownRadioButton"
               data-dropdown-toggle="dropdownRadio"
@@ -73,6 +126,7 @@ const ProfessionalInternship = () => {
                 />
               </svg>
             </button>
+
 
             <div
               id="dropdownRadio"
@@ -178,16 +232,13 @@ const ProfessionalInternship = () => {
                 </li>
               </ul>
             </div>
-          </div>
+          </div> */}
         </div>
-        <table className="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
-          <thead className="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
+        <table className="w-full text-sm text-center rtl:text-right text-gray-500 dark:text-gray-400">
+          <thead className="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400 ">
             <tr>
               <th scope="col" className="px-6 py-3">
                 Internships / mentorship
-              </th>
-              <th scope="col" className="px-6 py-3">
-                Status
               </th>
               <th scope="col" className="px-6 py-3">
                 Earnings
@@ -213,58 +264,35 @@ const ProfessionalInternship = () => {
             </tr>
           </thead>
           <tbody>
-            <tr className="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
-              <th
-                scope="row"
-                className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white"
+            {internships?.result?.map((internship, index) => (
+              <tr
+                key={index}
+                className="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600"
               >
-                Product Design
-              </th>
-              <td className="px-6 py-4">Active</td>
-              <td className="px-6 py-4">500,000</td>
-              <td className="px-6 py-4">500</td>
-              <td className="px-6 py-4">700,000</td>
-              <td className="px-6 py-4">1,400,000</td>
-              <td className="px-6 py-4">30</td>
-              <td className="px-6 py-4">5000</td>
-              <td className="px-6 py-4">...</td>
-            </tr>
-            <tr className="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
-              <th
-                scope="row"
-                className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white"
-              >
-                Product Design
-              </th>
-              <td className="px-6 py-4">Active</td>
-              <td className="px-6 py-4">500,000</td>
-              <td className="px-6 py-4">500</td>
-              <td className="px-6 py-4">700,000</td>
-              <td className="px-6 py-4">1,400,000</td>
-              <td className="px-6 py-4">30</td>
-              <td className="px-6 py-4">5000</td>
-              <td className="px-6 py-4">...</td>
-            </tr>
-            <tr className="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
-              <th
-                scope="row"
-                className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white"
-              >
-                Product Design
-              </th>
-              <td className="px-6 py-4">Active</td>
-              <td className="px-6 py-4">500,000</td>
-              <td className="px-6 py-4">500</td>
-              <td className="px-6 py-4">700,000</td>
-              <td className="px-6 py-4">1,400,000</td>
-              <td className="px-6 py-4">30</td>
-              <td className="px-6 py-4">5000</td>
-              <td className="px-6 py-4">...</td>
-            </tr>
+                <th
+                  scope="row"
+                  className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white"
+                >
+                  {internship.title.slice(0, 20) + "..."}
+                </th>
+                <td className="px-6 py-4">
+                  {internship.Earnings.toLocaleString("en-NG", {
+                    style: "currency",
+                    currency: "NGN",
+                  })}
+                </td>
+                <td className="px-6 py-4">{internship.noOfOrders}</td>
+                <td className="px-6 py-4">{internship.clicks}</td>
+                <td className="px-6 py-4">{internship.impression}</td>
+                <td className="px-6 py-4">{internship.noOfBookmarks}</td>
+                <td className="px-6 py-4">{internship.price}</td>
+                <td className="px-6 py-4">...</td>
+              </tr>
+            ))}
           </tbody>
         </table>
       </div>
-      <div className="absolute bottom-[8%] bg-primary p-5 rounded">
+      <div className="w-full md:w-[200px] mt-10 text-center bg-primary p-5 rounded">
         <Link to={""}>Create Internship</Link>
       </div>
     </div>

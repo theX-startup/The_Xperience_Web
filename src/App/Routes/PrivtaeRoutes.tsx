@@ -1,4 +1,4 @@
-import { Navigate, Route, Routes } from "react-router-dom";
+import { Navigate, Route, Routes, useLocation } from "react-router-dom";
 import Layout from "./Layout";
 import AddPhone from "../../landingPage/pages/Auth/AddPhone";
 import AuthLayout from "../../landingPage/Routes/AuthLayout";
@@ -23,11 +23,11 @@ import SidebarNav from "../Components/Sidebar";
 import Dashboard from "../pages/dashboard";
 
 const PrivtaeRoutes = () => {
-
+  const location = useLocation();
   const [active, setActive] = useState("inProgress");
 
   return (
-    <Routes>
+    <Routes key={location.pathname} location={location}>
       <Route element={<AuthLayout />}>
         <Route path="addPhone" element={<AddPhone />} />
       </Route>
@@ -49,10 +49,7 @@ const PrivtaeRoutes = () => {
         <Route path="profile" element={<ProfilePage />} />
         <Route path="profileDetails" element={<ProfileDetails />} />
         <Route element={<SidebarNav />}>
-          <Route
-            path="/dashboard"
-            element={<Dashboard />}
-          />
+          <Route path="/dashboard" element={<Dashboard />} />
           <Route path="analytics" element={<Analytics />} />
           <Route path="earnings" element={<Earnings />} />
           <Route path="proInternships" element={<ProfessionalInternship />} />

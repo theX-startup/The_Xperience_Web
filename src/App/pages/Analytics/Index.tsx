@@ -1,91 +1,151 @@
+import { useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
+import { TailSpin } from "react-loader-spinner";
+import { getAnalytics } from "./_request";
 
-const reviews = [
-  {
-    id: 1,
-    name: "John Doe",
-    rating: 5,
-    review:
-      "I had an amazing experience with this company! The internship was top-notch, and the task exceeded my expectations. I highly recommend them to anyone looking for quality products design internship.",
-  },
-  {
-    id: 2,
-    name: "Jane Doe",
-    rating: 4,
-    review:
-      "I had an amazing experience with this company! The internship was top-notch, and the task exceeded my expectations. I highly recommend them to anyone looking for quality products design internship.",
-  },
-  {
-    id: 3,
-    name: "John Doe",
-    rating: 3,
-    review:
-      "I had an amazing experience with this company! The internship was top-notch, and the task exceeded my expectations. I highly recommend them to anyone looking for quality products design internship.",
-  },
-  {
-    id: 4,
-    name: "John Doe",
-    rating: 2,
-    review:
-      "I had an amazing experience with this company! The internship was top-notch, and the task exceeded my expectations. I highly recommend them to anyone looking for quality products design internship.",
-  },
-  {
-    id: 5,
-    name: "John Doe",
-    rating: 1,
-    review:
-      "I had an amazing experience with this company! The internship was top-notch, and the task exceeded my expectations. I highly recommend them to anyone looking for quality products design internship.",
-  },
-];
+type analyticsProps = {
+  analytics: {
+    impression: number;
+    clicks: number;
+    bookmarks: number;
+    orders: number;
+    highestSellingPrice: number;
+    lowestSellingPrice: number;
+    mostPopularInternship: {
+      title: string;
+      id: string;
+    };
+    positiveReviews: number;
+    totalEarnings: number;
+    negativeReviews: number;
+  };
+  allRating: [
+    {
+      rating: number;
+      review: string;
+      createdAt: string;
+      studentName: string;
+    }
+  ];
+};
+
+export const MiniLoader = () => {
+  return (
+    <div className="min-h-[80px] w-full flex items-center justify-center">
+      <TailSpin visible={true} color="#0000ff" height={30} width={30} />
+    </div>
+  );
+};
 
 const Analytics = () => {
+  const dispatch = useDispatch<any>();
+  const loading = useSelector(
+    (state: any) => state.professional.analyticsLoading
+  );
+  const error = useSelector((state: any) => state.professional.analyticsError);
+  const Analytics: analyticsProps = useSelector(
+    (state: any) => state.professional.Analytics
+  );
+
+  useEffect(() => {
+    dispatch(getAnalytics());
+  }, []);
   return (
     <div>
       <h1 className="text-primary">Analytics</h1>
-      <div className="dark:bg-gray-800 bg-gray-300 w-full rounded p-4 mt-2 grid lg:grid-cols-5 md:grid-cols-4 gap-5 grid-cols-2 text-center text_sm">
-        <div className="flex flex-col justify-center items-center gap-5">
-          <span className="text-primary">Impression</span>
-          <span>800,000</span>
-        </div>
-        <div className="flex flex-col justify-center items-center gap-5">
-          <span className="text-primary">Clicks</span>
-          <span>200,000</span>
-        </div>
-        <div className="flex flex-col justify-center items-center gap-5">
-          <span className="text-primary">Bookmark</span>
-          <span>60</span>
-        </div>
-        <div className="flex flex-col justify-center items-center gap-5">
-          <span className="text-primary">Earnings</span>
-          <span>1,600,000</span>
-        </div>
-        <div className="flex flex-col justify-center items-center gap-5">
-          <span className="text-primary">Orders</span>
-          <span>100</span>
-        </div>
+      <div className="dark:bg-gray-800 bg-gray-300 w-full rounded p-4 mt-2 min-h-[100px]">
+        {loading ? (
+          <MiniLoader />
+        ) : error ? (
+          <div className="flex items-center justify-center text_sm">
+            {error}
+          </div>
+        ) : (
+          <div className="grid lg:grid-cols-5 md:grid-cols-4 gap-5 grid-cols-2 text-center text_sm">
+            <div className="flex flex-col justify-center items-center gap-5">
+              <span className="text-primary">Impression</span>
+              <span>{Analytics?.analytics?.impression}</span>
+            </div>
+            <div className="flex flex-col justify-center items-center gap-5">
+              <span className="text-primary">Clicks</span>
+              <span>{Analytics?.analytics?.clicks}</span>
+            </div>
+            <div className="flex flex-col justify-center items-center gap-5">
+              <span className="text-primary">Bookmark</span>
+              <span>{Analytics?.analytics?.bookmarks}</span>
+            </div>
+            <div className="flex flex-col justify-center items-center gap-5">
+              <span className="text-primary">Earnings</span>
+              <span>
+                {Analytics?.analytics?.totalEarnings.toLocaleString("en-NG", {
+                  style: "currency",
+                  currency: "NGN",
+                })}
+              </span>
+            </div>
+            <div className="flex flex-col justify-center items-center gap-5">
+              <span className="text-primary">Orders</span>
+              <span>{Analytics?.analytics?.orders}</span>
+            </div>
+          </div>
+        )}
       </div>
-      <div className="dark:bg-gray-800 bg-gray-300 w-full rounded p-4 mt-3 grid lg:grid-cols-5 md:grid-cols-4 gap-5 grid-cols-2 text-center text_sm">
-        <div className="flex flex-col justify-center items-center gap-5">
-          <span className="text-primary">Highest selling price</span>
-          <span>10,000</span>
-        </div>
-        <div className="flex flex-col justify-center items-center gap-5">
-          <span className="text-primary">Lowest selling price</span>
-          <span>3500</span>
-        </div>
-        <div className="flex flex-col justify-center items-center gap-5">
-          <span className="text-primary">Most popular</span>
-          <span>Product Design</span>
-        </div>
-        <div className="flex flex-col justify-center items-center gap-5">
-          <span className="text-primary">Positive Reviews</span>
-          <span>500</span>
-        </div>
-        <div className="flex flex-col justify-center items-center gap-5">
-          <span className="text-primary">Negative Reviews</span>
-          <span>234</span>
-        </div>
+      <div className="dark:bg-gray-800 bg-gray-300 w-full rounded p-4 mt-2 min-h-[100px]">
+        {loading ? (
+          <MiniLoader />
+        ) : error ? (
+          <div className="flex items-center justify-center text_sm">
+            {error}
+          </div>
+        ) : (
+          <div className="grid lg:grid-cols-5 md:grid-cols-4 gap-5 grid-cols-2 text-center text_sm">
+            <div className="flex flex-col justify-center items-center gap-5">
+              <span className="text-primary">Highest selling price</span>
+              <span>
+                {Analytics?.analytics?.highestSellingPrice.toLocaleString(
+                  "en-NG",
+                  {
+                    style: "currency",
+                    currency: "NGN",
+                  }
+                )}
+              </span>
+            </div>
+            <div className="flex flex-col justify-center items-center gap-5">
+              <span className="text-primary">Lowest selling price</span>
+              <span>
+                {Analytics?.analytics?.lowestSellingPrice.toLocaleString(
+                  "en-NG",
+                  {
+                    style: "currency",
+                    currency: "NGN",
+                  }
+                )}
+              </span>
+            </div>
+            <div className="flex flex-col justify-center items-center gap-5">
+              <span className="text-primary">Most popular</span>
+              <span className="text-nowrap overflow-hidden">
+                {
+                  Analytics?.analytics?.mostPopularInternship.title.split(
+                    ":"
+                  )[0]
+                }
+              </span>
+            </div>
+            <div className="flex flex-col justify-center items-center gap-5">
+              <span className="text-primary">Positive Reviews</span>
+              <span>{Analytics?.analytics?.positiveReviews}</span>
+            </div>
+            <div className="flex flex-col justify-center items-center gap-5">
+              <span className="text-primary">Negative Reviews</span>
+              <span>{Analytics?.analytics?.negativeReviews}</span>
+            </div>
+          </div>
+        )}
       </div>
+
       <div className="mt-5 text_sm">
         <div className="flex justify-between ">
           <h1>Reviews</h1>
@@ -93,14 +153,28 @@ const Analytics = () => {
             View all
           </Link>
         </div>
-        <div className="grid md:grid-cols-2 gap-5 mt-5 grid-cols-1">
-          {reviews.map((review) => (
-            <div className="flex flex-col gap-5">
-              <h4>"{review.review}"</h4>
-              <span className="font-extrabold">{review.name}</span>
-            </div>
-          ))}
-        </div>
+        {loading ? (
+          <MiniLoader />
+        ) : error ? (
+          <div className="flex items-center justify-center text_sm min-h-[100px]">
+            <h1> {error}</h1>
+          </div>
+        ) : (
+          <div className="flex flex-col gap-5 mt-5 ">
+            {Analytics.allRating ? (
+              Analytics.allRating.map((review) => (
+                <div className="flex flex-col gap-5">
+                  <h4>"{review.review}"</h4>
+                  <span className="font-extrabold">{review.studentName}</span>
+                </div>
+              ))
+            ) : (
+              <div className="flex items-center justify-center w-full">
+                <h1>No reviews</h1>
+              </div>
+            )}
+          </div>
+        )}
       </div>
     </div>
   );

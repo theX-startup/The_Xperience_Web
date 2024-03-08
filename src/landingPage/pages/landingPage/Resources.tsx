@@ -37,25 +37,25 @@ const Resources = () => {
             <div className="text_sm text-black my-2 mx-5">Resources</div>
             <div className=" border-solid border-2 border-blue-600"></div>
             <div className="lg:grid-cols-[60%_40%] gap-12 w-full">
-              <div>
+              <div className="flex flex-col gap-5 p-5">
                 {card.map((data, index) => {
                   return (
                     <div
                       key={index}
-                      className="grid lg:grid-cols-[60%_40%] w-full text-black  text_sm"
+                      className="flex w-full text-black  text_sm flex-col md:flex-row min-h-[200px] border bg-white rounded-md"
                     >
-                      <div className="ml-2 border-solid bg-white border-2 border-transparent my-2">
+                      <div className=" w-full">
                         <div className="text-blue-800 text-center text_sm my-4">
                           {data.slide1}
                         </div>
                         <div className="mx-3 text-justify">{data.slide2}</div>
-                        <div className="flex mt-5 mx-5">
+                        <div className="flex mt-5 px-3 mb-5">
                           <div className="flex-1 text_sm ">{data.time}</div>
                           <div className="text_sm">{data.date}</div>
                         </div>
                       </div>
-                      <div className="my-2">
-                        <img src={data.img} alt="" />
+                      <div className="flex items-center justify-center">
+                        <img src={data.img} alt="" className="h-[95%] md:w-[95%] md:rounded-md rounded-b-md" />
                       </div>
                     </div>
                   );
