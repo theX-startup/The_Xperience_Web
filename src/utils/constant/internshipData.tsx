@@ -279,6 +279,7 @@ export const datas = [
 
 export const card = [
   {
+    img: slide5,
     slide1: "The Most Important Skills for a Job in Tech.",
     slide2:
       "For this article, we examined which skills Forage tech job  simulations most  commonly want. [Companies] don’t just want candidates that can code and do the technical work, they want candidates that can",
@@ -287,6 +288,7 @@ export const card = [
   },
 
   {
+    img: slide5,
     slide1: "The Most Important Skills for a Job in Tech.",
     slide2:
       "For this article, we examined which skills Forage tech job  simulations most  commonly want. [Companies] don’t just want candidates that can code and do the technical work, they want candidates that can",
@@ -295,23 +297,12 @@ export const card = [
   },
 
   {
+    img: slide5,
     slide1: "The Most Important Skills for a Job in Tech.",
     slide2:
       "For this article, we examined which skills Forage tech job  simulations most  commonly want. [Companies] don’t just want candidates that can code and do the technical work, they want candidates that can",
     time: "5 min read",
     date: "Feb, 17. 2024",
-  },
-];
-
-export const image = [
-  {
-    img: slide5,
-  },
-  {
-    img: slide5,
-  },
-  {
-    img: slide5,
   },
 ];
 
@@ -332,5 +323,5 @@ export const details = [
     img: slide6,
     product: "Product design ",
     digital: "Digital Creative",
-  }
+  },
 ];

@@ -3,7 +3,6 @@ import {
   header,
   datas,
   card,
-  image,
   detail,
   details,
 } from "../../../utils/constant/internshipData";
@@ -32,46 +31,42 @@ const Resources = () => {
           })}
         </div>
       </div>
-
-      <div className="bg-blue-50 grid grid-cols-2 lg:grid-cols-3">
+      <div className="bg-blue-50 grid lg:grid-cols-[60%_33%] gap-20 w-full">
         <div>
-          <div className="text_sm text-black mx-5 my-2">Resources</div>
-          <div className=" border-solid border-2 border-blue-600"></div>
           <div>
-            {card.map((data, index) => {
-              return (
-                <div
-                  key={index}
-                  className="text-sm text-black border-solid py-0 lg:py-5 bg-white mt-4 lg:my-2  border-2"
-                >
-                  <div className=" text-blue-800 text-center text_sm my-2 lg:my-0 ">
-                    {data.slide1}
-                  </div>
-                  <div className="mx-2 text-justify mt-1 lg:mt-5 text_sm">
-                    {data.slide2}
-                  </div>
-                  <div className="flex mx-2 my-0 lg:my-5 pb-1 lg:pb-0">
-                    <div className="flex-1 text_sm">{data.time}</div>
-                    <div className="text_sm">{data.date}</div>
-                  </div>
-                </div>
-              );
-            })}
-          </div>
-        </div>
-
-        <div className="my-7 lg:mt-10">
-          <div className=" border-solid border-2 border-blue-600 lg:mr-24"></div>
-          {image.map((data, index) => {
-            return (
-              <div key={index} className=" pb-1 mt-5 lg:pb-1 lg:mt-2">
-                <img src={data.img} alt="" />
+            <div className="text_sm text-black my-2 mx-5">Resources</div>
+            <div className=" border-solid border-2 border-blue-600"></div>
+            <div className="lg:grid-cols-[60%_40%] gap-12 w-full">
+              <div>
+                {card.map((data, index) => {
+                  return (
+                    <div
+                      key={index}
+                      className="grid lg:grid-cols-[60%_40%] w-full text-black  text_sm"
+                    >
+                      <div className="ml-2 border-solid bg-white border-2 border-transparent my-2">
+                        <div className="text-blue-800 text-center text_sm my-4">
+                          {data.slide1}
+                        </div>
+                        <div className="mx-3 text-justify">{data.slide2}</div>
+                        <div className="flex mt-5 mx-5">
+                          <div className="flex-1 text_sm ">{data.time}</div>
+                          <div className="text_sm">{data.date}</div>
+                        </div>
+                      </div>
+                      <div className="my-2">
+                        <img src={data.img} alt="" />
+                      </div>
+                    </div>
+                  );
+                })}
               </div>
-            );
-          })}
-        </div>
+              <div></div>
+            </div>
+          </div>
+           </div>
 
-        <div className="text-black text_sm ml-3">
+        <div className="text-black text_sm ml-2">
           <div className=" text-black my-2">Related news</div>
           <div className=" border-solid border-2 border-blue-600"></div>
           <div className="my-4 lg:my-7">{detail.career}</div>
@@ -80,7 +75,7 @@ const Resources = () => {
           <div className="lg:mt-16">{detail.enhance}</div>
           <div className=" border-solid border-2 border-blue-600 mt-3 mb-8"></div>
 
-          <div className="my-5 text_sm  text-black  py-0 lg:py-5 bg-blue-50 mt-4 lg:my-2 ">
+          <div className="my-5 text-black  py-0 lg:py-5 bg-blue-50 mt-4 lg:my-2 ">
             {details.map((data, index) => {
               return (
                 <div
