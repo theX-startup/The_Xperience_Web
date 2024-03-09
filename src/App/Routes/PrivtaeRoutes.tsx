@@ -21,6 +21,9 @@ import Orders from "../pages/orders/Index";
 import ProfileLayout from "./ProfileLayout";
 import SidebarNav from "../Components/Sidebar";
 import Dashboard from "../pages/dashboard";
+import CreateInternshipLayout from "./CreateInternshipLayout";
+import CreateInternship from "../pages/createInternship/Index";
+import Description from "../pages/createInternship/Description";
 
 const PrivtaeRoutes = () => {
   const location = useLocation();
@@ -59,6 +62,10 @@ const PrivtaeRoutes = () => {
 
       <Route path="internships/tasks/:id/*" element={<Tasks />} />
       <Route element={<ProfileLayout />}></Route>
+      <Route element={<CreateInternshipLayout />}>
+        <Route path="createInternship" element={<CreateInternship />} />
+        <Route path="createInternship/step-2/:id" element={<Description />} />
+      </Route>
     </Routes>
   );
 };

@@ -34,7 +34,7 @@ export const login = (
           type: ActionTypes.SET_SIGNIN_LOADING,
           payload: false,
         });
-        navigation("../../");
+        navigation("../../")
       }
     } catch (error: any) {
       dispatch({

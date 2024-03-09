@@ -8,7 +8,7 @@ import { AnimatePresence } from "framer-motion";
 // type Props = {};
 
 const AppRouter = () => {
-  const token = useSelector((state: any) => state.auth.token);
+  const token = localStorage.getItem("TheX_User_Token");
   const isAuth = useSelector((state: any) => state.auth.isAuth);
 
   console.log(token, isAuth);
@@ -17,7 +17,7 @@ const AppRouter = () => {
       <AnimatePresence>
         <Routes >
           <Route element={<App />}>
-            {token && isAuth ? (
+            {token  ? (
               <Route path="/*" element={<PrivtaeRoutes />} />
             ) : (
               <Route path="/*" element={<Router />} />

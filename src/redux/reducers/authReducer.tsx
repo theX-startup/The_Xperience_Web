@@ -4,7 +4,7 @@ const initialState = {
   user: {},
   token: "",
   isAuth: false,
-  loading: true,
+  loading: false,
   signInLoading: false,
   signInError: "",
   signUpLoading: false,

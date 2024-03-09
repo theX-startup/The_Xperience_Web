@@ -293,7 +293,7 @@ const ProfessionalInternship = () => {
         </table>
       </div>
       <div className="w-full md:w-[200px] mt-10 text-center bg-primary p-5 rounded">
-        <Link to={""}>Create Internship</Link>
+        <Link to={"../createInternship"}>Create Internship</Link>
       </div>
     </div>
   );

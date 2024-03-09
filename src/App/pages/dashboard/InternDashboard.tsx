@@ -4,16 +4,28 @@ import { motion } from "framer-motion";
 import SubMenu from "../../Components/SubMenu";
 import { useEffect } from "react";
 import { getInternships } from "./_request";
+import { fetchUserInternships } from "../UserInternships/_request";
 
 const InternDashboard = () => {
   const internships = useSelector(
     (state: any) => state.internships.internships
   );
+  const user = useSelector((state: any) => state.auth.user);
   const dispatch = useDispatch<any>();
 
   useEffect(() => {
     dispatch(getInternships());
   }, []);
+
+  useEffect(() => {
+    const userId = user?._id;
+    if (user) {
+      const login = async () => {
+        await dispatch(fetchUserInternships(userId));
+      };
+      login();
+    }
+  }, [user]);
   return (
     <div>
       <div>
