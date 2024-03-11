@@ -5,6 +5,8 @@ import slide3 from "../../assets/images/slide3.png";
 import slide4 from "../../assets/images/slide4.png";
 import slide5 from "../../assets/images/slide5.png";
 import slide6 from "../../assets/images/slide6.png";
+import slide7 from "../../assets/images/slide7.png";
+import slide8 from "../../assets/images/slide8.png";
 
 export const data = [
   {
@@ -325,3 +327,17 @@ export const details = [
     digital: "Digital Creative",
   },
 ];
+
+export const about = {
+  firstSlide: "We're here to",
+  secondSlide: "gurantee your success",
+  image1: slide7,
+  image2: slide8,
+  thirdSlide: "no matter where you are",
+  fourthSlide:
+    "The Xperience is dedicated to bridging the gap between learning and doing by providing transformative internship and mentorship opportunities for individuals who have recently acquired tech skills. Our mission is to empower learners to seamlessly transition from the classroom to the professional world, fostering a dynamic and inclusive community where knowledge transforms into practical expertise. Through innovative programs and industry collaboration, we aim to cultivate a new generation of skilled professionals ready to excel in the ever-evolving tech landscape.",
+  fifthSlide:
+    "The Xperience, we envision a future where every individual, armed with the right skills and guided by experienced mentors, confidently steps into the workforce, driving innovation and making a significant impact in the tech industry. Our vision is to be a catalyst for personal and professional growth, creating a global community of lifelong learners and doers who continuously adapt, collaborate, and shape the future of technology. We aspire to be the go-to platform that transforms education into actionable experience, empowering individuals to thrive in the digital era.",
+  sixthSlide: "Get in touch",
+  seventhSlide: "We'd love to hear from you. Please fill out this form.",
+};
