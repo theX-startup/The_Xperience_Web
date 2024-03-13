@@ -341,3 +341,16 @@ export const about = {
   sixthSlide: "Get in touch",
   seventhSlide: "We'd love to hear from you. Please fill out this form.",
 };
+
+export const contact = {
+    contact: "Our Contact Details",
+    connect: "Let's connect.",
+    telephone: "Telephone",
+    phoneNumber: "+234 (9026375588)",
+    whatsapp: "WhatsApp",
+    whatsappNumber: "+234 (9026375588)",
+    office: "Office",
+    officeAddress: "Opolo Innovative Hub, University of Ibadan. Ibadan",
+    email: "Email",
+    emailAddress: "info.thexperiiencehub@gmail.com",
+  }
