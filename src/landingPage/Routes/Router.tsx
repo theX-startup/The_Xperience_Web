@@ -17,11 +17,12 @@ const Router = () => {
         <Route path="home" element={<Home />} />
         <Route path="about" element={<About />} />
         <Route path="resources" element={<Resources />} />
-        <Route element={<AuthLayout />}>
-          <Route path="login" element={<Login />} />
-          <Route path="register" element={<Register />} />
-        </Route>
+
         <Route index element={<Home />} />
+      </Route>
+      <Route element={<AuthLayout />}>
+        <Route path="login" element={<Login />} />
+        <Route path="register" element={<Register />} />
       </Route>
       {/* <Route path='/' element={<div>Welcome to the landing page</div>} /> */}
     </Routes>

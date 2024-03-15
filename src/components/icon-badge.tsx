@@ -15,14 +15,14 @@ const backgroundVariants = cva(
         default: "text-sky-700",
         success: "text-emerald-700",
       },
-      size: {
+      bgsize: {
         default: "p-2",
         small: "p-1",
       },
     },
     defaultVariants: {
       variant: "default",
-      size: "default",
+      bgsize: "default",
     },
   }
 );
@@ -47,13 +47,33 @@ const iconVariants = cva("", {
 type BackgroundVariantsProps = VariantProps<typeof backgroundVariants>;
 type IconVariantsProps = VariantProps<typeof iconVariants>;
 
-interface IconBadgeProps extends BackgroundVariantsProps, IconVariantsProps 
-{
+interface IconBadgeProps extends BackgroundVariantsProps, IconVariantsProps {
   icon: LucideIcon;
 }
 
 export const IconBadge = ({
-    icon: Icon,
-    variant,
-    size,
-})
+  icon: Icon,
+  variant,
+  bgsize,
+  size,
+}: IconBadgeProps) => {
+  return (
+    <div
+      className={cn(
+        backgroundVariants({
+          variant,
+          bgsize,
+        })
+      )}
+    >
+      <Icon
+        className={cn(
+          iconVariants({
+            variant,
+            size,
+          })
+        )}
+      />
+    </div>
+  );
+};

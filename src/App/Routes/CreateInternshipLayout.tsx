@@ -1,12 +1,12 @@
 import ProfessionalNavBar from "../Components/ProfessionalNavBar";
 import FooterNav from "../Components/Footer";
-import Side from "../pages/createInternship/SideBar";
+import { Outlet } from "react-router-dom";
 
 const CreateInternshipLayout = () => {
   return (
     <div>
       <ProfessionalNavBar />
-      <Side />
+      <Outlet />
       <FooterNav />
     </div>
   );
