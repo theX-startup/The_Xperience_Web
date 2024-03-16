@@ -18,6 +18,7 @@ import { updateInternship } from "../_request";
 import { toast } from "react-toastify";
 import { cn } from "@/lib/utils";
 import { Input } from "@/components/ui/input";
+import { formatPrice } from "@/lib/format";
 
 interface props {
   initialData: {
@@ -73,7 +74,7 @@ const PriceForm = (props: props) => {
             !initialData.price && "text-slate-500 italic"
           )}
         >
-          {initialData.price || "No price set"}
+          {initialData.price ? formatPrice(initialData.price) : "No Price"}
         </p>
       )}
       {isEditing && (

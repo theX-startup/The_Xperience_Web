@@ -11,11 +11,7 @@ export const createInternship =
       if (response) {
         dispatch({
           type: "CREATE_INTERNSHIP",
-          title: response.title,
-          description: response.description,
-          image: response.image,
-          price: response.price,
-          category: response.category,
+          payload: response,
         });
         toast.success("Internship created successfully", {
           position: "top-right",

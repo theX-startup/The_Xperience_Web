@@ -1,6 +1,11 @@
 import { useParams } from "react-router-dom";
 import { IconBadge } from "@/components/icon-badge";
-import { CircleDollarSign, LayoutDashboard, ListChecks } from "lucide-react";
+import {
+  CircleDollarSign,
+  File,
+  LayoutDashboard,
+  ListChecks,
+} from "lucide-react";
 import { useDispatch, useSelector } from "react-redux";
 import TitleForm from "./components/TitleForm";
 import DescriptionForm from "./components/DescriptionForm";
@@ -13,6 +18,7 @@ const Description = () => {
   const params = useParams();
   const { id } = params;
   const values = useSelector((state: any) => state.create.values);
+  const categorys = useSelector((state: any) => state.create.categorys);
   const required = [
     values.title,
     values.description,
@@ -59,7 +65,7 @@ const Description = () => {
           <CategoryForm
             initialData={values}
             courseId={id}
-            options={values.categorys.map((category: any) => ({
+            options={categorys.map((category: any) => ({
               label: category.name,
               value: category._id,
             }))}
@@ -79,6 +85,13 @@ const Description = () => {
               <h2 className="text-xl">Sell Your Internship</h2>
             </div>
             <PriceForm initialData={values} courseId={id} />
+          </div>
+          <div>
+            <div className="flex items-center gap-x-2">
+              <IconBadge icon={File} />
+              <h2 className="text-xl">What to gain</h2>
+            </div>
+            <TitleForm initialData={values} courseId={id} />
           </div>
         </div>
       </div>

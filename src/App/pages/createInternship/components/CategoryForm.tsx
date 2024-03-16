@@ -22,7 +22,7 @@ import ComboBox from "@/components/ui/combobox";
 
 interface props {
   initialData: {
-    categoryId: string;
+    category: string;
   };
   courseId: any;
   options?: {
@@ -40,13 +40,13 @@ const CategoryForm = (props: props) => {
     setIsEditing((current) => !current);
   };
   const schema = z.object({
-    categoryId: z.string().min(1),
+    category: z.string().min(1),
   });
 
   const form = useForm<z.infer<typeof schema>>({
     resolver: zodResolver(schema),
     defaultValues: {
-      categoryId: initialData.categoryId,
+      category: initialData.category,
     },
   });
 
@@ -58,7 +58,7 @@ const CategoryForm = (props: props) => {
   };
 
   const selectedOption = options?.find(
-    (option) => option.value === initialData.categoryId
+    (option) => option.value === initialData.category
   );
 
   return (
@@ -79,7 +79,7 @@ const CategoryForm = (props: props) => {
         <p
           className={cn(
             "text-sm mt-2",
-            !initialData.categoryId && "text-slate-500 italic"
+            !initialData.category && "text-slate-500 italic"
           )}
         >
           {selectedOption?.label || "No Category"}
@@ -93,7 +93,7 @@ const CategoryForm = (props: props) => {
           >
             <FormField
               control={form.control}
-              name="categoryId"
+              name="category"
               render={({ field }) => (
                 <FormItem>
                   <FormControl>
