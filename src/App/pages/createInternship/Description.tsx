@@ -2,7 +2,6 @@ import { useParams } from "react-router-dom";
 import { IconBadge } from "@/components/icon-badge";
 import {
   CircleDollarSign,
-  File,
   LayoutDashboard,
   ListChecks,
 } from "lucide-react";
@@ -13,6 +12,8 @@ import ImageForm from "./components/ImageForm";
 import { useEffect } from "react";
 import CategoryForm from "./components/CategoryForm";
 import PriceForm from "./components/PriceForm";
+import WhatToGainForm from "./components/WhatToGainForm";
+import RestApi from "@/services/RestApi";
 
 const Description = () => {
   const params = useParams();
@@ -40,6 +41,16 @@ const Description = () => {
     categories().then((data) => {
       dispatch({ type: "categories", payload: data });
     });
+
+    const getDetails = async () => {
+      const res = await RestApi.getCall(`/editInternship/${id}`);
+      dispatch({
+        type: "CREATE_INTERNSHIP",
+        payload: res,
+      });
+    };
+
+    getDetails();
   }, []);
 
   return (
@@ -70,6 +81,7 @@ const Description = () => {
               value: category._id,
             }))}
           />
+          <WhatToGainForm initialData={values} courseId={id} />
         </div>
         <div className="space-y-6">
           <div>
@@ -86,13 +98,7 @@ const Description = () => {
             </div>
             <PriceForm initialData={values} courseId={id} />
           </div>
-          <div>
-            <div className="flex items-center gap-x-2">
-              <IconBadge icon={File} />
-              <h2 className="text-xl">What to gain</h2>
-            </div>
-            <TitleForm initialData={values} courseId={id} />
-          </div>
+          <div></div>
         </div>
       </div>
     </div>

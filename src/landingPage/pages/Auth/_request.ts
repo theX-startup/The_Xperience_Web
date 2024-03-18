@@ -107,6 +107,7 @@ export const getUser = (): ThunkAction<void, any, any, any> => {
           payload: { ...response },
         });
       }
+      console.log(response)
     } catch (error: any) {
       console.log(error);
     }
