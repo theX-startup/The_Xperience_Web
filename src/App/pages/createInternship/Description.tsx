@@ -4,6 +4,7 @@ import {
   CircleDollarSign,
   LayoutDashboard,
   ListChecks,
+  BadgeInfo,
 } from "lucide-react";
 import { useDispatch, useSelector } from "react-redux";
 import TitleForm from "./components/TitleForm";
@@ -14,6 +15,9 @@ import CategoryForm from "./components/CategoryForm";
 import PriceForm from "./components/PriceForm";
 import WhatToGainForm from "./components/WhatToGainForm";
 import RestApi from "@/services/RestApi";
+import Skills from "./components/Skills";
+import MinimumScoreForm from "./components/MinimumScoreForm";
+import DurationForm from "./components/DurationForm";
 
 const Description = () => {
   const params = useParams();
@@ -32,9 +36,8 @@ const Description = () => {
   const dispatch = useDispatch<any>();
 
   const categories = async () => {
-    const response = await fetch("http://192.168.88.247:3000/categories");
-    const data = await response.json();
-    return data;
+    const response = await RestApi.getCall("/categories");
+    return response;
   };
 
   useEffect(() => {
@@ -82,6 +85,7 @@ const Description = () => {
             }))}
           />
           <WhatToGainForm initialData={values} courseId={id} />
+          <Skills initialData={values} courseId={id} />
         </div>
         <div className="space-y-6">
           <div>
@@ -98,7 +102,24 @@ const Description = () => {
             </div>
             <PriceForm initialData={values} courseId={id} />
           </div>
-          <div></div>
+          <div>
+            <div className="flex items-center gap-x-2">
+              <IconBadge icon={BadgeInfo} />
+              <h2 className="text-xl">
+                Add a minimum Score for your Internship
+              </h2>
+            </div>
+            <MinimumScoreForm initialData={values} courseId={id} />
+          </div>
+          <div>
+            <div className="flex items-center gap-x-2">
+              <IconBadge icon={BadgeInfo} />
+              <h2 className="text-xl">
+                What is the duration of your internship?
+              </h2>
+            </div>
+            <DurationForm initialData={values} courseId={id} />
+          </div>
         </div>
       </div>
     </div>

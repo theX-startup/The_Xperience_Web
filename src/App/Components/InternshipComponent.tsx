@@ -7,9 +7,10 @@ import { addClick, addImpression } from "../pages/dashboard/_request";
 type props = {
   data: {
     title: string;
-    company: {
-      name: string;
-      logo: string;
+    user: {
+      _id: string;
+      fullname: string;
+      picturePath: string;
     };
     description: string;
     duration: string;
@@ -48,12 +49,12 @@ const InternshipComponent = (props: props) => {
         <div className="flex items-center gap-2">
           <div>
             <img
-              src={data.company?.logo}
+              src={data.user.picturePath}
               alt=""
               className="h-[30px] w-[30px] rounded-full"
             />
           </div>
-          <h1 className="text-[10px]">{data.company?.name}</h1>
+          <h1 className="text-[10px]">{data.user.fullname}</h1>
         </div>
         <h1
           className="text-[10px] hover:text-[#0000ff] cursor-pointer transition-all duration-300 ease-in-out"

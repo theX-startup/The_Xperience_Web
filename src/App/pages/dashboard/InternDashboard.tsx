@@ -26,6 +26,20 @@ const InternDashboard = () => {
       login();
     }
   }, [user]);
+
+  if (internships.length === 0) {
+    return (
+      <div className="flex flex-col items-center justify-center h-screen pl-2">
+        <h2 className="text-3xl font-semibold mb-4">
+          No Internships Available
+        </h2>
+        <p className="text-lg text-gray-600">
+          Sorry, there are currently no internships available. Please check back
+          later.
+        </p>
+      </div>
+    );
+  }
   return (
     <div>
       <div>
