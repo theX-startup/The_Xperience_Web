@@ -8,16 +8,19 @@ import Resources from "../pages/landingPage/Resources";
 import Login from "../pages/Auth/Login";
 import Register from "../pages/Auth/Register";
 import AuthLayout from "./AuthLayout";
+import Contact_Us from "../pages/landingPage/Contact_Us";
+import Company_Pro from "../pages/landingPage/Company_Pro";
 
 const Router = () => {
   const location = useLocation();
   return (
     <Routes key={location.pathname} location={location}>
       <Route element={<Layout />}>
-        <Route path="home" element={<Home />} />
+        <Route path="/" element={<Home />} />
         <Route path="about" element={<About />} />
         <Route path="resources" element={<Resources />} />
-
+        <Route path="contact_us" element={<Contact_Us />} />
+        <Route path="company_professional" element={<Company_Pro />} />
         <Route index element={<Home />} />
       </Route>
       <Route element={<AuthLayout />}>

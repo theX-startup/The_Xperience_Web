@@ -1,5 +1,5 @@
 import { useSelector } from "react-redux";
-import { BrowserRouter, Route, Routes } from "react-router-dom";
+import { BrowserRouter, Navigate, Route, Routes } from "react-router-dom";
 import PrivtaeRoutes from "./App/Routes/PrivtaeRoutes";
 import Router from "./landingPage/Routes/Router";
 import App from "./App";
@@ -15,12 +15,18 @@ const AppRouter = () => {
   return (
     <BrowserRouter>
       <AnimatePresence>
-        <Routes >
+        <Routes>
           <Route element={<App />}>
-            {token  ? (
-              <Route path="/*" element={<PrivtaeRoutes />} />
+            {token ? (
+              <>
+                <Route path="/*" element={<PrivtaeRoutes />} />
+                <Route index element={<Navigate to={"/dashboard"} />} />
+              </>
             ) : (
-              <Route path="/*" element={<Router />} />
+              <>
+                <Route path="auth/*" element={<Router />} />
+                <Route path="*" element={<Navigate to={"/auth"} />} />
+              </>
             )}
           </Route>
         </Routes>

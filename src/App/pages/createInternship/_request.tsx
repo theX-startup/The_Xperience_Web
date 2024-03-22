@@ -59,3 +59,87 @@ export const updateInternship =
       });
     }
   };
+
+export const createTask =
+  (
+    data: any,
+    toast: any,
+    internshipId: string
+  ): ThunkAction<void, any, any, any> =>
+  async (dispatch) => {
+    try {
+      let urlPath = "/tasks/create/" + internshipId;
+      let response = await RestApi.postCall(urlPath, data);
+      console.log(response);
+      if (response) {
+        dispatch({
+          type: "CREATE_TASK",
+          payload: response.newTask,
+        });
+        toast.success("Task created successfully", {
+          position: "top-right",
+          autoClose: 5000,
+          hideProgressBar: false,
+          closeOnClick: true,
+        });
+      }
+    } catch (error) {
+      toast.error("Failed to create task", {
+        position: "top-right",
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+      });
+    }
+  };
+
+export const getTask =
+  (id: string): ThunkAction<void, any, any, any> =>
+  async (dispatch) => {
+    try {
+      let urlPath = "/tasks/" + id;
+      let response = await RestApi.getCall(urlPath);
+      console.log(response);
+      if (response) {
+        dispatch({
+          type: "GET_TASK",
+          payload: response,
+        });
+      }
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+export const updateTask =
+  (
+    data: any,
+    toast: any,
+    taskId: string
+  ): ThunkAction<void, any, any, any> =>
+  async (dispatch) => {
+    try {
+      let urlPath = `/tasks/update/${taskId}`;
+      let response = await RestApi.putCall(urlPath, data);
+      console.log(response);
+      if (response) {
+        dispatch({
+          type: "CREATE_TASK",
+          payload: response,
+        });
+        toast.success("Task updated successfully", {
+          position: "top-right",
+          autoClose: 5000,
+          hideProgressBar: false,
+          closeOnClick: true,
+        });
+      }
+    } catch (error) {
+      toast.error("Failed to update Task", {
+        position: "top-right",
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+      });
+    }
+  };

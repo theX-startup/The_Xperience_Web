@@ -18,6 +18,7 @@ import RestApi from "@/services/RestApi";
 import Skills from "./components/Skills";
 import MinimumScoreForm from "./components/MinimumScoreForm";
 import DurationForm from "./components/DurationForm";
+import TasksForm from "./components/TasksForm";
 
 const Description = () => {
   const params = useParams();
@@ -30,6 +31,7 @@ const Description = () => {
     values.image,
     values.price,
     values.category,
+    values.tasks?.some((task: any) => task.isPublished),
   ];
   const totalFields = required.length;
   const completedFields = required.filter(Boolean).length;
@@ -93,7 +95,7 @@ const Description = () => {
               <IconBadge icon={ListChecks} />
               <h2 className="text-xl">Internship Tasks</h2>
             </div>
-            <div>TODO: Add tasks</div>
+            <TasksForm initialData={values} courseId={id} />
           </div>
           <div>
             <div className="flex items-center gap-x-2">

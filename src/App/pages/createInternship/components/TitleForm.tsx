@@ -53,8 +53,8 @@ const TitleForm = (props: props) => {
   const { isSubmitting, isValid } = form.formState;
 
   const onSubmit = async (data: z.infer<typeof schema>) => {
-    console.log(data);
-    dispatch(updateInternship(data, toast, courseId));
+    await dispatch(updateInternship(data, toast, courseId));
+    toggleEdit()
   };
 
   return (

@@ -5,29 +5,30 @@ import { useForm } from "react-hook-form";
 import {
   Form,
   FormControl,
+  FormDescription,
   FormField,
   FormItem,
-  FormMessage,
 } from "@/components/ui/form";
 
 import { Button } from "@/components/ui/button";
 import { Pencil } from "lucide-react";
 import { useState } from "react";
 import { useDispatch } from "react-redux";
-import { updateInternship } from "../_request";
+import { updateTask } from "../_request";
 import { toast } from "react-toastify";
 import { cn } from "@/lib/utils";
-import { Input } from "@/components/ui/input";
+import { Checkbox } from "@/components/ui/checkbox";
 
 interface props {
   initialData: {
-    skill: string[];
+    isFree: boolean;
   };
   courseId: any;
+  taskId: any;
 }
 
-const Skills = (props: props) => {
-  const { initialData, courseId } = props;
+const AccessForm = (props: props) => {
+  const { initialData, taskId } = props;
   const [isEditing, setIsEditing] = useState(false);
   const dispatch = useDispatch<any>();
 
@@ -35,13 +36,13 @@ const Skills = (props: props) => {
     setIsEditing((current) => !current);
   };
   const schema = z.object({
-    newSkills: z.string().min(1),
+    isFree: z.boolean().default(false),
   });
 
   const form = useForm<z.infer<typeof schema>>({
     resolver: zodResolver(schema),
     defaultValues: {
-      newSkills: "",
+      isFree: !!initialData.isFree,
     },
   });
 
@@ -49,20 +50,20 @@ const Skills = (props: props) => {
 
   const onSubmit = async (data: z.infer<typeof schema>) => {
     console.log(data);
-    await dispatch(updateInternship(data, toast, courseId));
-    toggleEdit()
+    await dispatch(updateTask(data, toast, taskId));
+    toggleEdit();
   };
 
   return (
     <div className="mt-6 border bg-slate-100 rounded-md p-4">
       <div className="font-medium flex items-center justify-between">
-        Skills
+        Task access settings
         <Button onClick={toggleEdit} variant="ghost">
           {isEditing && <>Cancel</>}
           {!isEditing && (
             <>
               <Pencil className="h-4 w-4 mr-2" />
-              Edit Skills
+              Edit settings
             </>
           )}
         </Button>
@@ -71,19 +72,12 @@ const Skills = (props: props) => {
         <p
           className={cn(
             "text-sm mt-2",
-            !initialData.skill && "text-slate-500 italic"
+            !initialData.isFree && "text-slate-500 italic"
           )}
         >
-          {initialData.skill === undefined
-            ? "Add what your interns will gain from this internship"
-            : initialData.skill.map((item, index) => (
-                <ul
-                  key={index}
-                  className="flex items-center gap-2 list-disc max-w-full text-sm ml-5"
-                >
-                  <li className="max-w-[80%]">{item}</li>
-                </ul>
-              ))}
+          {initialData.isFree
+            ? "This Task is free for preview"
+            : "This Task is not free"}
         </p>
       )}
       {isEditing && (
@@ -94,28 +88,20 @@ const Skills = (props: props) => {
           >
             <FormField
               control={form.control}
-              name="newSkills"
+              name="isFree"
               render={({ field }) => (
-                <FormItem>
-                  <div>
-                    {initialData.skill.map((item, index) => (
-                      <ul
-                        key={index}
-                        className="flex items-center gap-2 list-disc max-w-full text-sm ml-5"
-                      >
-                        <li className="max-w-[80%]">{item}</li>
-                      </ul>
-                    ))}
-                  </div>
+                <FormItem className="flex items-start flex-row space-x-3 space-y-0 rounded-md border p-4">
                   <FormControl>
-                    <Input
-                      disabled={isSubmitting}
-                      placeholder="e.g 'This course is about...'"
-                      {...field}
+                    <Checkbox
+                      checked={field.value}
+                      onCheckedChange={field.onChange}
                     />
                   </FormControl>
-
-                  <FormMessage />
+                  <div className="space-y-1 leading-none">
+                    <FormDescription>
+                      Check this box if you want to make this task free
+                    </FormDescription>
+                  </div>
                 </FormItem>
               )}
             />
@@ -131,4 +117,4 @@ const Skills = (props: props) => {
   );
 };
 
-export default Skills;
+export default AccessForm;

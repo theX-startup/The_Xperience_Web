@@ -18,7 +18,7 @@ import { updateInternship } from "../_request";
 import { toast } from "react-toastify";
 import { cn } from "@/lib/utils";
 import { Input } from "@/components/ui/input";
-import { formatPrice } from "@/lib/format";
+
 
 interface props {
   initialData: {
@@ -50,7 +50,8 @@ const MinimumScoreForm = (props: props) => {
 
   const onSubmit = async (data: z.infer<typeof schema>) => {
     console.log(data);
-    dispatch(updateInternship(data, toast, courseId));
+    await dispatch(updateInternship(data, toast, courseId));
+    toggleEdit()
   };
 
   return (

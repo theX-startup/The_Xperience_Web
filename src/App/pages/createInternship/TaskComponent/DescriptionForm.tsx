@@ -14,20 +14,22 @@ import { Button } from "@/components/ui/button";
 import { Pencil } from "lucide-react";
 import { useState } from "react";
 import { useDispatch } from "react-redux";
-import { updateInternship } from "../_request";
+import { updateTask } from "../_request";
 import { toast } from "react-toastify";
 import { cn } from "@/lib/utils";
-import { Input } from "@/components/ui/input";
+import { Editor } from "@/components/editor";
+import { Preview } from "@/components/preview";
 
 interface props {
   initialData: {
-    skill: string[];
+    instructions: string;
   };
   courseId: any;
+  taskId: any;
 }
 
-const Skills = (props: props) => {
-  const { initialData, courseId } = props;
+const TaskDescriptionForm = (props: props) => {
+  const { initialData, taskId } = props;
   const [isEditing, setIsEditing] = useState(false);
   const dispatch = useDispatch<any>();
 
@@ -35,56 +37,48 @@ const Skills = (props: props) => {
     setIsEditing((current) => !current);
   };
   const schema = z.object({
-    newSkills: z.string().min(1),
+    instructions: z.string().min(3),
   });
 
   const form = useForm<z.infer<typeof schema>>({
     resolver: zodResolver(schema),
-    defaultValues: {
-      newSkills: "",
-    },
+    defaultValues: initialData
   });
 
   const { isSubmitting, isValid } = form.formState;
 
   const onSubmit = async (data: z.infer<typeof schema>) => {
     console.log(data);
-    await dispatch(updateInternship(data, toast, courseId));
-    toggleEdit()
+    await dispatch(updateTask(data, toast, taskId));
+    toggleEdit();
   };
 
   return (
     <div className="mt-6 border bg-slate-100 rounded-md p-4">
       <div className="font-medium flex items-center justify-between">
-        Skills
+        Task Intrustions
         <Button onClick={toggleEdit} variant="ghost">
           {isEditing && <>Cancel</>}
           {!isEditing && (
             <>
               <Pencil className="h-4 w-4 mr-2" />
-              Edit Skills
+              Edit intrustions
             </>
           )}
         </Button>
       </div>
       {!isEditing && (
-        <p
+        <div
           className={cn(
             "text-sm mt-2",
-            !initialData.skill && "text-slate-500 italic"
+            !initialData.instructions && "text-slate-500 italic"
           )}
         >
-          {initialData.skill === undefined
-            ? "Add what your interns will gain from this internship"
-            : initialData.skill.map((item, index) => (
-                <ul
-                  key={index}
-                  className="flex items-center gap-2 list-disc max-w-full text-sm ml-5"
-                >
-                  <li className="max-w-[80%]">{item}</li>
-                </ul>
-              ))}
-        </p>
+          {!initialData.instructions && "No Intrustions"}
+          {initialData.instructions && (
+            <Preview value={initialData.instructions} />
+          )}
+        </div>
       )}
       {isEditing && (
         <Form {...form}>
@@ -94,27 +88,12 @@ const Skills = (props: props) => {
           >
             <FormField
               control={form.control}
-              name="newSkills"
+              name="instructions"
               render={({ field }) => (
                 <FormItem>
-                  <div>
-                    {initialData.skill.map((item, index) => (
-                      <ul
-                        key={index}
-                        className="flex items-center gap-2 list-disc max-w-full text-sm ml-5"
-                      >
-                        <li className="max-w-[80%]">{item}</li>
-                      </ul>
-                    ))}
-                  </div>
                   <FormControl>
-                    <Input
-                      disabled={isSubmitting}
-                      placeholder="e.g 'This course is about...'"
-                      {...field}
-                    />
+                    <Editor {...field} />
                   </FormControl>
-
                   <FormMessage />
                 </FormItem>
               )}
@@ -131,4 +110,4 @@ const Skills = (props: props) => {
   );
 };
 
-export default Skills;
+export default TaskDescriptionForm;

@@ -2,7 +2,6 @@
   "name": "the-xperience",
   "private": true,
   "version": "0.0.0",
-  "type": "module",
   "scripts": {
     "dev": "vite",
     "build": "tsc && vite build",
@@ -11,7 +10,9 @@
   },
   "dependencies": {
     "@fortawesome/fontawesome-svg-core": "^6.5.1",
+    "@hello-pangea/dnd": "^16.5.0",
     "@hookform/resolvers": "^3.3.4",
+    "@radix-ui/react-checkbox": "^1.0.4",
     "@radix-ui/react-dialog": "^1.0.5",
     "@radix-ui/react-label": "^2.0.2",
     "@radix-ui/react-popover": "^1.0.7",
@@ -39,6 +40,7 @@
     "react-loader-spinner": "^6.1.6",
     "react-paystack": "^5.0.0",
     "react-query": "^3.39.3",
+    "react-quill": "^2.0.0",
     "react-redux": "^9.1.0",
     "react-router-dom": "^6.22.0",
     "react-toastify": "^10.0.4",
@@ -51,7 +53,7 @@
     "tailwindcss-animate": "^1.0.7",
     "textarea": "^0.3.0",
     "ts-node": "^10.9.2",
-    "uploadthing": "^6.5.2",
+    "uploadthing": "^6.6.0",
     "zod": "^3.22.4"
   },
   "devDependencies": {

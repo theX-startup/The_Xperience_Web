@@ -10,24 +10,24 @@ import {
   FormMessage,
 } from "@/components/ui/form";
 
+import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { Pencil } from "lucide-react";
 import { useState } from "react";
 import { useDispatch } from "react-redux";
-import { updateInternship } from "../_request";
+import { updateTask } from "../_request";
 import { toast } from "react-toastify";
-import { cn } from "@/lib/utils";
-import { Input } from "@/components/ui/input";
 
 interface props {
   initialData: {
-    skill: string[];
+    title: string;
   };
   courseId: any;
+  taskId: any;
 }
 
-const Skills = (props: props) => {
-  const { initialData, courseId } = props;
+const TaskTitleForm = (props: props) => {
+  const { initialData, taskId } = props;
   const [isEditing, setIsEditing] = useState(false);
   const dispatch = useDispatch<any>();
 
@@ -35,13 +35,13 @@ const Skills = (props: props) => {
     setIsEditing((current) => !current);
   };
   const schema = z.object({
-    newSkills: z.string().min(1),
+    title: z.string().min(3, { message: "Title is too short" }),
   });
 
   const form = useForm<z.infer<typeof schema>>({
     resolver: zodResolver(schema),
     defaultValues: {
-      newSkills: "",
+      title: "",
     },
   });
 
@@ -49,43 +49,26 @@ const Skills = (props: props) => {
 
   const onSubmit = async (data: z.infer<typeof schema>) => {
     console.log(data);
-    await dispatch(updateInternship(data, toast, courseId));
+    await dispatch(updateTask(data, toast, taskId));
     toggleEdit()
+
   };
 
   return (
     <div className="mt-6 border bg-slate-100 rounded-md p-4">
       <div className="font-medium flex items-center justify-between">
-        Skills
+        Task Title
         <Button onClick={toggleEdit} variant="ghost">
           {isEditing && <>Cancel</>}
           {!isEditing && (
             <>
               <Pencil className="h-4 w-4 mr-2" />
-              Edit Skills
+              Edit Title
             </>
           )}
         </Button>
       </div>
-      {!isEditing && (
-        <p
-          className={cn(
-            "text-sm mt-2",
-            !initialData.skill && "text-slate-500 italic"
-          )}
-        >
-          {initialData.skill === undefined
-            ? "Add what your interns will gain from this internship"
-            : initialData.skill.map((item, index) => (
-                <ul
-                  key={index}
-                  className="flex items-center gap-2 list-disc max-w-full text-sm ml-5"
-                >
-                  <li className="max-w-[80%]">{item}</li>
-                </ul>
-              ))}
-        </p>
-      )}
+      {!isEditing && <p className="text-sm mt-2">{initialData.title}</p>}
       {isEditing && (
         <Form {...form}>
           <form
@@ -94,27 +77,16 @@ const Skills = (props: props) => {
           >
             <FormField
               control={form.control}
-              name="newSkills"
+              name="title"
               render={({ field }) => (
                 <FormItem>
-                  <div>
-                    {initialData.skill.map((item, index) => (
-                      <ul
-                        key={index}
-                        className="flex items-center gap-2 list-disc max-w-full text-sm ml-5"
-                      >
-                        <li className="max-w-[80%]">{item}</li>
-                      </ul>
-                    ))}
-                  </div>
                   <FormControl>
                     <Input
                       disabled={isSubmitting}
-                      placeholder="e.g 'This course is about...'"
+                      placeholder="e.g Introduction to mobile app internship"
                       {...field}
                     />
                   </FormControl>
-
                   <FormMessage />
                 </FormItem>
               )}
@@ -131,4 +103,4 @@ const Skills = (props: props) => {
   );
 };
 
-export default Skills;
+export default TaskTitleForm;

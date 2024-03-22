@@ -30,7 +30,7 @@ const Login = () => {
 
   return (
     <AnimatedPage>
-      <div className="min-h-[85vh] w-full flex items-center">
+      <div className="min-h-screen w-full flex items-center">
         <form
           onSubmit={(e: any) => handleSubmit(e)}
           className="flex w-full flex-col justify-center items-center px-3 md:px-10 gap-4"

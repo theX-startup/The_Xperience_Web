@@ -1,16 +1,19 @@
 import { Button } from "@/components/ui/button";
-import { ImageIcon, Pencil, PlusCircle } from "lucide-react";
+import { Pencil, PlusCircle, Video } from "lucide-react";
 import { useMemo, useState } from "react";
 import { useDispatch } from "react-redux";
 import { useDropzone } from "react-dropzone";
-import { updateInternship } from "../_request";
+import {  updateTask } from "../_request";
 import { toast } from "react-toastify";
+// import { z } from "zod";
 
 interface props {
   initialData: {
-    image: string;
+    muxData: any;
+    videoUrl: string;
   };
   courseId: any;
+  taskId: any;
 }
 
 const baseStyle = {
@@ -18,7 +21,7 @@ const baseStyle = {
   display: "flex",
   flexDirection: "column",
   alignItems: "center",
-  padding: "20px",
+  padding: "130px 10px",
   borderWidth: 2,
   borderRadius: 2,
   borderColor: "#eeeeee",
@@ -44,7 +47,7 @@ const rejectStyle = {
 function StyledDropzone(props: any) {
   const { getRootProps, getInputProps, isFocused, isDragAccept, isDragReject } =
     useDropzone({
-      accept: { "image/*": [] },
+      accept: { "video/*": [] },
       onDrop: (acceptedFiles) => {
         const cloudName = "dc22hgqku";
         const fb = new FormData();
@@ -78,16 +81,21 @@ function StyledDropzone(props: any) {
 
   return (
     <div className="container">
-      <div {...getRootProps({ style })}>
+      <div {...getRootProps({ style })} className="flex gap-y-5">
         <input {...getInputProps()} />
+        <Video className="h-10 w-10 text-slate-500" />
         <p>Drag 'n' drop some files here, or click to select files</p>
       </div>
     </div>
   );
 }
 
-const ImageForm = (props: props) => {
-  const { initialData, courseId } = props;
+// const formSchema = z.object({
+//   videoUrl: z.string().min(1),
+// });
+
+const VideoForm = (props: props) => {
+  const { initialData, taskId } = props;
   const [isEditing, setIsEditing] = useState(false);
   const dispatch = useDispatch<any>();
 
@@ -96,54 +104,54 @@ const ImageForm = (props: props) => {
   };
 
   const onSubmit = async (url: string) => {
-    await dispatch(updateInternship({ image: url }, toast, courseId));
-    toggleEdit()
+    await dispatch(updateTask({ videoUrl: url }, toast, taskId));
+    toggleEdit();
   };
 
   return (
     <div className="mt-6 border bg-slate-100 rounded-md p-4">
       <div className="font-medium flex items-center justify-between">
-        Course Image
+        Course Video
         <Button onClick={toggleEdit} variant="ghost">
           {isEditing && <>Cancel</>}
-          {!isEditing && !initialData.image && (
+          {!isEditing && !initialData.videoUrl && (
             <>
               <PlusCircle className="h-4 w-4 mr-2" />
-              Add an Image
+              Add Video
             </>
           )}
-          {!isEditing && initialData.image && (
+          {!isEditing && initialData.videoUrl && (
             <>
               <Pencil className="h-4 w-4 mr-2" />
-              Edit Image
+              Edit Video
             </>
           )}
         </Button>
       </div>
       {!isEditing &&
-        (!initialData.image ? (
+        (!initialData.videoUrl ? (
           <div className="flex items-center justify-center h-60 bg-slate-200 rounded-md">
-            <ImageIcon className="h-10 w-10 text-slate-500" />
+            <Video className="h-10 w-10 text-slate-500" />
           </div>
         ) : (
-          <div className="relative aspect-video mt-2">
-            <img
-              src={initialData.image}
-              alt="upload"
-              className="object-cover rounded-md"
-            />
-          </div>
+          <div className="relative aspect-video mt-2">Video Uploaded</div>
         ))}
       {isEditing && (
         <div>
-          <StyledDropzone onSubmit={(url: string) => onSubmit(url)} setIsEditing={setIsEditing} />
-          <div className="text-xs text-muted mt-4">
-            16:9 aspect ratio recommended StyledDropzone
-          </div>
+          <StyledDropzone
+            onSubmit={(url: string) => onSubmit(url)}
+            setIsEditing={setIsEditing}
+          />
+        </div>
+      )}
+      {initialData.videoUrl && !isEditing && (
+        <div className="text-xs text-muted-foreground mt-2">
+          Videos can take a few minutes to process. Refresh the page if the
+          video does not appear
         </div>
       )}
     </div>
   );
 };
 
-export default ImageForm;
+export default VideoForm;

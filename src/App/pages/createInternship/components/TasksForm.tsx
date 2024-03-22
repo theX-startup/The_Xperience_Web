@@ -11,38 +11,41 @@ import {
 } from "@/components/ui/form";
 
 import { Button } from "@/components/ui/button";
-import { Pencil } from "lucide-react";
+import { PlusCircle } from "lucide-react";
 import { useState } from "react";
 import { useDispatch } from "react-redux";
-import { updateInternship } from "../_request";
+import { createTask } from "../_request";
 import { toast } from "react-toastify";
 import { cn } from "@/lib/utils";
 import { Input } from "@/components/ui/input";
-import { formatPrice } from "@/lib/format";
+import { TasksList } from "./TasksList";
+import { useNavigate } from "react-router-dom";
 
 interface props {
   initialData: {
-    price: number;
+    tasks: any[];
   };
   courseId: any;
 }
 
-const PriceForm = (props: props) => {
+const TasksForm = (props: props) => {
   const { initialData, courseId } = props;
-  const [isEditing, setIsEditing] = useState(false);
+  // const [isUpdating, setIsUpdating] = useState(false);
+  const [isCreating, setIsCreating] = useState(false);
   const dispatch = useDispatch<any>();
+  const navigation = useNavigate();
 
-  const toggleEdit = () => {
-    setIsEditing((current) => !current);
+  const toggleCreating = () => {
+    setIsCreating((current) => !current);
   };
   const schema = z.object({
-    price: z.coerce.number(),
+    title: z.string().min(3),
   });
 
   const form = useForm<z.infer<typeof schema>>({
     resolver: zodResolver(schema),
     defaultValues: {
-      price: initialData.price || undefined,
+      title: "",
     },
   });
 
@@ -50,35 +53,28 @@ const PriceForm = (props: props) => {
 
   const onSubmit = async (data: z.infer<typeof schema>) => {
     console.log(data);
-    await dispatch(updateInternship(data, toast, courseId));
-    toggleEdit()
+    await dispatch(createTask(data, toast, courseId));
+  };
+
+  const onEdit = (id: string) => {
+    navigation(`/createInternship/${courseId}/editTask/${id}`);
   };
 
   return (
     <div className="mt-6 border bg-slate-100 rounded-md p-4">
       <div className="font-medium flex items-center justify-between">
-        Internship Price
-        <Button onClick={toggleEdit} variant="ghost">
-          {isEditing && <>Cancel</>}
-          {!isEditing && (
+        Internship Tasks
+        <Button onClick={toggleCreating} variant="ghost">
+          {isCreating && <>Cancel</>}
+          {!isCreating && (
             <>
-              <Pencil className="h-4 w-4 mr-2" />
-              Edit Price
+              <PlusCircle className="h-4 w-4 mr-2" />
+              Add a Task
             </>
           )}
         </Button>
       </div>
-      {!isEditing && (
-        <p
-          className={cn(
-            "text-sm mt-2",
-            !initialData.price && "text-slate-500 italic"
-          )}
-        >
-          {initialData.price ? formatPrice(initialData.price) : "No Price"}
-        </p>
-      )}
-      {isEditing && (
+      {isCreating && (
         <Form {...form}>
           <form
             onSubmit={form.handleSubmit(onSubmit)}
@@ -86,15 +82,13 @@ const PriceForm = (props: props) => {
           >
             <FormField
               control={form.control}
-              name="price"
+              name="title"
               render={({ field }) => (
                 <FormItem>
                   <FormControl>
                     <Input
-                      type="number"
-                      step="0.01"
                       disabled={isSubmitting}
-                      placeholder="set a price for your internship"
+                      placeholder="e.g Introduction"
                       {...field}
                     />
                   </FormControl>
@@ -102,16 +96,34 @@ const PriceForm = (props: props) => {
                 </FormItem>
               )}
             />
-            <div className="flex items-center gap-x-2">
-              <Button type="submit" disabled={!isValid || isSubmitting}>
-                Save
-              </Button>
-            </div>
+            <Button type="submit" disabled={!isValid || isSubmitting}>
+              Create
+            </Button>
           </form>
         </Form>
       )}
+      {!isCreating && (
+        <div
+          className={cn(
+            "text-sm mt-2",
+            !initialData.tasks?.length && "text-slate-500 italic"
+          )}
+        >
+          {!initialData.tasks?.length && "No tasks added yet"}
+          <TasksList
+            onEdit={onEdit}
+            onReorder={() => {}}
+            items={initialData.tasks || []}
+          />
+        </div>
+      )}
+      {/* {!isCreating && (
+        <p className="text-xs text-muted-foreground mt-4">
+          Drag and drop to reorder the tasks
+        </p>
+      )} */}
     </div>
   );
 };
 
-export default PriceForm;
+export default TasksForm;

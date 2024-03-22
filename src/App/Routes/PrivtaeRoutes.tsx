@@ -1,7 +1,5 @@
 import { Navigate, Route, Routes, useLocation } from "react-router-dom";
 import Layout from "./Layout";
-import AddPhone from "../../landingPage/pages/Auth/AddPhone";
-import AuthLayout from "../../landingPage/Routes/AuthLayout";
 import ProfileDetails from "../../landingPage/pages/Auth/ProfileDetails";
 import PaymentPage from "../pages/StartInternship/PaymentPage";
 import UserInternships from "../pages/UserInternships/UserInternships";
@@ -24,6 +22,7 @@ import Dashboard from "../pages/dashboard";
 import CreateInternshipLayout from "./CreateInternshipLayout";
 import CreateInternship from "../pages/createInternship/Index";
 import Description from "../pages/createInternship/Description";
+import EditTask from "../pages/createInternship/EditTask";
 
 const PrivtaeRoutes = () => {
   const location = useLocation();
@@ -31,18 +30,14 @@ const PrivtaeRoutes = () => {
 
   return (
     <Routes key={location.pathname} location={location}>
-      <Route element={<AuthLayout />}>
-        <Route path="addPhone" element={<AddPhone />} />
-      </Route>
+      <Route path="auth/*" element={<Navigate to={'/dashboard'} />} />
       <Route element={<Layout />}>
-        <Route index element={<Navigate to={"dashboard"} />} />
         <Route path="payment/:id" element={<PaymentPage />} />
         <Route element={<SideBar setActive={setActive} />}>
           <Route
             path="internships"
             element={<UserInternships active={active} />}
           />
-          RRR
         </Route>
         <Route path="details/:id" element={<InternshipDetails />} />
         <Route path="certificate" element={<CertificationPage />} />
@@ -65,6 +60,10 @@ const PrivtaeRoutes = () => {
       <Route element={<CreateInternshipLayout />}>
         <Route path="createInternship" element={<CreateInternship />} />
         <Route path="createInternship/step-2/:id" element={<Description />} />
+        <Route
+          path="createInternship/:internshipId/editTask/:id"
+          element={<EditTask />}
+        />
       </Route>
     </Routes>
   );
