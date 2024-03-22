@@ -67,27 +67,27 @@ const Resources = () => {
            </div>
 
         <div className="text-black text_sm ml-2">
-          <div className=" text-black my-2">Related news</div>
+          <div className=" text-black py-2">Related news</div>
           <div className=" border-solid border-2 border-blue-600"></div>
-          <div className="my-4 lg:my-7">{detail.career}</div>
-          <div className="lg:my-7">{detail.hr}</div>
-          <div className="my-4 lg:my-7">{detail.sucess}</div>
-          <div className="lg:mt-16">{detail.enhance}</div>
-          <div className=" border-solid border-2 border-blue-600 mt-3 mb-8"></div>
+          <div className="py-4">{detail.career}</div>
+          <div className="py-2">{detail.hr}</div>
+          <div className="py-3">{detail.sucess}</div>
+          <div className="pt-5 pb-2">{detail.enhance}</div>
+          <div className=" border-solid border-2 border-blue-600 mb-5"></div>
 
-          <div className="my-5 text-black  py-0 lg:py-5 bg-blue-50 mt-4 lg:my-2 ">
+          <div className="text-black  py-0 lg:py-5 bg-blue-50 ">
             {details.map((data, index) => {
               return (
                 <div
                   key={index}
-                  className="flex px-5 py-5 my-4 border-blue-600 border-solid border-2"
+                  className="flex mr-2 px-3 my-5 border-blue-600 border-solid border-2"
                 >
-                  <div className="flex-1 mt-6">{data.product}</div>
-                  <div className="mx-2 lg:mx-5">
-                    <div className="my-2 flex justify-center">
-                      <img src={data.img} alt="" />
+                  <div className="flex-1 py-7">{data.product}</div>
+                  <div className="">
+                    <div className="flex justify-center">
+                      <img src={data.img} alt="" className="py-2" />
                     </div>
-                    <div>{data.digital}</div>
+                    <div className="py-2">{data.digital}</div>
                   </div>
                 </div>
               );
