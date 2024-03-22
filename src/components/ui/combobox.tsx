@@ -32,7 +32,7 @@ const ComboBox = React.forwardRef<HTMLDivElement, ComboBoxProps>(
     };
 
     return (
-      <div className="w-full">
+      <div className="w-full" ref={ref}>
         <Button
           type="button"
           variant="outline"
