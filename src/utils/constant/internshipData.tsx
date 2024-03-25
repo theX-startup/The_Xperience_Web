@@ -7,6 +7,9 @@ import slide5 from "../../assets/images/slide5.png";
 import slide6 from "../../assets/images/slide6.png";
 import slide7 from "../../assets/images/slide7.png";
 import slide8 from "../../assets/images/slide8.png";
+import { MdOutlineWifiCalling3 } from "react-icons/md";
+import { FaEnvelope } from "react-icons/fa";
+import { FaLocationDot } from "react-icons/fa6";
 
 export const data = [
   {
@@ -343,14 +346,31 @@ export const about = {
 };
 
 export const contact = {
-    contact: "Our Contact Details",
-    connect: "Let's connect.",
-    telephone: "Telephone",
-    phoneNumber: "+234 (9026375588)",
-    whatsapp: "WhatsApp",
-    whatsappNumber: "+234 (9026375588)",
-    office: "Office",
-    officeAddress: "Opolo Innovative Hub, University of Ibadan. Ibadan",
-    email: "Email",
-    emailAddress: "info.thexperiiencehub@gmail.com",
-  }
+  contact: "Our Contact Details",
+  connect: "Let's connect.",
+  telephone: "Telephone",
+  phoneNumber: "+234 (9026375588)",
+  whatsapp: "WhatsApp",
+  whatsappNumber: "+234 (9026375588)",
+  office: "Office",
+  officeAddress: "Opolo Innovative Hub, University of Ibadan. Ibadan",
+  email: "Email",
+  emailAddress: "info.thexperiiencehub@gmail.com",
+};
+
+export const contactdata = [
+  {
+    img: <MdOutlineWifiCalling3 />,
+    number: "+234 (09026375588",
+  },
+
+  {
+    img: <FaEnvelope />,
+    number: "info.thexperiencehub@gmail.com",
+  },
+
+  {
+    img: <FaLocationDot />,
+    number: "Opolo Innovative Building, Bank of Industry building, Nigeria.",
+  },
+];

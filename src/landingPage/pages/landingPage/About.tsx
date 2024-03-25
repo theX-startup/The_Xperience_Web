@@ -65,7 +65,7 @@ const About = () => {
               type="text"
               name="name"
               placeholder="Name"
-              className="w-80 h-[45px]  border-solid border-x-transparent border-t-transparent border-b-2 border-gray-500"
+              className="w-80 h-[45px]  border-solid border-2 border-transparent rounded-none border-b-gray-500 focus:outline-none"
             />
           </div>
 
@@ -74,7 +74,7 @@ const About = () => {
               type="email"
               name="email"
               placeholder="Email"
-              className="w-80 h-[45px] border-solid border-x-transparent border-t-transparent border-b-2 border-gray-500"
+              className="w-80 h-[45px]  border-solid border-2 border-transparent rounded-none border-b-gray-500 focus:outline-none"
             />
           </div>
 
@@ -83,7 +83,7 @@ const About = () => {
               type="number"
               name="number"
               placeholder="Phone Number"
-              className="w-80 h-[45px] border-solid border-x-transparent border-t-transparent border-b-2 border-gray-500"
+              className="w-80 h-[45px]  border-solid border-2 border-transparent rounded-none border-b-gray-500 focus:outline-none"
             />
           </div>
 
@@ -92,7 +92,8 @@ const About = () => {
               type="text"
               name="message"
               placeholder="Message"
-              className="w-80 h-[45px] border-solid border-x-transparent border-t-transparent border-b-2 border-gray-500"
+              className="w-80 h-[45px]  border-solid border-2 border-transparent rounded-none border-b-gray-500 focus:outline-none"
+            
             />
           </div>
           <div className="flex justify-center">
