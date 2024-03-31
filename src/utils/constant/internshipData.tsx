@@ -7,6 +7,9 @@ import slide5 from "../../assets/images/slide5.png";
 import slide6 from "../../assets/images/slide6.png";
 import slide7 from "../../assets/images/slide7.png";
 import slide8 from "../../assets/images/slide8.png";
+import slide13 from "../../assets/images/slide13.png";
+import slide14 from "../../assets/images/slide14.png";
+import slide15 from "../../assets/images/slide15.png";
 import { MdOutlineWifiCalling3 } from "react-icons/md";
 import { FaEnvelope } from "react-icons/fa";
 import { FaLocationDot } from "react-icons/fa6";
@@ -361,7 +364,7 @@ export const contact = {
 export const contactdata = [
   {
     img: <MdOutlineWifiCalling3 />,
-    number: "+234 (09026375588",
+    number: "+234 (09026375588)",
   },
 
   {
@@ -372,5 +375,21 @@ export const contactdata = [
   {
     img: <FaLocationDot />,
     number: "Opolo Innovative Building, Bank of Industry building, Nigeria.",
+  },
+];
+
+export const comp = [
+  {
+    logo: [slide13],
+    text: "Job simulation",
+  },
+
+  {
+    logo: [slide14],
+    text: "Career-Oriented",
+  },
+  {
+    logo: [slide15],
+    text: "Creative Thinking",
   },
 ];

@@ -93,7 +93,6 @@ const About = () => {
               name="message"
               placeholder="Message"
               className="w-80 h-[45px]  border-solid border-2 border-transparent rounded-none border-b-gray-500 focus:outline-none"
-            
             />
           </div>
           <div className="flex justify-center">

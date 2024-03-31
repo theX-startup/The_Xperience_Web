@@ -27,14 +27,12 @@ const Contact_Us = () => {
               return (
                 <div key={index} className="text-white flex text-justify py-5">
                   <div className="lg:text-2xl pr-5 text_sm">{data.img}</div>
-                  <div className="">{data.number}</div>
+                  <div>{data.number}</div>
                 </div>
               );
             })}
           </div>
-          <div>
-
-          </div>
+          <div></div>
         </div>
         <ContactForm />
       </div>

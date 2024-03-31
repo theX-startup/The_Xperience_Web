@@ -26,7 +26,7 @@ export default function ContactForm() {
         </div>
       </div>
 
-      <div className="grid grid-cols-1 lg:grid-cols-2 sm:grid-cols-2 sm:pt-7">
+      <div className="grid grid-cols-1 lg:grid-cols-2 sm:grid-cols-2 sm:pt-7 pt-5">
         <div className="pr-5">
           <div>Email</div>
           <input
@@ -93,7 +93,9 @@ export default function ContactForm() {
         />
       </div>
       <div className="pt-7 flex justify-end ">
-        <Button className="bg-[#000000] rounded-none text_sm">Send Message</Button>
+        <Button className="bg-[#000000] rounded-none text_sm">
+          Send Message
+        </Button>
       </div>
       <div className="flex justify-end px-10 mt-[-30px]">
         <img src={slide9} alt="image" />
