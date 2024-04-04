@@ -6,7 +6,9 @@ const InternshipDetails = () => {
   const id = params.id;
 
   return (
-    <Internshipdetails id={id ? id : ""} />
+    <>
+      <Internshipdetails id={id ? id : ""} />
+    </>
   );
 };
 

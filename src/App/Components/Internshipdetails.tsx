@@ -11,6 +11,7 @@ import todo from "../../assets/images/Todo-List.png";
 import { useNavigate } from "react-router-dom";
 import Loader from "./Loader";
 import { useEffect } from "react";
+import { Back } from "../pages/createInternship/components/back-button";
 
 type props = {
   id: string;
@@ -48,35 +49,36 @@ const Internshipdetails = (props: props) => {
 
   return (
     <div className=" p-5 xl:px-[10rem] lg:px-[5rem]">
+      <Back title="Back to dashboard" />
       <div className="flex flex-col mt-10 md:mt-5">
         <div
-          className={`md:h-full overflow-y-scroll `}
+          className={`overflow-y-scroll h-full`}
           style={{
             scrollbarWidth: "none",
           }}
         >
-          <div className="flex flex-col md:flex-row">
-            <div className="w-full h-full border dark:border-white border-black p-2 rounded">
+          <div className="flex flex-col md:flex-row h-full">
+            <div className="w-full h-full border dark:border-white border-black p-2 rounded ">
               <img
                 src={internshipDetails?.image}
                 alt=""
                 className="w-full h-full rounded"
               />
             </div>
-            <div className="flex flex-col gap-2 md:gap-5 text-[10px] md:text-[12px] pt-5 md:pt-0 text-left md:text-left md:pl-5">
-              <div className="md:max-w-full text_md">
+            <div className="flex flex-col gap-2 md:gap-5 text-[10px] md:text-[12px] pt-5 md:pt-0 text-left md:text-left md:pl-5 md:max-w-[50%] max-h-full">
+              <div className="md:max-w-full text-[16px] md:text-[18px]">
                 {internshipDetails.title}
               </div>
-              <div className="md:max-w-full text_sm">
+              <div className="md:max-w-full text-[10px]">
                 {internshipDetails.description}
               </div>
-              <div className="md:max-w-[50%]">
+              <div className="md:max-w-[50%] text-[10px]">
                 Price : {internshipDetails.price}
               </div>
-              <div className="md:max-w-[600px]">
+              <div className="md:max-w-[600px] text-[10px]">
                 Enrolled Interns : {internshipDetails.noOfStudents}
               </div>
-              <div className="md:max-w-[600px] flex gap-3 items-center md:justify-start">
+              <div className="md:max-w-[600px] flex gap-3 items-center md:justify-start text-[10px]">
                 <span>Rating :</span>{" "}
                 <span className="flex">
                   {renderStars(internshipDetails.rating)}
@@ -147,20 +149,18 @@ const Internshipdetails = (props: props) => {
             <div className="w-full py-5 border-t text-center border-b">
               <h1>Task you will work on</h1>
             </div>
-            <div className="grid grid-cols-3 w-full text-center py-5 text_sm">
-              <h1>Weeks</h1>
-              <h1>Tasks</h1>
+            <div className="grid grid-cols-2 w-full text-center py-5 text_sm">
+              <h1>Title</h1>
               <h1>Score(100)</h1>
             </div>
             <div>
-              {internshipDetails.task?.map((item: any, index: any) => {
+              {internshipDetails.tasks?.map((item: any, index: any) => {
                 return (
                   <div
                     key={index}
-                    className="grid grid-cols-3 w-full text-center py-5 text_sm"
+                    className="grid grid-cols-2 w-full text-center py-5 text_sm"
                   >
                     <h1>{item.title}</h1>
-                    <h1>{item.description}</h1>
                     <h1>{item.score}</h1>
                   </div>
                 );
@@ -169,9 +169,12 @@ const Internshipdetails = (props: props) => {
           </div>
         </div>
         <div className="flex justify-end">
-          <div className="p-5 md:w-[350px] text-center bg-primary mt-20 rounded-md cursor-pointer" onClick={() => {
-            navigate(`../../payment/${internshipDetails._id}`)
-          }}>
+          <div
+            className="p-5 md:w-[350px] text-center bg-primary mt-20 rounded-md cursor-pointer"
+            onClick={() => {
+              navigate(`../../payment/${internshipDetails._id}`);
+            }}
+          >
             <h1>Start Internship</h1>
           </div>
         </div>

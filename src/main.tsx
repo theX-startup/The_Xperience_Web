@@ -9,6 +9,7 @@ import { QueryClient } from "react-query";
 import { QueryClientProvider } from "react-query";
 import { ToastContainer } from "react-toastify";
 import 'react-toastify/dist/ReactToastify.css';
+import { ConfettiProvider } from "./components/providers/confetti-provider.tsx";
 
 const Client = new QueryClient();
 ReactDOM.createRoot(document.getElementById("root")!).render(
@@ -18,6 +19,7 @@ ReactDOM.createRoot(document.getElementById("root")!).render(
         <AuthProvider>
           <AppRouter />
           <ToastContainer />
+          <ConfettiProvider />
         </AuthProvider>
       </QueryClientProvider>
     </Provider>

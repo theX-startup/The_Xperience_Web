@@ -78,7 +78,7 @@ const Analytics = () => {
             <div className="flex flex-col justify-center items-center gap-5">
               <span className="text-primary">Earnings</span>
               <span>
-                {Analytics?.analytics?.totalEarnings.toLocaleString("en-NG", {
+                {Analytics?.analytics?.totalEarnings?.toLocaleString("en-NG", {
                   style: "currency",
                   currency: "NGN",
                 })}
@@ -103,30 +103,39 @@ const Analytics = () => {
             <div className="flex flex-col justify-center items-center gap-5">
               <span className="text-primary">Highest selling price</span>
               <span>
-                {Analytics?.analytics?.highestSellingPrice.toLocaleString(
-                  "en-NG",
-                  {
-                    style: "currency",
-                    currency: "NGN",
-                  }
-                )}
+                {Analytics?.analytics?.highestSellingPrice ? Analytics?.analytics?.highestSellingPrice?.toLocaleString(
+                      "en-NG",
+                      {
+                        style: "currency",
+                        currency: "NGN",
+                      }
+                    )
+                  : (0).toLocaleString("en-NG", {
+                      style: "currency",
+                      currency: "NGN",
+                    })}
               </span>
             </div>
             <div className="flex flex-col justify-center items-center gap-5">
               <span className="text-primary">Lowest selling price</span>
               <span>
-                {Analytics?.analytics?.lowestSellingPrice.toLocaleString(
-                  "en-NG",
-                  {
-                    style: "currency",
-                    currency: "NGN",
-                  }
-                )}
+                {Analytics?.analytics?.lowestSellingPrice
+                  ? Analytics?.analytics?.lowestSellingPrice.toLocaleString(
+                      "en-NG",
+                      {
+                        style: "currency",
+                        currency: "NGN",
+                      }
+                    )
+                  : (0).toLocaleString("en-NG", {
+                      style: "currency",
+                      currency: "NGN",
+                    })}
               </span>
             </div>
             <div className="flex flex-col justify-center items-center gap-5">
               <span className="text-primary">Most popular</span>
-              <span className="text-nowrap overflow-hidden">
+              <span className="overflow-hidden max-w-[100%] text-nowrap">
                 {
                   Analytics?.analytics?.mostPopularInternship.title.split(
                     ":"

@@ -45,7 +45,7 @@
 }
 
 .bg-secondary {
-  @apply dark:bg-gray-900 bg-slate-200;
+  @apply dark:bg-gray-900 bg-white;
 }
 
 .text-primary {

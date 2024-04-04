@@ -5,6 +5,8 @@ import SubMenu from "../../Components/SubMenu";
 import { useEffect } from "react";
 import { getInternships } from "./_request";
 import { fetchUserInternships } from "../UserInternships/_request";
+import RestApi from "@/services/RestApi";
+import { useLocation, useSearchParams } from "react-router-dom";
 
 const InternDashboard = () => {
   const internships = useSelector(
@@ -13,8 +15,24 @@ const InternDashboard = () => {
   const user = useSelector((state: any) => state.auth.user);
   const dispatch = useDispatch<any>();
 
+  const getCategories = async () => {
+    const response = await RestApi.getCall("/categories");
+    return response;
+  };
+  const [searchParams] = useSearchParams();
+  const pathname = useLocation().pathname;
+
+  const categoryId = searchParams.get("categoryId");
+  const title = searchParams.get("title");
+
   useEffect(() => {
-    dispatch(getInternships());
+    dispatch(getInternships(title || "", categoryId || ""));
+  }, [pathname, categoryId, title]);
+
+  useEffect(() => {
+    getCategories().then((data) => {
+      dispatch({ type: "categories", payload: data });
+    });
   }, []);
 
   useEffect(() => {
@@ -27,42 +45,36 @@ const InternDashboard = () => {
     }
   }, [user]);
 
-  if (internships.length === 0) {
-    return (
-      <div className="flex flex-col items-center justify-center h-screen pl-2">
-        <h2 className="text-3xl font-semibold mb-4">
-          No Internships Available
-        </h2>
-        <p className="text-lg text-gray-600">
-          Sorry, there are currently no internships available. Please check back
-          later.
-        </p>
-      </div>
-    );
-  }
   return (
-    <div>
+    <div className="min-h-screen">
       <div>
         <SubMenu />
       </div>
-      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:px-[10rem] gap-5 items-center justify-center p-5 lg:px-[5rem]">
-        {internships.map((internship: any, index: any) => {
-          if (index < 12) {
-            return (
-              <motion.div
-                layoutId={index.toString()}
-                key={index}
-                className="cursor-pointer"
-              >
-                <InternshipComponent
-                  data={internship}
-                  key={internship._id}
-                  index={index}
-                />
-              </motion.div>
-            );
-          }
-        })}
+      <div className="p-5">
+        <div className="xl:px-[10rem] lg:px-[5rem] grid sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 2xl:grid-cols-4 gap-4">
+          {internships.map((internship: any, index: any) => {
+            if (index < 12) {
+              return (
+                <motion.div
+                  layoutId={index.toString()}
+                  key={index}
+                  className="cursor-pointer"
+                >
+                  <InternshipComponent
+                    data={internship}
+                    key={internship._id}
+                    index={index}
+                  />
+                </motion.div>
+              );
+            }
+          })}
+        </div>
+        {internships.length === 0 && (
+          <div className="text-center text-sm text-muted-foreground">
+            <h1 className="text-2xl">No Internships Found</h1>
+          </div>
+        )}
       </div>
     </div>
   );
