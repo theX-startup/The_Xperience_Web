@@ -15,12 +15,12 @@ const Resources = () => {
         <h1 className="text_sm mb-5">{header.secondText}</h1>
       </div>
       <div className="bg-blue-50">
-        <div className="grid grid-cols-2 lg:grid-cols-4 pt-6">
+        <div className="grid grid-cols-2 sm:grid-cols-4 pt-6">
           {datas.map((data, index) => {
             return (
               <div
                 key={index}
-                className="border-blue-600 border-solid py-2 lg:py-5 bg-white mx-3 my-2 text-center border-2"
+                className="border-blue-600 border-solid py-2 sm:py-5 bg-white mx-3 my-2 text-center border-2"
               >
                 <div className="flex justify-center my-4">
                   <img src={data.img} alt="" />
@@ -31,12 +31,12 @@ const Resources = () => {
           })}
         </div>
       </div>
-      <div className="bg-blue-50 grid lg:grid-cols-[60%_33%] gap-20 w-full">
+      <div className="bg-blue-50 grid sm:grid-cols-[60%_33%] gap-20 w-full">
         <div>
           <div>
             <div className="text_sm text-black my-2 mx-5">Resources</div>
             <div className=" border-solid border-2 border-blue-600"></div>
-            <div className="lg:grid-cols-[60%_40%] gap-12 w-full">
+            <div className="sm:grid-cols-[60%_40%] gap-12 w-full">
               <div className="flex flex-col gap-5 p-5">
                 {card.map((data, index) => {
                   return (
@@ -75,7 +75,7 @@ const Resources = () => {
           <div className="pt-5 pb-2">{detail.enhance}</div>
           <div className=" border-solid border-2 border-blue-600 mb-5"></div>
 
-          <div className="text-black  py-0 lg:py-5 bg-blue-50 ">
+          <div className="text-black  py-0 sm:py-5 bg-blue-50 ">
             {details.map((data, index) => {
               return (
                 <div
