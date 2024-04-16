@@ -17,7 +17,7 @@ export const getInternships = (
       if (response) {
         dispatch({
           type: ActionTypes.SET_INTERNSHIPS,
-          payload: response.internships,
+          payload: response.internshipsWithProgress,
         });
         dispatch({
           type: ActionTypes.SET_INTERNSHIPS_LOADING,

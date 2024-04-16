@@ -1,7 +1,7 @@
 import { create } from "apisauce";
 import _, { reject } from "lodash";
 
-const baseUrl = "http://192.168.88.22:3000";
+const baseUrl = "http://192.168.88.21:3000";
 // const baseUrl = "https://thexperience.onrender.com";
 
 export const api = create({

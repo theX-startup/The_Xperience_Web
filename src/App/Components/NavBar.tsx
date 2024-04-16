@@ -1,8 +1,7 @@
 import logo from "../../assets/logos/logo.png";
 import logoBlack from "../../assets/logos/logoBlack.png";
 import { MdOutlineMenu } from "react-icons/md";
-import { IoSearchOutline } from "react-icons/io5";
-import { Link } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import { useSelector } from "react-redux";
 import { useState } from "react";
 import { motion } from "framer-motion";
@@ -11,6 +10,8 @@ import { IoIosArrowDown } from "react-icons/io";
 import { IoIosArrowUp } from "react-icons/io";
 import { useAuth } from "../../redux/context";
 import { SearchInput } from "@/components/search-input";
+import { LogOut } from "lucide-react";
+import { cn } from "@/lib/utils";
 
 const NavBar = () => {
   const user = useSelector((state: any) => state.auth.user);
@@ -22,14 +23,23 @@ const NavBar = () => {
   const [mobileMenuActive, setMobileMenuActive] = useState(false);
   const [activeMenu, setActiveMenu] = useState("");
   const { onLogout } = useAuth();
+  const { taskId } = useParams();
 
   return (
-    <div className="relative px-5 xl:px-[10rem] lg:px-[5rem] flex items-center justify-between py-5">
+    <div
+      className={cn(
+        "relative px-5 xl:px-[10rem] lg:px-[5rem] flex items-center justify-between py-5",
+        taskId && "px-0 xl:px-0 lg:px-0"
+      )}
+    >
       <div className="flex sm:items-center sm:flex-row flex-col w-full gap-5 lg:gap-8">
         <div className="flex items-center justify-between sm:justify-normal">
           <div>
             <MdOutlineMenu
-              className="text-[30px] sm:text-[40px] lg:hidden "
+              className={cn(
+                "text-[30px] sm:text-[40px] lg:hidden",
+                taskId && "hidden"
+              )}
               onClick={() => setMobileMenuActive(!mobileMenuActive)}
             />
             {mobileMenuActive && (
@@ -189,28 +199,43 @@ const NavBar = () => {
               </div>
             )}
           </div>
-          <div>
-            <Link to={"/"}>
-              <img
-                src={logo}
-                alt=""
-                className="h-[35px] md:h-[40px] lg:h-[45px] hidden dark:block"
-              />
-            </Link>
-            <Link to={"/"}>
-              <img
-                src={logoBlack}
-                alt=""
-                className="h-[35px] md:h-[40px] lg:h-[45px] dark:hidden block"
-              />
-            </Link>
-          </div>
+          {!taskId && (
+            <div>
+              <Link to={"/"}>
+                <img
+                  src={logo}
+                  alt=""
+                  className="h-[35px] md:h-[40px] lg:h-[45px] hidden dark:block"
+                />
+              </Link>
+              <Link to={"/"}>
+                <img
+                  src={logoBlack}
+                  alt=""
+                  className="h-[35px] md:h-[40px] lg:h-[45px] dark:hidden block"
+                />
+              </Link>
+            </div>
+          )}
         </div>
-        <SearchInput />
+        {!taskId && <SearchInput />}
       </div>
-      <div className="hidden sm:block">
+      <div
+        className={cn("hidden sm:flex items-center gap-x-5", taskId && "flex")}
+      >
+        <div>
+          {taskId && (
+            <Link
+              to={"../"}
+              className="flex gap-x-2 items-center text-slate-700 hover:text-slate-800 transition-all"
+            >
+              <LogOut />
+              Exit
+            </Link>
+          )}
+        </div>
         <div
-          className="hidden sm:block relative z-20"
+          className={cn("hidden sm:block relative z-20", taskId && "block")}
           onClick={() => setMenuActive(!menuActive)}
         >
           {user.picturePath ? (

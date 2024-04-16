@@ -1,5 +1,4 @@
 import { useEffect } from "react";
-import { CiBookmarkPlus } from "react-icons/ci";
 import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import { addClick, addImpression } from "../pages/dashboard/_request";
@@ -26,6 +25,7 @@ type props = {
     category: {
       name: string;
     };
+    progress: any;
   };
   index: number;
 };
@@ -44,14 +44,17 @@ const InternshipComponent = (props: props) => {
     }
   }, []);
 
-  const isStudent = data.students.find(
-    (student: any) => student.student === user._id
-  );
-  console.log(isStudent);
-
   return (
-    <Link to={`/details/${data._id}`}>
-      <div className="group hover:shadow-sm transition overflow-hidden border rounded-lg p-3 h-full">
+    <Link to={`/internship/${data._id}`}>
+      <div
+        className="group hover:shadow-sm transition overflow-hidden border rounded-lg p-3 h-full"
+        onClick={() => {
+          const body = {
+            _id: data._id,
+          };
+          dispatch(addClick(body));
+        }}
+      >
         <div className="relative w-full aspect-video rounded-md overflow-hidden">
           <img src={data.image} alt={data.title} className="object-cover " />
         </div>
@@ -70,7 +73,7 @@ const InternshipComponent = (props: props) => {
             </div>
           </div>
 
-          {isStudent ? (
+          {data.progress ? (
             <div>TODO : Progress Component</div>
           ) : (
             <div className="flex items-center justify-between">
