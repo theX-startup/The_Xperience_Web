@@ -4,7 +4,6 @@ import { useConfettiStore } from "@/hooks/use-confetti-store";
 import RestApi from "@/services/RestApi";
 import { Trash } from "lucide-react";
 import { useState } from "react";
-import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 
 interface InternshipActionProps {
@@ -18,7 +17,6 @@ export const InternshipAction = ({
   isPublished,
 }: InternshipActionProps) => {
   const [isLoading, setIsLoading] = useState(false);
-  const navigate = useNavigate();
   const confetti = useConfettiStore();
   const onDelete = async () => {
     setIsLoading(true);

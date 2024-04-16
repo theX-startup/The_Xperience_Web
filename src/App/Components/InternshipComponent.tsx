@@ -1,8 +1,7 @@
 import { useEffect } from "react";
-import { CiBookmarkPlus } from "react-icons/ci";
 import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
-import { addClick, addImpression } from "../pages/dashboard/_request";
+import { addImpression } from "../pages/dashboard/_request";
 import { IconBadge } from "@/components/icon-badge";
 import { BookMarkedIcon, BookOpen } from "lucide-react";
 
