@@ -13,7 +13,7 @@ export const InternshipSideBar = ({ internship, progressCount }: props) => {
   const [Purchase, setPurchase] = useState(null);
 
   const purchase = async () => {
-    const urlPath = "/purchase/get";
+    const urlPath = `/purchase/get/${internship?._id}`;
     const res = await RestApi.getCall(urlPath);
     setPurchase(res);
   };

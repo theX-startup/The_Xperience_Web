@@ -6,6 +6,10 @@ import { getTask } from "./_request";
 import RestApi from "@/services/RestApi";
 import { Banner } from "@/components/banner";
 import { VideoPlayer } from "./_components/video-player";
+import InternshipEnrollButton from "./_components/Internship-enroll-button";
+import { Separator } from "@/components/ui/separator";
+import { Preview } from "@/components/preview";
+import { File } from "lucide-react";
 
 interface task {
   task: any;
@@ -20,11 +24,12 @@ export const InternshipIdPage = () => {
     (state: any) => state.internships.taskLoading
   );
   const dispatch = useDispatch<any>();
+  const internship = useSelector((state: any) => state.internships.internship);
 
   const { taskId, internshipId } = useParams();
 
   const purchase = async () => {
-    const urlPath = "/purchase/get";
+    const urlPath = `/purchase/get/${internshipId}`;
     const res = await RestApi.getCall(urlPath);
     setPurchase(res);
   };
@@ -68,11 +73,39 @@ export const InternshipIdPage = () => {
         </div>
         <div>
           <div className="p-4 flex flex-col md:flex-row justify-between items-center">
-            <h1 className="text-2xl font-semibold mb-2">
-              {task?.task?.title}
-            </h1>
-            {}
+            <h1 className="text-2xl font-semibold mb-2">{task?.task?.title}</h1>
+            {Purchase ? (
+              // TODO : Add Task Progress Component
+              <></>
+            ) : (
+              <InternshipEnrollButton
+                internshipId={internshipId || ""}
+                price={internship?.price}
+              />
+            )}
           </div>
+          <Separator />
+          <div>
+            <Preview value={task?.task?.instructions} />
+          </div>
+          {!!task?.task?.resources?.lenght && (
+            <>
+              <Separator />
+              <div className="p-4">
+                {task?.task?.resources.map((resource: any, index: number) => (
+                  <a
+                    href={resource.link}
+                    target="_blank"
+                    rel="noreferrer"
+                    className="flex items-center p-3 w-full bg-sky-200 border text-sky-700 rounded-md hover:underline"
+                  >
+                    <File />
+                    <p className="line-clamp-1">{resource.name}</p>
+                  </a>
+                ))}
+              </div>
+            </>
+          )}
         </div>
       </div>
     </div>
