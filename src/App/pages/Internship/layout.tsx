@@ -13,7 +13,7 @@ const InternshipLayout = () => {
     (state: any) => state.internships.internshipLoading
   );
   const dispatch = useDispatch<any>();
-  const user = useSelector((state: any) => state.auth.user);
+  // const user = useSelector((state: any) => state.auth.user);
 
   useEffect(() => {
     dispatch(fetchInternship(internshipId || ""));

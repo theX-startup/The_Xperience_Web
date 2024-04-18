@@ -23,13 +23,13 @@ const NavBar = () => {
   const [mobileMenuActive, setMobileMenuActive] = useState(false);
   const [activeMenu, setActiveMenu] = useState("");
   const { onLogout } = useAuth();
-  const { taskId } = useParams();
+  const { internshipId } = useParams();
 
   return (
     <div
       className={cn(
         "relative px-5 xl:px-[10rem] lg:px-[5rem] flex items-center justify-between py-5",
-        taskId && "px-0 xl:px-0 lg:px-0"
+        internshipId && "px-0 xl:px-0 lg:px-0"
       )}
     >
       <div className="flex sm:items-center sm:flex-row flex-col w-full gap-5 lg:gap-8">
@@ -38,7 +38,7 @@ const NavBar = () => {
             <MdOutlineMenu
               className={cn(
                 "text-[30px] sm:text-[40px] lg:hidden",
-                taskId && "hidden"
+                internshipId && "hidden"
               )}
               onClick={() => setMobileMenuActive(!mobileMenuActive)}
             />
@@ -199,7 +199,7 @@ const NavBar = () => {
               </div>
             )}
           </div>
-          {!taskId && (
+          {!internshipId && (
             <div>
               <Link to={"/"}>
                 <img
@@ -218,13 +218,13 @@ const NavBar = () => {
             </div>
           )}
         </div>
-        {!taskId && <SearchInput />}
+        {!internshipId && <SearchInput />}
       </div>
       <div
-        className={cn("hidden sm:flex items-center gap-x-5", taskId && "flex")}
+        className={cn("hidden sm:flex items-center gap-x-5", internshipId && "flex")}
       >
         <div>
-          {taskId && (
+          {internshipId && (
             <Link
               to={"../"}
               className="flex gap-x-2 items-center text-slate-700 hover:text-slate-800 transition-all"
@@ -235,7 +235,7 @@ const NavBar = () => {
           )}
         </div>
         <div
-          className={cn("hidden sm:block relative z-20", taskId && "block")}
+          className={cn("hidden sm:block relative z-20", internshipId && "block")}
           onClick={() => setMenuActive(!menuActive)}
         >
           {user.picturePath ? (

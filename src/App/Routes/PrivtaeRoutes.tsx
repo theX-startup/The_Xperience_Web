@@ -68,7 +68,7 @@ const PrivtaeRoutes = () => {
         />
       </Route>
       <Route path="internship/:internshipId" element={<InternshipLayout />}>
-        <Route path="internship/:internshipId/task/:taskId" element={<InternshipIdPage />} />
+        <Route path="task/:taskId" element={<InternshipIdPage />} />
       </Route>
     </Routes>
   );

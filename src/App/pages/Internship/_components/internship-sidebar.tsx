@@ -36,7 +36,7 @@ export const InternshipSideBar = ({ internship, progressCount }: props) => {
               id={task._id}
               label={task.title}
               isCompleted={task?.userProgres?.[0]?.isCompleted}
-              isLocked={!task?.isFree && !purchase}
+              isLocked={!task?.isFree && !Purchase}
               internshipId={internship._id}
             />
           );
