@@ -2,7 +2,14 @@ import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Link, useParams } from "react-router-dom";
 import { getTask } from "./_request";
-import { ArrowLeft, Eye, LayoutDashboard, Video } from "lucide-react";
+import {
+  ArrowLeft,
+  BadgeInfo,
+  Eye,
+  FilePen,
+  LayoutDashboard,
+  Video,
+} from "lucide-react";
 import { IconBadge } from "@/components/icon-badge";
 import TaskTitleForm from "./TaskComponent/TitleForm";
 import TaskDescriptionForm from "./TaskComponent/DescriptionForm";
@@ -13,6 +20,8 @@ import WhatYouWillDo from "./TaskComponent/WhatYouWillDo";
 import WhatYouWillLearn from "./TaskComponent/WhatYouWillLearn";
 import { Banner } from "@/components/banner";
 import { TaskActions } from "./TaskComponent/TaskAction";
+import MinimumScoreForm from "./TaskComponent/MinimumScoreForm";
+import CategoryForm from "./TaskComponent/CategoryForm";
 
 type Props = {};
 
@@ -35,7 +44,7 @@ const EditTask = (props: Props) => {
 
   const isComplete = required.every(Boolean);
   useEffect(() => {
-    dispatch(getTask(id ? id : ""));
+    dispatch(getTask(internshipId ? internshipId : "", id ? id : ""));
   }, []);
   return (
     <>
@@ -87,13 +96,23 @@ const EditTask = (props: Props) => {
                 initialData={task}
                 courseId={internshipId}
               />
+              <WhatYouWillDo initialData={task} taskId={id} />
+              <WhatYouWillLearn initialData={task} taskId={id} />
               <TaskDescriptionForm
                 taskId={id}
                 initialData={task}
                 courseId={internshipId}
               />
+              <Grading_Criteria initialData={task} taskId={id} />
             </div>
-            <div>
+          </div>
+          <div>
+            <div className="flex items-center gap-x-2">
+              <IconBadge icon={Video} />
+              <h1 className="text-xl">Add a video</h1>
+            </div>
+            <VideoForm initialData={task} courseId={internshipId} taskId={id} />
+            <div className="mt-5">
               <div className="flex items-center gap-x-2">
                 <IconBadge icon={Eye} />
                 <h2 className="text-xl">Access Settings</h2>
@@ -104,16 +123,27 @@ const EditTask = (props: Props) => {
                 courseId={internshipId}
               />
             </div>
-          </div>
-          <div>
-            <div className="flex items-center gap-x-2">
-              <IconBadge icon={Video} />
-              <h1 className="text-xl">Add a video</h1>
+            <div className="mt-5">
+              <div className="flex items-center gap-x-2">
+                <IconBadge icon={BadgeInfo} />
+                <h2 className="text-xl">Set a minimum score for this task</h2>
+              </div>
+              <MinimumScoreForm initialData={task} taskId={task._id} />
             </div>
-            <VideoForm initialData={task} courseId={internshipId} taskId={id} />
-            <Grading_Criteria initialData={task} taskId={id} />
-            <WhatYouWillDo initialData={task} taskId={id} />
-            <WhatYouWillLearn initialData={task} taskId={id} />
+            <div className="mt-5">
+              <div className="flex items-center gap-x-2">
+                <IconBadge icon={FilePen} />
+                <h2 className="text-xl">Set submission type</h2>
+              </div>
+              <CategoryForm
+                initialData={task}
+                taskId={task._id}
+                options={[
+                  { value: "link", label: "Link" },
+                  { value: "file", label: "File" },
+                ]}
+              />
+            </div>
           </div>
         </div>
       </div>

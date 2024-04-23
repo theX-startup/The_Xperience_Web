@@ -1,15 +1,14 @@
 import RestApi from "@/services/RestApi";
 import { useEffect, useState } from "react";
-import { useSelector } from "react-redux";
 import { TaskSideBarItem } from "./task-sidebar-item";
+import InternshipProgress from "./Internship-progress";
 
 interface props {
   internship: any;
   progressCount: number;
 }
 export const InternshipSideBar = ({ internship, progressCount }: props) => {
-  const user = useSelector((state: any) => state.auth.user);
-  const userId = user?._id;
+  // const user = useSelector((state: any) => state.auth.user);
   const [Purchase, setPurchase] = useState(null);
 
   const purchase = async () => {
@@ -26,6 +25,11 @@ export const InternshipSideBar = ({ internship, progressCount }: props) => {
     <div className="h-full border-r flex flex-col overflow-y-auto shadow-sm">
       <div className="p-8 flex flex-col border-b">
         <h1 className="font-semibold">{internship.title}</h1>
+        {Purchase && (
+          <div className="mt-10">
+            <InternshipProgress variant="success" value={progressCount} />
+          </div>
+        )}
       </div>
       {/* Check purchase and add progress */}
       <div className="flex flex-col w-full">
@@ -43,5 +47,6 @@ export const InternshipSideBar = ({ internship, progressCount }: props) => {
         })}
       </div>
     </div>
+
   );
 };

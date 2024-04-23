@@ -1,15 +1,13 @@
-import { useSelector } from "react-redux";
 import InternDashboard from "./InternDashboard";
-import ProDashboard from "./ProDashboard";
-
+import { Navigate } from "react-router-dom";
+import { useCookies } from "react-cookie";
 
 const Dashboard = () => {
-  const user = useSelector((state: any) => state.auth.user);
+  const [cookies] = useCookies(["state"]);
 
-  if (user.position === "pro") {
-    return <ProDashboard />;
-  }
-  if (user.position === "intern") {
+  if (cookies.state === "PROFESSIONAL") {
+    return <Navigate to={"/proInternships"} />;
+  } else {
     return <InternDashboard />;
   }
 };

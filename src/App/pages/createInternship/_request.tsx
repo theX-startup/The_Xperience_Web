@@ -91,14 +91,14 @@ export const createTask =
   };
 
 export const getTask =
-  (id: string): ThunkAction<void, any, any, any> =>
+  (id: string, taskId: string): ThunkAction<void, any, any, any> =>
   async (dispatch) => {
     try {
-      let urlPath = "/tasks/" + id;
+      let urlPath = "/tasks/" + id + "/" + taskId;
       await RestApi.getCall(urlPath).then((response) => {
         dispatch({
           type: "GET_TASK",
-          payload: response,
+          payload: response.task,
         });
       });
     } catch (error) {

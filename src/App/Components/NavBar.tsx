@@ -10,8 +10,9 @@ import { IoIosArrowDown } from "react-icons/io";
 import { IoIosArrowUp } from "react-icons/io";
 import { useAuth } from "../../redux/context";
 import { SearchInput } from "@/components/search-input";
-import { LogOut } from "lucide-react";
+import { BellIcon, LogOut, MessageSquareText } from "lucide-react";
 import { cn } from "@/lib/utils";
+import { useCookies } from "react-cookie";
 
 const NavBar = () => {
   const user = useSelector((state: any) => state.auth.user);
@@ -24,15 +25,16 @@ const NavBar = () => {
   const [activeMenu, setActiveMenu] = useState("");
   const { onLogout } = useAuth();
   const { internshipId } = useParams();
+  const [cookies, setCookies] = useCookies(["state"]);
 
   return (
     <div
       className={cn(
-        "relative px-5 xl:px-[10rem] lg:px-[5rem] flex items-center justify-between py-5",
+        "relative px-5 flex items-center justify-between py-5",
         internshipId && "px-0 xl:px-0 lg:px-0"
       )}
     >
-      <div className="flex sm:items-center sm:flex-row flex-col w-full gap-5 lg:gap-8">
+      <div className="flex sm:items-center sm:flex-row flex-col w-full md:w-[65%] gap-5 lg:gap-8">
         <div className="flex items-center justify-between sm:justify-normal">
           <div>
             <MdOutlineMenu
@@ -57,7 +59,7 @@ const NavBar = () => {
                   transition={{ duration: 0.2 }}
                 >
                   <div className="min-h-[35px] w-full flex justify-between items-center pb-5">
-                    <div className="flex items-center gap-2">
+                    <div className="flex items-start gap-1 flex-col">
                       {user.picturePath ? (
                         <img
                           src={user.picturePath}
@@ -69,8 +71,11 @@ const NavBar = () => {
                           <span className="text-[10px]">{initials}</span>
                         </div>
                       )}
-                      <span className="text-[8px] text-black uppercase dark:text-white">
+                      <span className="text-sm text-black uppercase dark:text-white">
                         {user?.fullname}
+                      </span>
+                      <span className="text-xs text-slate-600 uppercase dark:text-white">
+                        {user?.email}
                       </span>
                     </div>
                     <IoMdClose
@@ -78,12 +83,7 @@ const NavBar = () => {
                       onClick={() => setMobileMenuActive(!mobileMenuActive)}
                     />
                   </div>
-                  <Link
-                    to={"/dashboard"}
-                    className="block pb-3 text-[10px] hover:text-[#0000ff] transition-all duration-500 ease-in-out text-slate-700 dark:text-slate-200"
-                  >
-                    Dashboard
-                  </Link>
+
                   <div
                     className={`overflow-hidden pb-3 transition-all duration-500 ${
                       activeMenu === "profile" ? "max-h-[120px]" : "h-[28px]"
@@ -92,13 +92,13 @@ const NavBar = () => {
                     <div className="flex items-center justify-between pb-2">
                       <Link
                         to={"profile"}
-                        className="block text-[10px] hover:text-[#0000ff] text-slate-700 dark:text-slate-200"
+                        className="block text-sm hover:text-[#0000ff] text-slate-700 dark:text-slate-200"
                       >
                         Profile
                       </Link>
                       {activeMenu === "profile" ? (
                         <IoIosArrowUp
-                          className="text-[20px] cursor-pointer"
+                          className="text-sm cursor-pointer"
                           onClick={() =>
                             setActiveMenu(
                               activeMenu === "profile" ? "" : "profile"
@@ -107,7 +107,7 @@ const NavBar = () => {
                         />
                       ) : (
                         <IoIosArrowDown
-                          className="text-[20px] cursor-pointer"
+                          className="text-sm cursor-pointer"
                           onClick={() =>
                             setActiveMenu(
                               activeMenu === "profile" ? "" : "profile"
@@ -116,82 +116,12 @@ const NavBar = () => {
                         />
                       )}
                     </div>
-                    <div className="bg-tertiary p-3 rounded">
-                      <Link
-                        to={"certificate"}
-                        className="block pb-3 text-[10px] hover:text-[#0000ff] transition-all duration-500 ease-in-out"
-                      >
-                        Certificate
-                      </Link>
-                      <Link
-                        to={"CV"}
-                        className="block text-[10px] hover:text-[#0000ff] transition-all duration-500 ease-in-out"
-                      >
-                        CV
-                      </Link>
-                    </div>
                   </div>
-
-                  <Link
-                    to={"/internships"}
-                    className="block pb-3 text-[10px] hover:text-[#0000ff] transition-all duration-500 ease-in-out text-slate-700 dark:text-slate-200"
-                  >
-                    Internships
-                  </Link>
-                  <div
-                    className={`${
-                      activeMenu === "performance"
-                        ? "max-h-[120px]"
-                        : "h-[28px]"
-                    } overflow-hidden pb-3`}
-                  >
-                    <div className="flex items-center justify-between pb-2">
-                      <Link
-                        to={"performance"}
-                        className="block text-[10px] hover:text-[#0000ff] transition-all duration-500 ease-in-out text-slate-700 dark:text-slate-200"
-                      >
-                        Performance
-                      </Link>
-                      {activeMenu === "performance" ? (
-                        <IoIosArrowUp
-                          className="text-[20px] cursor-pointer"
-                          onClick={() =>
-                            setActiveMenu(
-                              activeMenu === "performance" ? "" : "performance"
-                            )
-                          }
-                        />
-                      ) : (
-                        <IoIosArrowDown
-                          className="text-[20px] cursor-pointer"
-                          onClick={() =>
-                            setActiveMenu(
-                              activeMenu === "performance" ? "" : "performance"
-                            )
-                          }
-                        />
-                      )}
-                    </div>
-                    <div className="bg-tertiary p-3 rounded">
-                      <Link
-                        to={"leaderboard"}
-                        className="block text-[10px] hover:text-[#0000ff] transition-all duration-500 ease-in-out "
-                      >
-                        Leaderboard
-                      </Link>
-                    </div>
-                  </div>
-                  <Link
-                    to={"leaderboard"}
-                    className="block pb-3 text-[10px] hover:text-[#0000ff] transition-all duration-500 ease-in-out text-slate-700 dark:text-slate-200"
-                  >
-                    Community
-                  </Link>
                   <div
                     onClick={() => {
                       onLogout();
                     }}
-                    className=" cursor-pointer block text-[10px] hover:text-[#0000ff] transition-all duration-500 ease-in-out text-slate-700 dark:text-slate-200"
+                    className=" cursor-pointer block text-sm hover:text-[#0000ff] transition-all duration-500 ease-in-out text-slate-700 dark:text-slate-200"
                   >
                     Logout
                   </div>
@@ -220,109 +150,92 @@ const NavBar = () => {
         </div>
         {!internshipId && <SearchInput />}
       </div>
-      <div
-        className={cn("hidden sm:flex items-center gap-x-5", internshipId && "flex")}
-      >
-        <div>
-          {internshipId && (
-            <Link
-              to={"../"}
-              className="flex gap-x-2 items-center text-slate-700 hover:text-slate-800 transition-all"
+      <div className="flex items-center justify-between">
+        {!internshipId && (
+          <div className="md:flex items-center justify-between gap-x-5 hidden">
+            <div
+              onClick={() => {
+                if (cookies.state === "PROFESSIONAL") {
+                  setCookies("state", "INTERN");
+                } else {
+                  setCookies("state", "PROFESSIONAL");
+                }
+              }}
+              className="cursor-pointer hover:text-slate-500 transition-all"
             >
-              <LogOut />
-              Exit
-            </Link>
-          )}
-        </div>
-        <div
-          className={cn("hidden sm:block relative z-20", internshipId && "block")}
-          onClick={() => setMenuActive(!menuActive)}
-        >
-          {user.picturePath ? (
-            <img
-              src={user.picturePath}
-              alt=""
-              className="h-[40px] w-[40px] rounded cursor-pointer"
-            />
-          ) : (
-            <div className="w-[40px] h-[40px] bg-black rounded-md cursor-pointer items-center flex justify-center dark:bg-white dark:text-black text-white font-bold relative">
-              <span className="text-[14px]">{initials}</span>
-              <span className="absolute p-1 border bg-green-600 rounded-full top-[80%] left-[80%]"></span>
+              {cookies.state === "PROFESSIONAL" ? "Interns" : "Professionals"}
             </div>
+            <div className="cursor-pointer text-muted">
+              <MessageSquareText />
+            </div>
+            <div className="cursor-pointer text-muted">
+              <BellIcon />
+            </div>
+          </div>
+        )}
+        <div
+          className={cn(
+            "hidden sm:flex items-center gap-x-5",
+            internshipId && "flex"
           )}
-          {menuActive && (
-            <motion.div
-              className=""
-              initial={{ opacity: 0, x: 100 }}
-              animate={{ opacity: 1, x: 0 }}
-              exit={{ opacity: 0, x: -20 }}
-              transition={{ duration: 0.4 }}
-            >
-              <div className="absolute top-[120%] right-0 w-[170px] bg-tertiary rounded shadow-lg p-3 ">
-                <Link
-                  to={"dashboard"}
-                  className="block pb-3 text-[12px] hover:text-[#0000ff] dark:hover:text-[#0000ff] transition-all duration-500 ease-in-out dark:text-slate-700 text-slate-200"
-                >
-                  Dashboard
-                </Link>
-                <div className="h-[1px] bg-secondary mb-3"></div>
-                <Link
-                  to={"profile"}
-                  className="block pb-3 text-[12px] hover:text-[#0000ff] dark:hover:text-[#0000ff] transition-all duration-500 ease-in-out dark:text-slate-700 text-slate-200"
-                >
-                  Profile
-                </Link>
-                <Link
-                  to={"certificate"}
-                  className="block pb-3 text-[12px] hover:text-[#0000ff] dark:hover:text-[#0000ff] transition-all duration-500 ease-in-out dark:text-slate-700 text-slate-200"
-                >
-                  Certificate
-                </Link>
-                <Link
-                  to={"CV"}
-                  className="block pb-3 text-[12px] hover:text-[#0000ff] dark:hover:text-[#0000ff] transition-all duration-500 ease-in-out dark:text-slate-700 text-slate-200"
-                >
-                  CV
-                </Link>
-                <div className="h-[1px] bg-secondary mb-3"></div>
-                <Link
-                  to={"/internships"}
-                  className="block pb-3 text-[12px] hover:text-[#0000ff] dark:hover:text-[#0000ff] transition-all duration-500 ease-in-out dark:text-slate-700 text-slate-200"
-                >
-                  Internships
-                </Link>
-                <div className="h-[1px] bg-secondary mb-3"></div>
-                <Link
-                  to={"performance"}
-                  className="block pb-3 text-[12px] hover:text-[#0000ff] dark:hover:text-[#0000ff] transition-all duration-500 ease-in-out dark:text-slate-700 text-slate-200"
-                >
-                  Performance
-                </Link>
-                <Link
-                  to={"leaderboard"}
-                  className="block pb-3 text-[12px] hover:text-[#0000ff] dark:hover:text-[#0000ff] transition-all duration-500 ease-in-out dark:text-slate-700 text-slate-200"
-                >
-                  Leaderboard
-                </Link>
-                <div className="h-[1px] bg-secondary mb-3"></div>
-                <Link
-                  to={"leaderboard"}
-                  className="block pb-3 text-[12px] hover:text-[#0000ff] dark:hover:text-[#0000ff] transition-all duration-500 ease-in-out dark:text-slate-700 text-slate-200"
-                >
-                  Community
-                </Link>
-                <div className="h-[1px] bg-secondary mb-3"></div>
-                <div
-                  onClick={() => {
-                    onLogout();
-                  }}
-                  className="block text-[12px] hover:text-[#0000ff] dark:hover:text-[#0000ff] transition-all duration-500 ease-in-out dark:text-slate-700 text-slate-200"
-                >
-                  Logout
-                </div>
+        >
+          <div>
+            {internshipId && (
+              <Link
+                to={"../"}
+                className="flex gap-x-2 items-center text-slate-700 hover:text-slate-800 transition-all"
+              >
+                <LogOut />
+                Exit
+              </Link>
+            )}
+          </div>
+          <div
+            className={cn(
+              "hidden sm:block relative z-20",
+              internshipId && "block"
+            )}
+            onClick={() => setMenuActive(!menuActive)}
+          >
+            {user.picturePath ? (
+              <img
+                src={user.picturePath}
+                alt=""
+                className="h-[40px] w-[40px] rounded cursor-pointer"
+              />
+            ) : (
+              <div className="w-[40px] h-[40px] bg-black rounded-md cursor-pointer items-center flex justify-center dark:bg-white dark:text-black text-white font-bold relative">
+                <span className="text-[14px]">{initials}</span>
+                <span className="absolute p-1 border bg-green-600 rounded-full top-[80%] left-[80%]"></span>
               </div>
-            </motion.div>
-          )}
+            )}
+            {menuActive && (
+              <motion.div
+                className=""
+                initial={{ opacity: 0, x: 100 }}
+                animate={{ opacity: 1, x: 0 }}
+                exit={{ opacity: 0, x: -20 }}
+                transition={{ duration: 0.4 }}
+              >
+                <div className="absolute top-[120%] right-0 w-[170px] bg-tertiary rounded shadow-lg">
+                  <Link
+                    to={"profile"}
+                    className="block p-5 text-sm hover:bg-slate-700 transition-all duration-500 ease-in-out dark:text-slate-700 text-slate-200 rounded"
+                  >
+                    Profile
+                  </Link>
+                  <div
+                    onClick={() => {
+                      onLogout();
+                    }}
+                    className="rounded cursor-pointer p-5 block text-sm hover:bg-slate-700 transition-all duration-500 ease-in-out dark:text-slate-700 text-slate-200"
+                  >
+                    Logout
+                  </div>
+                </div>
+              </motion.div>
+            )}
+          </div>
         </div>
       </div>
     </div>

@@ -10,6 +10,7 @@ import InternshipEnrollButton from "./_components/Internship-enroll-button";
 import { Separator } from "@/components/ui/separator";
 import { Preview } from "@/components/preview";
 import { File } from "lucide-react";
+import InternshipProgressButton from "./_components/Internship-progress-button";
 
 interface task {
   task: any;
@@ -75,8 +76,12 @@ export const InternshipIdPage = () => {
           <div className="p-4 flex flex-col md:flex-row justify-between items-center">
             <h1 className="text-2xl font-semibold mb-2">{task?.task?.title}</h1>
             {Purchase ? (
-              // TODO : Add Task Progress Component
-              <></>
+              <InternshipProgressButton
+                internshipId={internshipId || ""}
+                taskId={taskId || ""}
+                nextTaskId={task?.nextTask?._id}
+                isCompleted={task?.userProgressInfo?.isCompleted}
+              />
             ) : (
               <InternshipEnrollButton
                 internshipId={internshipId || ""}
@@ -95,6 +100,7 @@ export const InternshipIdPage = () => {
                 {task?.task?.resources.map((resource: any, index: number) => (
                   <a
                     href={resource.link}
+                    key={index}
                     target="_blank"
                     rel="noreferrer"
                     className="flex items-center p-3 w-full bg-sky-200 border text-sky-700 rounded-md hover:underline"

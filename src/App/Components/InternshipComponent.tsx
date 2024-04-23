@@ -1,9 +1,10 @@
 import { useEffect } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import { Link } from "react-router-dom";
 import { addClick, addImpression } from "../pages/dashboard/_request";
 import { IconBadge } from "@/components/icon-badge";
 import { BookMarkedIcon, BookOpen } from "lucide-react";
+import InternshipProgress from "../pages/Internship/_components/Internship-progress";
 
 type props = {
   data: {
@@ -33,7 +34,7 @@ const InternshipComponent = (props: props) => {
   const { data } = props;
   // const navigate = useNavigate();
   const dispatch = useDispatch<any>();
-  const user = useSelector((state: any) => state.auth.user);
+  // const user = useSelector((state: any) => state.auth.user);
 
   useEffect(() => {
     if (props.data !== undefined) {
@@ -62,19 +63,21 @@ const InternshipComponent = (props: props) => {
           <div className="text-lg md:text-base font-medium group-hover:text-sky-700 transition line-clamp-2">
             {data.title}
           </div>
-          <p className="text-xs text-muted-foreground">{data.category.name}</p>
+          <p className="text-xs text-muted-foreground">{data?.category?.name}</p>
           <div className="my-3 flex items-center gap-x-2 text-sm md:text-xs">
             <div className="flex items-center gap-x-1 text-slate-500">
               <IconBadge size={"sm"} icon={BookOpen} />
               <span className="font-sans">
-                {data.tasks.length}{" "}
-                {data.tasks.length === 1 ? "Chapter" : "Chapters"}
+                {data?.tasks?.length}{" "}
+                {data?.tasks?.length === 1 ? "Chapter" : "Chapters"}
               </span>
             </div>
           </div>
 
-          {data.progress ? (
-            <div>TODO : Progress Component</div>
+          {data?.progress ? (
+            <div>
+              <InternshipProgress value={data?.progress} variant={data?.progress === 100 ? "success" : "default"} size="sm" />
+            </div>
           ) : (
             <div className="flex items-center justify-between">
               <div className="flex items-center gap-x-1 text-sm md:text-xs">

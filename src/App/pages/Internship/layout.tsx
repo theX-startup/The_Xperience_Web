@@ -25,7 +25,7 @@ const InternshipLayout = () => {
   }
 
   return (
-    <div className="h-full flex ">
+    <div className="min-h-svh flex ">
       <div className="hidden md:flex min-h-full w-80 flex-col inset-y-0 z-50 ">
         <InternshipSideBar internship={internship} progressCount={progress} />
       </div>
