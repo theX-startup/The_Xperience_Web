@@ -135,20 +135,22 @@ const ProfilePage = () => {
           },
         }}
       >
-        <Tabs.Item title={"Profile"} icon={HiUserCircle}>
-          <div className="">
-            <h1 className="text-[#0000ff]">Profile Description</h1>
-            <div className="mt-5">
-              {user.description && (
-                <div>
-                  <pre className="md:max-w-[80%] whitespace-pre-wrap text-justify">
-                    {user.description}
-                  </pre>
-                </div>
-              )}
+        {user.description && (
+          <Tabs.Item title={"Profile"} icon={HiUserCircle}>
+            <div className="">
+              <h1 className="text-[#0000ff]">Profile Description</h1>
+              <div className="mt-5">
+                {user.description && (
+                  <div>
+                    <pre className="md:max-w-[80%] whitespace-pre-wrap text-justify">
+                      {user.description}
+                    </pre>
+                  </div>
+                )}
+              </div>
             </div>
-          </div>
-        </Tabs.Item>
+          </Tabs.Item>
+        )}
         <Tabs.Item title={"Internships"} icon={MdWorkspacesFilled}></Tabs.Item>
         <Tabs.Item title={"Reviews"} icon={MdRateReview}></Tabs.Item>
         <Tabs.Item title={"Transactions"} icon={GrTransaction}></Tabs.Item>

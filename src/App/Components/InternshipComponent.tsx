@@ -22,7 +22,7 @@ type props = {
     price: number;
     _id: string;
     color: string;
-    students: any[];
+    purchase: any[];
     category: {
       name: string;
     };
@@ -63,7 +63,9 @@ const InternshipComponent = (props: props) => {
           <div className="text-lg md:text-base font-medium group-hover:text-sky-700 transition line-clamp-2">
             {data.title}
           </div>
-          <p className="text-xs text-muted-foreground">{data?.category?.name}</p>
+          <p className="text-xs text-muted-foreground">
+            {data?.category?.name}
+          </p>
           <div className="my-3 flex items-center gap-x-2 text-sm md:text-xs">
             <div className="flex items-center gap-x-1 text-slate-500">
               <IconBadge size={"sm"} icon={BookOpen} />
@@ -76,15 +78,19 @@ const InternshipComponent = (props: props) => {
 
           {data?.progress ? (
             <div>
-              <InternshipProgress value={data?.progress} variant={data?.progress === 100 ? "success" : "default"} size="sm" />
+              <InternshipProgress
+                value={data?.progress}
+                variant={data?.progress === 100 ? "success" : "default"}
+                size="sm"
+              />
             </div>
           ) : (
             <div className="flex items-center justify-between">
               <div className="flex items-center gap-x-1 text-sm md:text-xs">
                 <IconBadge size={"sm"} icon={BookMarkedIcon} />
                 <span className="font-sans">
-                  {data.students.length}{" "}
-                  {data.students.length === 1 ? "Student" : "Students"}
+                  {data.purchase?.length ? data.purchase.length : 0}{" "}
+                  {data.purchase?.length === 1 ? "Student" : "Students"}
                 </span>
               </div>
               <div className="text-sm md:text-xs font-semibold">
