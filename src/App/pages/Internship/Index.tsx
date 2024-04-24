@@ -47,7 +47,7 @@ export const InternshipIdPage = () => {
   }
 
   const isLocked = !task?.task?.isFree && !Purchase;
-  const completeOnEnd = !!Purchase && !task?.userProgressInfo?.isCompleted;
+  // const completeOnEnd = !!Purchase && !task?.userProgressInfo?.isCompleted;
 
   return (
     <div>
@@ -63,13 +63,9 @@ export const InternshipIdPage = () => {
       <div className="flex flex-col max-w-4xl mx-auto pb-20">
         <div className="p-4">
           <VideoPlayer
-            taskId={taskId || ""}
             title={task?.task?.title}
-            internshipId={internshipId || ""}
-            nextInternshipId={task?.nextTask?._id}
             playbackId={task?.muxInfo?.playbackId}
             isLocked={isLocked}
-            completeOnEnd={completeOnEnd}
           />
         </div>
         <div>
