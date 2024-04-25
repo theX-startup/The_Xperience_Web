@@ -55,7 +55,11 @@ const Resources = () => {
                         </div>
                       </div>
                       <div className="flex items-center justify-center">
-                        <img src={data.img} alt="" className="h-[95%] md:w-[95%] md:rounded-md rounded-b-md" />
+                        <img
+                          src={data.img}
+                          alt=""
+                          className="h-[95%] md:w-[95%] md:rounded-md rounded-b-md"
+                        />
                       </div>
                     </div>
                   );
@@ -64,7 +68,7 @@ const Resources = () => {
               <div></div>
             </div>
           </div>
-           </div>
+        </div>
 
         <div className="text-black text_sm ml-2">
           <div className=" text-black py-2">Related news</div>
