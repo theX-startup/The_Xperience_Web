@@ -2,6 +2,7 @@ import { useState } from "react";
 import logo from "../../assets/logos/logo.png";
 import logoBlack from "../../assets/logos/logoBlack.png";
 import { Link } from "react-router-dom";
+import { Auth } from "../pages/Auth/Auth";
 
 const NavBar = () => {
   const [active, setActive] = useState(false);
@@ -13,7 +14,11 @@ const NavBar = () => {
       }}
     >
       <div>
-        <img src={logoBlack} alt="Logo" className="h-[35px] md:h-[40px] lg:h-[45px] dark:hidden" />
+        <img
+          src={logoBlack}
+          alt="Logo"
+          className="h-[35px] md:h-[40px] lg:h-[45px] dark:hidden"
+        />
         <img
           src={logo}
           alt="Logo"
@@ -21,33 +26,38 @@ const NavBar = () => {
         />
       </div>
 
-      <div
-        className="h-10 w-10 flex flex-col gap-1 items-center justify-center cursor-pointer md:hidden"
-        onClick={() => setActive(!active)}
-      >
+      <div className="flex items-center gap-x-3">
+        <div className="md:hidden">
+          <Auth />
+        </div>
         <div
-          className={`h-0.5 w-5 bg-black transform transition-all duration-300 ${
-            active ? "rotate-45 translate-y-1" : ""
-          }`}
-        ></div>
-        <div
-          className={`h-0.5 w-5 bg-black transform transition-all duration-300 ${
-            active ? "opacity-0" : ""
-          }`}
-        ></div>
-        <div
-          className={`h-0.5 w-5 bg-black transform transition-all duration-300 ${
-            active ? "-rotate-45 -translate-y-2" : ""
-          }`}
-        ></div>
+          className="h-10 w-10 flex flex-col gap-1 items-center justify-center cursor-pointer md:hidden"
+          onClick={() => setActive(!active)}
+        >
+          <div
+            className={`h-0.5 w-5 bg-black transform transition-all duration-300 ${
+              active ? "rotate-45 translate-y-1" : ""
+            }`}
+          ></div>
+          <div
+            className={`h-0.5 w-5 bg-black transform transition-all duration-300 ${
+              active ? "opacity-0" : ""
+            }`}
+          ></div>
+          <div
+            className={`h-0.5 w-5 bg-black transform transition-all duration-300 ${
+              active ? "-rotate-45 -translate-y-2" : ""
+            }`}
+          ></div>
+        </div>
       </div>
 
       <div
-        className={`inknut-antiqua-semibold bg-secondary mobile-nav desktop-nav tablet-nav  items-center shadow-lg md:shadow-none ${
+        className={`bg-secondary mobile-nav desktop-nav tablet-nav  items-center shadow-lg md:shadow-none z-50 ${
           active ? "block" : "hidden"
         }`}
       >
-        <div>
+        <div className="">
           <ul className="md:flex gap-5 md:text-xs block lg:text-sm">
             <Link to={"/"}>
               <li className="nav-item">Home</li>
@@ -66,13 +76,8 @@ const NavBar = () => {
             </Link>
           </ul>
         </div>
-        <div className="flex lg:gap-5 md:flex-row flex-col md:gap-2 gap-2 p-4 md:p-0">
-          <Link to={"login"} className="btn cursor-pointer">
-            Login
-          </Link>
-          <Link to={"register"} className="btn cursor-pointer">
-            SignUp
-          </Link>
+        <div className="hidden md:block">
+          <Auth />
         </div>
       </div>
     </div>

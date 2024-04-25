@@ -4,8 +4,8 @@ import { toast } from "react-toastify";
 import { ActionTypes } from "@/utils/ActionTypes";
 
 export const addInternship = (body: {
-  _id: string;
   internshipId: string;
+  transactionId: string;
 }): ThunkAction<void, any, any, any> => {
   return async (dispatch: any) => {
     try {
