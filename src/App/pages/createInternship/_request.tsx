@@ -1,4 +1,3 @@
-import { tasks } from "@/redux/models";
 import RestApi from "@/services/RestApi";
 import { ThunkAction } from "redux-thunk";
 

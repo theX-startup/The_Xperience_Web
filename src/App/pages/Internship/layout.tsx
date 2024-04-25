@@ -7,12 +7,13 @@ import { InternshipSideBar } from "./_components/internship-sidebar";
 import InternshipNavBar from "./_components/Internship-navbar";
 
 const InternshipLayout = () => {
-  const { internshipId } = useParams();
+
   const internship = useSelector((state: any) => state.internships.internship);
   const isLoading = useSelector(
     (state: any) => state.internships.internshipLoading
   );
   const dispatch = useDispatch<any>();
+  const { internshipId } = useParams();
   // const user = useSelector((state: any) => state.auth.user);
 
   useEffect(() => {

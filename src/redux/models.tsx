@@ -5,6 +5,7 @@ export interface createInternshipModel {
 
 export interface values {
   category: string;
+  WhatToGain: [];
   title: string;
   description: string;
   duration: string;
@@ -14,12 +15,13 @@ export interface values {
   price: number;
   purchases: [];
   skill: [];
-  tasks: tasks[];
+  tasks: task[];
   createdAt: string;
   user: user;
+  _id: string;
 }
 
-export interface tasks {
+export interface task {
   title: string;
   description: string;
   isCompleted: boolean;
@@ -34,6 +36,7 @@ export interface tasks {
   what_you_will_do: [];
   what_you_will_learn: [];
   videoUrl: string;
+  _id: string;
 }
 
 export interface user {

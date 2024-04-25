@@ -25,6 +25,7 @@ import Description from "../pages/createInternship/Description";
 import EditTask from "../pages/createInternship/EditTask";
 import { InternshipIdPage } from "../pages/Internship/Index";
 import InternshipLayout from "../pages/Internship/layout";
+import { InternshipDetail } from "../pages/Internship/Internship-details";
 
 const PrivtaeRoutes = () => {
   const location = useLocation();
@@ -69,6 +70,7 @@ const PrivtaeRoutes = () => {
       </Route>
       <Route path="internship/:internshipId" element={<InternshipLayout />}>
         <Route path="task/:taskId" element={<InternshipIdPage />} />
+        <Route element={<InternshipDetail />} index />
       </Route>
     </Routes>
   );

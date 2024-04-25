@@ -3,6 +3,7 @@ import { useEffect, useState } from "react";
 import { TaskSideBarItem } from "./task-sidebar-item";
 import InternshipProgress from "./Internship-progress";
 
+
 interface props {
   internship: any;
   progressCount: number;
@@ -10,6 +11,7 @@ interface props {
 export const InternshipSideBar = ({ internship, progressCount }: props) => {
   // const user = useSelector((state: any) => state.auth.user);
   const [Purchase, setPurchase] = useState(null);
+
 
   const purchase = async () => {
     const urlPath = `/purchase/get/${internship?._id}`;
@@ -20,6 +22,8 @@ export const InternshipSideBar = ({ internship, progressCount }: props) => {
   useEffect(() => {
     purchase();
   }, []);
+
+
 
   return (
     <div className="h-full border-r flex flex-col overflow-y-auto shadow-sm">
@@ -47,6 +51,5 @@ export const InternshipSideBar = ({ internship, progressCount }: props) => {
         })}
       </div>
     </div>
-
   );
 };

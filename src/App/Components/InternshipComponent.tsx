@@ -22,7 +22,7 @@ type props = {
     price: number;
     _id: string;
     color: string;
-    purchase: any[];
+    purchases: any[];
     category: {
       name: string;
     };
@@ -89,8 +89,8 @@ const InternshipComponent = (props: props) => {
               <div className="flex items-center gap-x-1 text-sm md:text-xs">
                 <IconBadge size={"sm"} icon={BookMarkedIcon} />
                 <span className="font-sans">
-                  {data.purchase?.length ? data.purchase.length : 0}{" "}
-                  {data.purchase?.length === 1 ? "Student" : "Students"}
+                  {data.purchases?.length ? data.purchases.length : 0}{" "}
+                  {data.purchases?.length === 1 ? "Student" : "Students"}
                 </span>
               </div>
               <div className="text-sm md:text-xs font-semibold">
