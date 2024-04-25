@@ -207,33 +207,40 @@ const ProDashboard = () => {
         </div>
         <div className="md:w-[35%] mt-10 md:mt-0">
           <div>
-            <h1 className="text_md ">Recent Orders</h1>
-            <div className="dark:bg-slate-800 bg-slate-300 w-full rounded p-4 mt-2 flex flex-col gap-7">
-              {info?.recentOrders?.map((item, index) => (
-                <div
-                  className="flex justify-between  w-full items-center gap-2 flex-wrap border-b pb-2"
-                  key={index}
-                >
-                  <div className="text-[10px] flex flex-col gap-2">
-                    <h1>
-                      {item?.orderBy?.name} just bouught one of your
-                      internships.{" "}
-                    </h1>
-                    <div className="flex gap-2 items-center">
-                      <h1>OrderId: </h1>
-                      <h1 className="text-primary font-sans text_sm">
-                        `#{item?.orderId}`{" "}
+            <h1 className="text_md">Recent Orders</h1>
+            {info?.recentOrders?.length === 0 && (
+              <div className="min-h-[200px] flex items-center justify-center text_sm dark:bg-slate-800 bg-slate-300 rounded mt-2">
+                <p>No recent orders</p>
+              </div>
+            )}
+            {info?.recentOrders?.length > 0 && (
+              <div className="dark:bg-slate-800 bg-slate-300 w-full rounded p-4 mt-2 flex flex-col gap-7">
+                {info?.recentOrders?.map((item, index) => (
+                  <div
+                    className="flex justify-between  w-full items-center gap-2 flex-wrap border-b pb-2"
+                    key={index}
+                  >
+                    <div className="text-[10px] flex flex-col gap-2">
+                      <h1>
+                        {item?.orderBy?.name} just bouught one of your
+                        internships.{" "}
                       </h1>
+                      <div className="flex gap-2 items-center">
+                        <h1>OrderId: </h1>
+                        <h1 className="text-primary font-sans text_sm">
+                          `#{item?.orderId}`{" "}
+                        </h1>
+                      </div>
+                    </div>
+                    <div className="text_sm bg-tertiary p-1 px-3 rounded-sm">
+                      <Link to={""} className="">
+                        View
+                      </Link>
                     </div>
                   </div>
-                  <div className="text_sm bg-tertiary p-1 px-3 rounded-sm">
-                    <Link to={""} className="">
-                      View
-                    </Link>
-                  </div>
-                </div>
-              ))}
-            </div>
+                ))}
+              </div>
+            )}
           </div>
           <div></div>
           <div></div>

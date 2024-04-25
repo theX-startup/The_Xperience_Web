@@ -42,7 +42,7 @@ const Register = () => {
   };
   return (
     <AnimatedPage>
-      <div className="min-h-[85vh] flex items-center w-full">
+      <div className="min-h-screen flex items-center w-full">
         <form
           className="max-h-[80vh] lg:max-h-[90vh] w-full justify-center overflow-y-auto items-center px-3 md:px-10 gap-4 grid grid-cols-1 pt-12 lg:pt-24"
           style={{

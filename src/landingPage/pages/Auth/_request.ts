@@ -34,7 +34,7 @@ export const login = (
           type: ActionTypes.SET_SIGNIN_LOADING,
           payload: false,
         });
-        navigation("../../")
+        navigation("../../");
       }
     } catch (error: any) {
       dispatch({
@@ -80,11 +80,7 @@ export const register = (
           type: ActionTypes.SET_SIGNUP_LOADING,
           payload: false,
         });
-        if (response.user.position === "intern") {
-          navigate("../addPhone");
-        } else {
-          navigate("../profileDetails");
-        }
+        navigate("../");
       }
     } catch (error: any) {
       dispatch({
@@ -101,10 +97,15 @@ export const getUser = (): ThunkAction<void, any, any, any> => {
       let urlPath = "/auth/getUserData";
       let response = await RestApi.getCall(urlPath);
       if (response) {
-        // console.log(response);
         dispatch({
           type: ActionTypes.SET_USER,
           payload: { ...response },
+        });
+      } else {
+        localStorage.removeItem(TOKEN_KEY);
+        dispatch({
+          type: ActionTypes.IS_AUTH,
+          payload: false,
         });
       }
     } catch (error: any) {

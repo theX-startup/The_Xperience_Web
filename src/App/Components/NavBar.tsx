@@ -1,7 +1,6 @@
 import logo from "../../assets/logos/logo.png";
 import logoBlack from "../../assets/logos/logoBlack.png";
 import { MdOutlineMenu } from "react-icons/md";
-import { IoSearchOutline } from "react-icons/io5";
 import { Link } from "react-router-dom";
 import { useSelector } from "react-redux";
 import { useState } from "react";
@@ -10,6 +9,7 @@ import { IoMdClose } from "react-icons/io";
 import { IoIosArrowDown } from "react-icons/io";
 import { IoIosArrowUp } from "react-icons/io";
 import { useAuth } from "../../redux/context";
+import { SearchInput } from "@/components/search-input";
 
 const NavBar = () => {
   const user = useSelector((state: any) => state.auth.user);
@@ -205,20 +205,7 @@ const NavBar = () => {
             </Link>
           </div>
         </div>
-        <div>
-          <div className="w-full md:w-[450px] lg:w-[600px] h-[40px] bg-secondary border border-black dark:border-white rounded flex">
-            <input
-              type="search"
-              name=""
-              id=""
-              className="w-full h-full outline-none bg-secondary text-[12px] p-2 py-4 rounded "
-              placeholder="Search Internships"
-            />
-            <button className="bg-tertiary w-[40px] h-full rounded-r-sm flex items-center justify-center">
-              <IoSearchOutline className="" />
-            </button>
-          </div>
-        </div>
+        <SearchInput />
       </div>
       <div className="hidden sm:block">
         <div

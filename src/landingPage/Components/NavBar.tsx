@@ -49,10 +49,10 @@ const NavBar = () => {
       >
         <div>
           <ul className="md:flex gap-5 md:text-xs block lg:text-sm">
-            <Link to={"home"}>
+            <Link to={"/"}>
               <li className="nav-item">Home</li>
             </Link>
-            <Link to={""}>
+            <Link to={"company_professional"}>
               <li className="nav-item">Company / Professionals</li>
             </Link>
             <Link to={"resources"}>
@@ -60,6 +60,9 @@ const NavBar = () => {
             </Link>
             <Link to={"about"}>
               <li className="nav-item">About us</li>
+            </Link>
+            <Link to={"contact_us"}>
+              <li className="nav-item">Contact Us</li>
             </Link>
           </ul>
         </div>

@@ -3,6 +3,7 @@
 @tailwind components;
 @tailwind utilities;
 
+
 .inknut-antiqua-regular {
   font-family: "Inknut Antiqua", serif;
   font-weight: 400;
@@ -44,11 +45,11 @@
 }
 
 .bg-secondary {
-  @apply dark:bg-gray-900 bg-slate-200;
+  @apply dark:bg-gray-900 bg-white;
 }
 
 .text-primary {
-  @apply dark:text-[#0096FF] text-[#0000ff]
+  @apply dark:text-[#0096FF] text-[#0000ff];
 }
 
 .text-secondary {
@@ -202,4 +203,8 @@ body {
   body {
     @apply bg-background text-foreground;
   }
+}
+
+.ql-container {
+  font-size: 16px !important;
 }
