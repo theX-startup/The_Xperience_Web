@@ -97,13 +97,17 @@ export const getUser = (): ThunkAction<void, any, any, any> => {
       let urlPath = "/auth/getUserData";
       let response = await RestApi.getCall(urlPath);
       if (response) {
-        // console.log(response);
         dispatch({
           type: ActionTypes.SET_USER,
           payload: { ...response },
         });
+      } else {
+        localStorage.removeItem(TOKEN_KEY);
+        dispatch({
+          type: ActionTypes.IS_AUTH,
+          payload: false,
+        });
       }
-      console.log(response);
     } catch (error: any) {
       console.log(error);
     }

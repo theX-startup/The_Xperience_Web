@@ -19,6 +19,8 @@ import Skills from "./components/Skills";
 import MinimumScoreForm from "./components/MinimumScoreForm";
 import DurationForm from "./components/DurationForm";
 import TasksForm from "./components/TasksForm";
+import { Banner } from "@/components/banner";
+import { InternshipAction } from "./components/InternshipAction";
 
 const Description = () => {
   const params = useParams();
@@ -36,6 +38,7 @@ const Description = () => {
   const totalFields = required.length;
   const completedFields = required.filter(Boolean).length;
   const dispatch = useDispatch<any>();
+  const isComplete = required.every(Boolean);
 
   const categories = async () => {
     const response = await RestApi.getCall("/categories");
@@ -59,72 +62,88 @@ const Description = () => {
   }, []);
 
   return (
-    <div className="p-6 w-full">
-      <div className="flex items-center justify-between">
-        <div className="flex flex-col gap-y-2">
-          <h1 className="text-2xl font-medium">Internship setup</h1>
-          <span className="text-sm text-slate-700">
-            complete all fields ({completedFields}/{totalFields})
-          </span>
-        </div>
-      </div>
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mt-16 w-full">
-        <div>
-          <div className="flex items-center gap-x-2">
-            <IconBadge icon={LayoutDashboard} />
-            <h1 className="text-xl">Internship Description</h1>
-            {/* <span className="text-sm text-slate-700"></span> */}
+    <>
+      {!values.isPublished && (
+        <Banner
+          variant={"warning"}
+          label="This internship is not published, it will not be visible to students"
+        />
+      )}
+      <Banner
+        variant={"warning"}
+        label="If changes do not reflect refresh the page"
+      />
+      <div className="p-6 w-full">
+        <div className="flex items-center justify-between">
+          <div className="flex flex-col gap-y-2">
+            <h1 className="text-2xl font-medium">Internship setup</h1>
+            <span className="text-sm text-slate-700">
+              complete all fields ({completedFields}/{totalFields})
+            </span>
           </div>
-          <TitleForm initialData={values} courseId={id} />
-          <DescriptionForm initialData={values} courseId={id} />
-          <ImageForm initialData={values} courseId={id} />
-          <CategoryForm
-            initialData={values}
-            courseId={id}
-            options={categorys.map((category: any) => ({
-              label: category.name,
-              value: category._id,
-            }))}
+          <InternshipAction
+            disabled={!isComplete}
+            internshipId={id || ""}
+            isPublished={values.isPublished}
           />
-          <WhatToGainForm initialData={values} courseId={id} />
-          <Skills initialData={values} courseId={id} />
         </div>
-        <div className="space-y-6">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mt-16 w-full">
           <div>
             <div className="flex items-center gap-x-2">
-              <IconBadge icon={ListChecks} />
-              <h2 className="text-xl">Internship Tasks</h2>
+              <IconBadge icon={LayoutDashboard} />
+              <h1 className="text-xl">Internship Description</h1>
             </div>
-            <TasksForm initialData={values} courseId={id} />
+            <TitleForm initialData={values} courseId={id} />
+            <DescriptionForm initialData={values} courseId={id} />
+            <ImageForm initialData={values} courseId={id} />
+            <CategoryForm
+              initialData={values}
+              courseId={id}
+              options={categorys.map((category: any) => ({
+                label: category.name,
+                value: category._id,
+              }))}
+            />
+            <WhatToGainForm initialData={values} courseId={id} />
+            <Skills initialData={values} courseId={id} />
           </div>
-          <div>
-            <div className="flex items-center gap-x-2">
-              <IconBadge icon={CircleDollarSign} />
-              <h2 className="text-xl">Sell Your Internship</h2>
+          <div className="space-y-6">
+            <div>
+              <div className="flex items-center gap-x-2">
+                <IconBadge icon={ListChecks} />
+                <h2 className="text-xl">Internship Tasks</h2>
+              </div>
+              <TasksForm initialData={values} courseId={id} />
             </div>
-            <PriceForm initialData={values} courseId={id} />
-          </div>
-          <div>
-            <div className="flex items-center gap-x-2">
-              <IconBadge icon={BadgeInfo} />
-              <h2 className="text-xl">
-                Add a minimum Score for your Internship
-              </h2>
+            <div>
+              <div className="flex items-center gap-x-2">
+                <IconBadge icon={CircleDollarSign} />
+                <h2 className="text-xl">Sell Your Internship</h2>
+              </div>
+              <PriceForm initialData={values} courseId={id} />
             </div>
-            <MinimumScoreForm initialData={values} courseId={id} />
-          </div>
-          <div>
-            <div className="flex items-center gap-x-2">
-              <IconBadge icon={BadgeInfo} />
-              <h2 className="text-xl">
-                What is the duration of your internship?
-              </h2>
+            <div>
+              <div className="flex items-center gap-x-2">
+                <IconBadge icon={BadgeInfo} />
+                <h2 className="text-xl">
+                  Add a minimum Score for your Internship
+                </h2>
+              </div>
+              <MinimumScoreForm initialData={values} courseId={id} />
             </div>
-            <DurationForm initialData={values} courseId={id} />
+            <div>
+              <div className="flex items-center gap-x-2">
+                <IconBadge icon={BadgeInfo} />
+                <h2 className="text-xl">
+                  What is the duration of your internship?
+                </h2>
+              </div>
+              <DurationForm initialData={values} courseId={id} />
+            </div>
           </div>
         </div>
       </div>
-    </div>
+    </>
   );
 };
 

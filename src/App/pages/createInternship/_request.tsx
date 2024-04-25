@@ -8,19 +8,18 @@ export const createInternship =
       let urlPath = "/internships/create";
       let response = await RestApi.postCall(urlPath, data);
       console.log(response);
-      if (response) {
-        dispatch({
-          type: "CREATE_INTERNSHIP",
-          payload: response,
-        });
-        toast.success("Internship created successfully", {
-          position: "top-right",
-          autoClose: 5000,
-          hideProgressBar: false,
-          closeOnClick: true,
-        });
-        navigation(`/createInternship/step-2/${response._id}`);
-      }
+
+      dispatch({
+        type: "CREATE_INTERNSHIP",
+        payload: response,
+      });
+      toast.success("Internship created successfully", {
+        position: "top-right",
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+      });
+      navigation(`/createInternship/step-2/${response._id}`);
     } catch (error) {
       toast.error("Failed to create internship", {
         position: "top-right",
@@ -66,15 +65,19 @@ export const createTask =
     toast: any,
     internshipId: string
   ): ThunkAction<void, any, any, any> =>
-  async (dispatch) => {
+  async (dispatch, getState) => {
     try {
       let urlPath = "/tasks/create/" + internshipId;
-      let response = await RestApi.postCall(urlPath, data);
-      console.log(response);
-      if (response) {
+      await RestApi.postCall(urlPath, data).then((res) => {
+        const updatedTasks = [...getState().create.values.tasks, res.newTask];
+
+        const updatedInternship = {
+          ...getState().create.values,
+          tasks: updatedTasks,
+        };
         dispatch({
-          type: "CREATE_TASK",
-          payload: response.newTask,
+          type: "CREATE_INTERNSHIP",
+          payload: updatedInternship,
         });
         toast.success("Task created successfully", {
           position: "top-right",
@@ -82,7 +85,7 @@ export const createTask =
           hideProgressBar: false,
           closeOnClick: true,
         });
-      }
+      });
     } catch (error) {
       toast.error("Failed to create task", {
         position: "top-right",
@@ -94,38 +97,30 @@ export const createTask =
   };
 
 export const getTask =
-  (id: string): ThunkAction<void, any, any, any> =>
+  (id: string, taskId: string): ThunkAction<void, any, any, any> =>
   async (dispatch) => {
     try {
-      let urlPath = "/tasks/" + id;
-      let response = await RestApi.getCall(urlPath);
-      console.log(response);
-      if (response) {
+      let urlPath = "/tasks/" + id + "/" + taskId;
+      await RestApi.getCall(urlPath).then((response) => {
         dispatch({
           type: "GET_TASK",
-          payload: response,
+          payload: response.task,
         });
-      }
+      });
     } catch (error) {
       console.log(error);
     }
   };
 
 export const updateTask =
-  (
-    data: any,
-    toast: any,
-    taskId: string
-  ): ThunkAction<void, any, any, any> =>
+  (data: any, toast: any, taskId: string): ThunkAction<void, any, any, any> =>
   async (dispatch) => {
     try {
       let urlPath = `/tasks/update/${taskId}`;
-      let response = await RestApi.putCall(urlPath, data);
-      console.log(response);
-      if (response) {
+      await RestApi.putCall(urlPath, data).then((res) => {
         dispatch({
-          type: "CREATE_TASK",
-          payload: response,
+          type: "GET_TASK",
+          payload: res,
         });
         toast.success("Task updated successfully", {
           position: "top-right",
@@ -133,7 +128,7 @@ export const updateTask =
           hideProgressBar: false,
           closeOnClick: true,
         });
-      }
+      });
     } catch (error) {
       toast.error("Failed to update Task", {
         position: "top-right",

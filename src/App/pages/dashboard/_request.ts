@@ -2,19 +2,22 @@ import { ThunkAction } from "redux-thunk";
 import RestApi from "../../../services/RestApi";
 import { ActionTypes } from "../../../utils/ActionTypes";
 
-export const getInternships = (): ThunkAction<void, any, any, any> => {
+export const getInternships = (
+  title? : string,
+  categoryId?: string,
+): ThunkAction<void, any, any, any> => {
   return async (dispatch: any) => {
     try {
       dispatch({
         type: ActionTypes.SET_INTERNSHIPS_LOADING,
         payload: true,
       });
-      let urlPath = "/internships";
+      let urlPath = `/internships?title=${title}&categoryId=${categoryId}`;
       let response = await RestApi.getCall(urlPath);
       if (response) {
         dispatch({
           type: ActionTypes.SET_INTERNSHIPS,
-          payload: response.internships,
+          payload: response.internshipsWithProgress,
         });
         dispatch({
           type: ActionTypes.SET_INTERNSHIPS_LOADING,
@@ -93,7 +96,7 @@ export const fetchDashboardData = (): ThunkAction<void, any, any, any> => {
           type: ActionTypes.SET_DASHBOARD_INFO_ERROR,
           payload: "Error fetching dashboard data",
         });
-        
+
       }
     } catch (error: any) {
       dispatch({

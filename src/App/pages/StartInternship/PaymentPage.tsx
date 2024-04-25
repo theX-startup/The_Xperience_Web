@@ -2,6 +2,8 @@ import { useDispatch, useSelector } from "react-redux";
 import { PaystackButton } from "react-paystack";
 import { addInternship } from "./_request";
 import { Bounce, toast } from "react-toastify";
+import { Back } from "../createInternship/components/back-button";
+import { MiniLoader } from "../Analytics/Index";
 
 const PaymentPage = () => {
   const internshipDetails = useSelector(
@@ -9,9 +11,11 @@ const PaymentPage = () => {
   );
   const dispatch = useDispatch<any>();
   const user = useSelector((state: any) => state.auth.user);
-  console.log(internshipDetails.userId, "internshipDetails")
+  const addInternshipLoading = useSelector(
+    (state: any) => state.internships.addInternshipLoading
+  );
   const body = {
-    _id: internshipDetails.userId,
+    _id: internshipDetails.user._id,
     internshipId: internshipDetails._id,
   };
 
@@ -33,6 +37,7 @@ const PaymentPage = () => {
     text: "Pay Now",
     onSuccess: () => {
       dispatch(addInternship(body));
+
       toast.success("Payment Successful", {
         position: "top-right",
         autoClose: 3000,
@@ -60,9 +65,23 @@ const PaymentPage = () => {
     },
   };
 
+  if (addInternshipLoading) {
+    return (
+      <div className="h-screen flex items-center justify-center flex-col">
+        <MiniLoader />
+        <span>Registring for Internship.......</span>
+      </div>
+    );
+  }
+
   return (
     <>
-      <div className="w-full min-h-[80vh] flex items-center flex-col lg:px-[10rem] md:px-[5rem] px-[2rem] mt-[2rem] lg:mt-[3rem] ">
+      <Back
+        title="Back to dashboard"
+        to="../dashboard"
+        classname="md:px-[5rem] px-[2rem] mt-[2rem] lg:mt-[3rem]"
+      />
+      <div className="w-full min-h-[80vh] flex items-center flex-col lg:px-[10rem] md:px-[5rem] px-[2rem] ">
         <div className="w-full flex flex-col justify-center items-center">
           <div className="flex items-center justify-center text-[#0000ff]">
             <h1 className="text-[16px]">Payment Page</h1>

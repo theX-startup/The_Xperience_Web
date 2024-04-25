@@ -1,17 +1,18 @@
 import { ThunkAction } from "redux-thunk";
 import RestApi from "../../../services/RestApi";
 import { toast } from "react-toastify";
+import { ActionTypes } from "@/utils/ActionTypes";
 
 export const addInternship = (body: {
-  _id: string;
   internshipId: string;
+  transactionId: string;
 }): ThunkAction<void, any, any, any> => {
   return async (dispatch: any) => {
     try {
-      // dispatch({
-      //   type: "SET_LOADING",
-      //   payload: true,
-      // });
+      dispatch({
+        type: ActionTypes.SET_ADD_INTERNSHIP_LOADING,
+        payload: true,
+      });
       let urlPath = `/addInternship`;
       const res = await RestApi.postCall(urlPath, body);
       if (res) {
@@ -25,6 +26,10 @@ export const addInternship = (body: {
           progress: undefined,
           theme: "light",
         });
+        dispatch({
+          type: ActionTypes.SET_ADD_INTERNSHIP_LOADING,
+          payload: false,
+        });
       } else {
         toast.error("Error in adding Internship", {
           position: "top-right",
@@ -36,15 +41,23 @@ export const addInternship = (body: {
           progress: undefined,
           theme: "light",
         });
+        dispatch({
+          type: ActionTypes.SET_ADD_INTERNSHIP_LOADING,
+          payload: false,
+        });
+        dispatch({
+          type: ActionTypes.SET_ADD_INTERNSHIP_ERROR,
+          payload: "An error occurred, please retry",
+        });
       }
     } catch (error: any) {
       dispatch({
-        type: "SET_ERROR",
-        payload: error.message,
+        type: ActionTypes.SET_ADD_INTERNSHIP_LOADING,
+        payload: false,
       });
       dispatch({
-        type: "SET_LOADING",
-        payload: false,
+        type: ActionTypes.SET_ADD_INTERNSHIP_ERROR,
+        payload: "An error occurred, please retry",
       });
     }
   };

@@ -4,26 +4,25 @@ import { useSelector } from "react-redux";
 import ProfessionalNavBar from "../Components/ProfessionalNavBar";
 import Loader from "../Components/Loader";
 import FooterNav from "../Components/Footer";
+import { useCookies } from "react-cookie";
 
 const Layout = () => {
-  const user = useSelector((state: any) => state.auth.user);
+  const [cookies] = useCookies(["state"]);
   const loading = useSelector((state: any) => state.auth.loading);
 
   if (loading) {
     return <Loader />;
   }
 
-  if (user.position === "pro") {
+  if (cookies.state === "PROFESSIONAL") {
     return (
-      <div className={`min-h-full relative`}>
+      <div className={`min-h-screen relative`}>
         <ProfessionalNavBar />
         <Outlet />
         <FooterNav />
       </div>
     );
-  }
-
-  if (user.position === "intern") {
+  } else {
     return (
       <div className={`min-h-full relative`}>
         <NavBar />
