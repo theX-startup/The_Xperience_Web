@@ -1,5 +1,49 @@
-const initailState = {
-  values: {},
+import { createInternshipModel } from "../models";
+
+const initailState: createInternshipModel = {
+  values: {
+    category: "",
+    createdAt: "",
+    description: "",
+    duration: "",
+    image: "",
+    isPublished: false,
+    minimumScore: 0,
+    price: 0,
+    purchases: [],
+    skill: [],
+    tasks: [
+      {
+        description: "",
+        instructions: "",
+        internship: "",
+        isCompleted: false,
+        isFree: false,
+        isPublished: false,
+        muxData: [],
+        position: 0,
+        submissionType: "",
+        title: "",
+        userProgress: [],
+        videoUrl: "",
+        what_you_will_do: [],
+        what_you_will_learn: [],
+      },
+    ],
+    title: "",
+    user: {
+      _id: "",
+      createdAt: "",
+      description: "",
+      email: "",
+      fullname: "",
+      picturePath: "",
+      skills: [],
+      updatedAt: "",
+      username: "",
+      __v: 0,
+    },
+  },
   categorys: [],
 };
 

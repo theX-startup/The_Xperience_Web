@@ -65,13 +65,19 @@ export const createTask =
     toast: any,
     internshipId: string
   ): ThunkAction<void, any, any, any> =>
-  async (dispatch) => {
+  async (dispatch, getState) => {
     try {
       let urlPath = "/tasks/create/" + internshipId;
       await RestApi.postCall(urlPath, data).then((res) => {
+        const updatedTasks = [...getState().create.values.tasks, res.newTask];
+
+        const updatedInternship = {
+          ...getState().create.values,
+          tasks: updatedTasks,
+        };
         dispatch({
-          type: "CREATE_TASK",
-          payload: res.newTask,
+          type: "CREATE_INTERNSHIP",
+          payload: updatedInternship,
         });
         toast.success("Task created successfully", {
           position: "top-right",
@@ -91,14 +97,14 @@ export const createTask =
   };
 
 export const getTask =
-  (id: string): ThunkAction<void, any, any, any> =>
+  (id: string, taskId: string): ThunkAction<void, any, any, any> =>
   async (dispatch) => {
     try {
-      let urlPath = "/tasks/" + id;
+      let urlPath = "/tasks/" + id + "/" + taskId;
       await RestApi.getCall(urlPath).then((response) => {
         dispatch({
           type: "GET_TASK",
-          payload: response,
+          payload: response.task,
         });
       });
     } catch (error) {
@@ -113,7 +119,7 @@ export const updateTask =
       let urlPath = `/tasks/update/${taskId}`;
       await RestApi.putCall(urlPath, data).then((res) => {
         dispatch({
-          type: "CREATE_TASK",
+          type: "GET_TASK",
           payload: res,
         });
         toast.success("Task updated successfully", {

@@ -23,6 +23,9 @@ import CreateInternshipLayout from "./CreateInternshipLayout";
 import CreateInternship from "../pages/createInternship/Index";
 import Description from "../pages/createInternship/Description";
 import EditTask from "../pages/createInternship/EditTask";
+import { InternshipIdPage } from "../pages/Internship/Index";
+import InternshipLayout from "../pages/Internship/layout";
+import { InternshipDetail } from "../pages/Internship/Internship-details";
 
 const PrivtaeRoutes = () => {
   const location = useLocation();
@@ -30,7 +33,7 @@ const PrivtaeRoutes = () => {
 
   return (
     <Routes key={location.pathname} location={location}>
-      <Route path="auth/*" element={<Navigate to={'/dashboard'} />} />
+      <Route path="auth/*" element={<Navigate to={"/dashboard"} />} />
       <Route element={<Layout />}>
         <Route path="payment/:id" element={<PaymentPage />} />
         <Route element={<SideBar setActive={setActive} />}>
@@ -64,6 +67,10 @@ const PrivtaeRoutes = () => {
           path="createInternship/:internshipId/editTask/:id"
           element={<EditTask />}
         />
+      </Route>
+      <Route path="internship/:internshipId" element={<InternshipLayout />}>
+        <Route path="task/:taskId" element={<InternshipIdPage />} />
+        <Route element={<InternshipDetail />} index />
       </Route>
     </Routes>
   );
