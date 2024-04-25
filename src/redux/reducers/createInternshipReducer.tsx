@@ -2,6 +2,8 @@ import { createInternshipModel } from "../models";
 
 const initailState: createInternshipModel = {
   values: {
+    _id: "",
+    WhatToGain: [],
     category: "",
     createdAt: "",
     description: "",
@@ -14,6 +16,7 @@ const initailState: createInternshipModel = {
     skill: [],
     tasks: [
       {
+        _id: "",
         description: "",
         instructions: "",
         internship: "",

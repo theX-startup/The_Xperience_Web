@@ -6,7 +6,6 @@ import Home from "../pages/landingPage/Home";
 import About from "../pages/landingPage/About";
 import Resources from "../pages/landingPage/Resources";
 import Contact_Us from "../pages/landingPage/Contact_Us";
-import Company_Pro from "../pages/landingPage/Company_Pro";
 
 const Router = () => {
   const location = useLocation();
