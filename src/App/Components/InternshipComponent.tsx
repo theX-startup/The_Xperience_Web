@@ -1,7 +1,7 @@
 import { useEffect } from "react";
 import { useDispatch } from "react-redux";
 import { Link } from "react-router-dom";
-import { addClick, addImpression } from "../pages/dashboard/_request";
+import { addImpression } from "../pages/dashboard/_request";
 import { IconBadge } from "@/components/icon-badge";
 import { BookMarkedIcon, BookOpen } from "lucide-react";
 import InternshipProgress from "../pages/Internship/_components/Internship-progress";
