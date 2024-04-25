@@ -1,8 +1,5 @@
-import {
-  Footer,
-  FooterCopyright,
-  FooterIcon,
-} from "flowbite-react";
+import { Footer, FooterCopyright, FooterIcon } from "flowbite-react";
+
 import {
   BsDribbble,
   BsFacebook,

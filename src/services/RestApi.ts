@@ -2,6 +2,7 @@ import { create } from "apisauce";
 import _, { reject } from "lodash";
 
 
+// const baseUrl = "http://192.168.0.189:3000";
 const baseUrl = "https://thexperience.onrender.com";
 
 

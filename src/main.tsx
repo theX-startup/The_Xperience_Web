@@ -8,8 +8,10 @@ import AppRouter from "./AppRouter.tsx";
 import { QueryClient } from "react-query";
 import { QueryClientProvider } from "react-query";
 import { ToastContainer } from "react-toastify";
+
 import 'react-toastify/dist/ReactToastify.css';
 import { ConfettiProvider } from "./components/providers/confetti-provider.tsx";
+
 
 const Client = new QueryClient();
 ReactDOM.createRoot(document.getElementById("root")!).render(
