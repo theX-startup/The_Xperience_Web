@@ -14,10 +14,6 @@ const PaymentPage = () => {
   const addInternshipLoading = useSelector(
     (state: any) => state.internships.addInternshipLoading
   );
-  const body = {
-    _id: internshipDetails.user._id,
-    internshipId: internshipDetails._id,
-  };
 
   const componentProps = {
     email: user.email,
@@ -36,7 +32,12 @@ const PaymentPage = () => {
     publicKey: "pk_test_77cb40e30f91f1176756dff61a825e1ff76e40c6",
     text: "Pay Now",
     onSuccess: () => {
-      dispatch(addInternship(body));
+      dispatch(
+        addInternship({
+          internshipId: internshipDetails._id,
+          transactionId: "",
+        })
+      );
 
       toast.success("Payment Successful", {
         position: "top-right",

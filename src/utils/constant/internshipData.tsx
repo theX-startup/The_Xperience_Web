@@ -324,3 +324,34 @@ export const details = [
     digital: "Digital Creative",
   },
 ];
+
+export const about = {
+  firstSlide: "",
+  secondSlide: "",
+  thirdSlide: "",
+  fourthSlide: "",
+  image1: "",
+  image2: "",
+  fifthSlide: "",
+  sixthSlide: "",
+  seventhSlide: "",
+};
+export const contact = {
+  contact: "",
+  connect: "",
+  telephone: "",
+  phoneNumber: "",
+  whatsapp: "",
+  whatsappNumber: "",
+  office: "",
+  officeAddress: "",
+  email: "",
+  emailAddress: "",
+};
+
+export const contactdata = [
+  {
+    img: "",
+    number: "",
+  }
+]

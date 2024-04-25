@@ -18,7 +18,6 @@ const InternshipEnrollButton = ({ price, internshipId }: Props) => {
   );
   const internship = useSelector((state: any) => state.internships.internship);
 
-
   const componentProps = {
     email: user.email,
     amount: Number(price) * 100,
@@ -35,7 +34,7 @@ const InternshipEnrollButton = ({ price, internshipId }: Props) => {
           display_name: "Internship description",
           variable_name: "internship_description",
           value: internship.description,
-        }
+        },
       ],
     },
     publicKey: "pk_test_77cb40e30f91f1176756dff61a825e1ff76e40c6",
@@ -43,13 +42,13 @@ const InternshipEnrollButton = ({ price, internshipId }: Props) => {
     subaccount: "ACCT_utxtd88yof1qtdq",
   };
 
-  const onSuccess = (res : any) => {
+  const onSuccess = (res: any) => {
     const body = {
       internshipId: internshipId,
       transactionId: res.transaction,
     };
     dispatch(addInternship(body));
-    console.log(res)
+    console.log(res);
 
     toast.success("Payment Successful", {
       position: "top-right",
@@ -86,6 +85,7 @@ const InternshipEnrollButton = ({ price, internshipId }: Props) => {
           onClose,
         });
       }}
+      disabled={addInternshipLoading}
     >
       Enroll for {formatPrice(price)}
     </Button>

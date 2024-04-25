@@ -1,7 +1,9 @@
-import { useRef } from "react";
+import { useEffect, useRef } from "react";
 import InternshipComponent from "../../App/Components/InternshipComponent";
 import {  motion } from "framer-motion";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import { getInternships } from "@/App/pages/dashboard/_request";
+import { useSearchParams } from "react-router-dom";
 
 
 const InternshipSec = () => {
@@ -9,6 +11,16 @@ const InternshipSec = () => {
   const internships = useSelector(
     (state: any) => state.internships.internships
   );
+  const [searchParams] = useSearchParams();
+  const dispatch = useDispatch<any>()
+
+
+  const categoryId = searchParams.get("categoryId");
+  const title = searchParams.get("title");
+
+  useEffect(() => {
+    dispatch(getInternships(title || "", categoryId || ""));
+  }, []);
 
   return (
     <>
