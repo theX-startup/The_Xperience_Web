@@ -2,8 +2,8 @@ import { create } from "apisauce";
 import _, { reject } from "lodash";
 
 
-// const baseUrl = "http://192.168.0.189:3000";
-const baseUrl = "https://thexperience.onrender.com";
+const baseUrl = "http://192.168.16.52:3000";
+// const baseUrl = "https://thexperience.onrender.com";
 
 
 export const api = create({
@@ -29,7 +29,7 @@ class RestApi {
         .then(() => {
           api.get(baseUrl + urlPath).then((response: any) => {
             if (response.status === 200) {
-              resolve(response.data);
+              resolve(response);
             } else {
               if (response.status === 401) {
                 localStorage.removeItem("token");
@@ -54,7 +54,7 @@ class RestApi {
         .then(() => {
           api.post(baseUrl + urlPath, data).then((response: any) => {
             if (response.status === 200) {
-              resolve(response.data);
+              resolve(response);
             } else {
               if (response.status === 401) {
                 localStorage.removeItem("token");
@@ -79,7 +79,7 @@ class RestApi {
         .then(() => {
           api.put(baseUrl + urlPath, data).then((response: any) => {
             if (response.status === 200) {
-              resolve(response.data);
+              resolve(response);
             } else {
               if (response.status === 401) {
                 localStorage.removeItem("token");
@@ -104,11 +104,11 @@ class RestApi {
         .then(() => {
           api.delete(baseUrl + urlPath).then((response: any) => {
             if (response.status === 200) {
-              resolve(response.data);
+              resolve(response);
             } else {
               if (response.status === 401) {
                 localStorage.removeItem("token");
-                window.location.href = "/login";
+                window.location.href = "/";
               } else reject(response);
             }
           });
@@ -129,7 +129,7 @@ class RestApi {
         .then(() => {
           api.get(baseUrl + urlPath, params).then((response: any) => {
             if (response.status === 200) {
-              resolve(response.data);
+              resolve(response);
             } else {
               if (response.status === 401) {
                 localStorage.removeItem("token");

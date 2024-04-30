@@ -17,7 +17,7 @@ const InternDashboard = () => {
 
   const getCategories = async () => {
     const response = await RestApi.getCall("/categories");
-    return response;
+    return response.data;
   };
   const [searchParams] = useSearchParams();
   const pathname = useLocation().pathname;

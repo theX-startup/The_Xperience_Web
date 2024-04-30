@@ -22,6 +22,8 @@ import { Banner } from "@/components/banner";
 import { TaskActions } from "./TaskComponent/TaskAction";
 import MinimumScoreForm from "./TaskComponent/MinimumScoreForm";
 import CategoryForm from "./TaskComponent/CategoryForm";
+import Loader from "@/App/Components/Loader";
+import { task } from "@/redux/models";
 
 type Props = {};
 
@@ -30,7 +32,8 @@ const EditTask = (props: Props) => {
   const params = useParams();
   const { id, internshipId } = params;
   const dispatch = useDispatch<any>();
-  const task = useSelector((state: any) => state.tasks.task);
+  const task : task = useSelector((state: any) => state.create.selectedTask);
+  const taskLoading = useSelector((state: any) => state.create.taskPageLoading);
   const required = [
     task?.title,
     task?.what_you_will_do?.length > 0,
@@ -46,6 +49,10 @@ const EditTask = (props: Props) => {
   useEffect(() => {
     dispatch(getTask(internshipId ? internshipId : "", id ? id : ""));
   }, []);
+
+  if (taskLoading) {
+    return <Loader />;
+  }
   return (
     <>
       {!task.isPublished && (

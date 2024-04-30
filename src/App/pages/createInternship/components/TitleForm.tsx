@@ -21,10 +21,6 @@ import { toast } from "react-toastify";
 interface props {
   initialData: {
     title: string;
-    description: string;
-    image: string;
-    price: string;
-    category: string;
   };
   courseId: any;
 }
@@ -39,10 +35,6 @@ const TitleForm = (props: props) => {
   };
   const schema = z.object({
     title: z.string().min(3, { message: "Title is too short" }),
-    //   description: z.string().nonempty(),
-    //   image: z.string().nonempty(),
-    //   price: z.string().nonempty(),
-    //   category: z.string().nonempty(),
   });
 
   const form = useForm<z.infer<typeof schema>>({

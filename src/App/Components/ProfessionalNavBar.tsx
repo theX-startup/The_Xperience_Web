@@ -15,8 +15,8 @@ const ProfessionalNavBar = () => {
   const navigate = useNavigate();
 
   return (
-    <nav className="bg-secondary border-gray-300 border-b dark:bg-gray-900">
-      <div className="   flex flex-wrap items-center justify-between mx-auto p-4">
+    <nav className="bg-secondary border-gray-300 border-b dark:bg-gray-900 w-full">
+      <div className="   flex flex-wrap items-center justify-between mx-auto p-4 w-full">
         <div className="flex items-center space-x-3 rtl:space-x-reverse">
           <Link to={"/"}>
             <img
@@ -33,14 +33,13 @@ const ProfessionalNavBar = () => {
             />
           </Link>
         </div>
-        <div className="flex items-center gap-x-10 justify-between w-[50%]">
+        <div className="flex items-center gap-x-10 justify-between ">
           <div className="flex items-center md:order-2 space-x-3 md:space-x-0 rtl:space-x-reverse">
             <button
               type="button"
               className="flex text-sm bg-gray-800 rounded-sm md:me-0 focus:ring-4 focus:ring-gray-300 dark:focus:ring-gray-600"
               onClick={() => setIsDropdownOpen(!isDropdownOpen)}
             >
-              <span className="sr-only">Open user menu</span>
               <img
                 className="w-[40px] h-[40px] rounded-sm"
                 src={user.picturePath || "https://i.pravatar.cc/300"}
@@ -56,7 +55,7 @@ const ProfessionalNavBar = () => {
             >
               <div className="px-4 py-3">
                 <span className="block text-sm text-gray-900 dark:text-white">
-                  {user.fullname || "User"}
+                  {user.fullname}
                 </span>
                 <span className="block text-sm  text-gray-500 truncate dark:text-gray-400">
                   {user.email}
@@ -121,7 +120,7 @@ const ProfessionalNavBar = () => {
               </svg>
             </button>
           </div>
-          <div
+          {/* <div
             className={`${
               isActive ? "block" : "hidden"
             } w-full md:block md:w-auto`}
@@ -161,7 +160,7 @@ const ProfessionalNavBar = () => {
                 </Link>
               </li>
             </ul>
-          </div>
+          </div> */}
         </div>
       </div>
     </nav>

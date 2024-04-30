@@ -21,11 +21,18 @@ import DurationForm from "./components/DurationForm";
 import TasksForm from "./components/TasksForm";
 import { Banner } from "@/components/banner";
 import { InternshipAction } from "./components/InternshipAction";
+import { ActionTypes } from "@/utils/ActionTypes";
+import { toast } from "react-toastify";
+import { internship } from "@/redux/models";
+import Loader from "@/App/Components/Loader";
 
 const Description = () => {
   const params = useParams();
   const { id } = params;
-  const values = useSelector((state: any) => state.create.values);
+  const values: internship = useSelector((state: any) => state.create.values);
+  const internshipLoading = useSelector(
+    (state: any) => state.create.internshipPageLoading
+  );
   const categorys = useSelector((state: any) => state.create.categorys);
   const required = [
     values.title,
@@ -47,19 +54,44 @@ const Description = () => {
 
   useEffect(() => {
     categories().then((data) => {
-      dispatch({ type: "categories", payload: data });
+      dispatch({ type: "categories", payload: data.data });
     });
 
     const getDetails = async () => {
-      const res = await RestApi.getCall(`/editInternship/${id}`);
-      dispatch({
-        type: "CREATE_INTERNSHIP",
-        payload: res,
-      });
+      try {
+        dispatch({
+          type: ActionTypes.SET_INTERNSHIP_PAGE_LOADING,
+          payload: true,
+        });
+        const res = await RestApi.getCall(`/internships/details/${id}`);
+        dispatch({
+          type: ActionTypes.SET_INTERNSHIP_PAGE_LOADING,
+          payload: false,
+        });
+        dispatch({
+          type: ActionTypes.SET_INTERNSHIP_CREATE_VALUE,
+          payload: res.data,
+        });
+      } catch (error) {
+        dispatch({
+          type: ActionTypes.SET_INTERNSHIP_PAGE_LOADING,
+          payload: false,
+        });
+        toast.error("Falied to get Internship Information, please reload", {
+          position: "top-right",
+          autoClose: 5000,
+          hideProgressBar: false,
+          closeOnClick: true,
+        });
+      }
     };
 
     getDetails();
   }, []);
+
+  if (internshipLoading) {
+    return <Loader />;
+  }
 
   return (
     <>

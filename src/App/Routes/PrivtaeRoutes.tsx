@@ -1,12 +1,5 @@
 import { Navigate, Route, Routes, useLocation } from "react-router-dom";
 import Layout from "./Layout";
-import ProfileDetails from "../../landingPage/pages/Auth/ProfileDetails";
-import PaymentPage from "../pages/StartInternship/PaymentPage";
-import UserInternships from "../pages/UserInternships/UserInternships";
-import SideBar from "../pages/UserInternships/SideBar";
-import { useState } from "react";
-import Tasks from "../pages/Tasks/Tasks";
-import InternshipDetails from "../pages/InternshipDetails/InternshipDetails";
 import ProfilePage from "../pages/Profile/ProfilePage";
 import CertificationPage from "../pages/certificate/CertificationPage";
 import CV from "../pages/certificate/CV";
@@ -29,26 +22,16 @@ import { InternshipDetail } from "../pages/Internship/Internship-details";
 
 const PrivtaeRoutes = () => {
   const location = useLocation();
-  const [active, setActive] = useState("inProgress");
 
   return (
     <Routes key={location.pathname} location={location}>
       <Route path="auth/*" element={<Navigate to={"/dashboard"} />} />
       <Route element={<Layout />}>
-        <Route path="payment/:id" element={<PaymentPage />} />
-        <Route element={<SideBar setActive={setActive} />}>
-          <Route
-            path="internships"
-            element={<UserInternships active={active} />}
-          />
-        </Route>
-        <Route path="details/:id" element={<InternshipDetails />} />
         <Route path="certificate" element={<CertificationPage />} />
         <Route path="CV" element={<CV />} />
         <Route path="performance" element={<PerformancePage />} />
         <Route path="leaderboard" element={<LeaderboardPage />} />
         <Route path="profile" element={<ProfilePage />} />
-        <Route path="profileDetails" element={<ProfileDetails />} />
         <Route element={<SidebarNav />}>
           <Route path="/dashboard" element={<Dashboard />} />
           <Route path="analytics" element={<Analytics />} />
@@ -57,8 +40,6 @@ const PrivtaeRoutes = () => {
           <Route path="orders" element={<Orders />} />
         </Route>
       </Route>
-
-      <Route path="internships/tasks/:id/*" element={<Tasks />} />
       <Route element={<ProfileLayout />}></Route>
       <Route element={<CreateInternshipLayout />}>
         <Route path="createInternship" element={<CreateInternship />} />

@@ -41,14 +41,10 @@ export const internshipReducer = (state = initialState, action: Action) => {
       return { ...state, task: action.payload };
     case ActionTypes.SET_TASK_LOADING:
       return { ...state, taskLoading: action.payload };
-    case ActionTypes.SET_INTRODUCTION:
-      return { ...state, introduction: action.payload };
-    case ActionTypes.SET_INTRODUCTION_LOADING:
-      return { ...state, introductionLoading: action.payload };
-      case ActionTypes.SET_ADD_INTERNSHIP_LOADING:
-        return { ...state, addInternshipLoading: action.payload };
-      case ActionTypes.SET_ADD_INTERNSHIP_ERROR:
-        return { ...state, addInternshipError: action.payload}
+    case ActionTypes.SET_ADD_INTERNSHIP_LOADING:
+      return { ...state, addInternshipLoading: action.payload };
+    case ActionTypes.SET_ADD_INTERNSHIP_ERROR:
+      return { ...state, addInternshipError: action.payload };
     default:
       return state;
   }

@@ -1,9 +1,16 @@
 export interface createInternshipModel {
-  values: values;
+  values: internship;
   categorys: [];
+  selectedTask: task;
+  internshipCreateLoading: boolean;
+  taskCraeteLoading: boolean;
+  internshipUpdateLoading: boolean;
+  taskUpdateLoading: boolean;
+  internshipPageLoading: boolean;
+  taskPageLoading: boolean;
 }
 
-export interface values {
+export interface internship {
   category: string;
   WhatToGain: [];
   title: string;
@@ -35,8 +42,10 @@ export interface task {
   userProgress: userProgress;
   what_you_will_do: [];
   what_you_will_learn: [];
+  Grading_Criteria: [];
   videoUrl: string;
   _id: string;
+  minimumScore: number;
 }
 
 export interface user {

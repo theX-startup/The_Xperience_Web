@@ -24,28 +24,17 @@ export const TaskActions = ({
     setIsLoading(true);
     try {
       let urlPath = `/tasks/delete/${internshipId}/${taskId}`;
-      await RestApi.deleteCall(urlPath).then((res) => {
+      await RestApi.deleteCall(urlPath).then(() => {
         setIsLoading(false);
-        if (res.message === "Task deleted successfully") {
-          toast.success("Task deleted successfully", {
-            position: "top-right",
-            autoClose: 3000,
-            hideProgressBar: false,
-            closeOnClick: true,
-            pauseOnHover: true,
-            draggable: true,
-          });
-          navigate(`../createInternship/step-2/${internshipId}`);
-        } else {
-          toast.error("Task deletion failed", {
-            position: "top-right",
-            autoClose: 3000,
-            hideProgressBar: false,
-            closeOnClick: true,
-            pauseOnHover: true,
-            draggable: true,
-          });
-        }
+        toast.success("Task deleted successfully", {
+          position: "top-right",
+          autoClose: 3000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+        });
+        navigate(`../createInternship/step-2/${internshipId}`);
       });
     } catch (error) {
       toast.error("Task deletion failed", {

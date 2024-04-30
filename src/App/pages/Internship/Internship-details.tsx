@@ -1,4 +1,4 @@
-import {  values } from "@/redux/models";
+import {  internship } from "@/redux/models";
 import { useSelector } from "react-redux";
 import moment from "moment";
 import InternshipEnrollButton from "./_components/Internship-enroll-button";
@@ -7,7 +7,7 @@ import TasksContent from "./_components/tasks-content";
 import ProfileCard from "./_components/profile-card";
 
 export const InternshipDetail = () => {
-  const internship: values = useSelector(
+  const internship: internship = useSelector(
     (state: any) => state.internships.internship
   );
   return (

@@ -1,5 +1,5 @@
 import { ThunkAction } from "redux-thunk";
-import RestApi from "../../../services/RestApi";
+import RestApi, { api } from "../../../services/RestApi";
 import { ActionTypes } from "../../../utils/ActionTypes";
 import { TOKEN_KEY } from "../../../redux/context";
 
@@ -15,27 +15,27 @@ export const login = (
     try {
       let urlPath = "/auth/login";
       let response = await RestApi.postCall(urlPath, formdata);
-      if (response) {
-        dispatch({
-          type: ActionTypes.SET_USER,
-          payload: { ...response.user },
-        });
-        localStorage.setItem(TOKEN_KEY, response.token);
-        localStorage.setItem("newUser", "false");
-        dispatch({
-          type: ActionTypes.SET_TOKEN,
-          payload: response.token,
-        });
-        dispatch({
-          type: ActionTypes.IS_AUTH,
-          payload: true,
-        });
-        dispatch({
-          type: ActionTypes.SET_SIGNIN_LOADING,
-          payload: false,
-        });
-        navigation("../../");
-      }
+      localStorage.setItem(TOKEN_KEY, response.data.token);
+
+      dispatch({
+        type: ActionTypes.SET_USER,
+        payload: { ...response.data.user },
+      });
+
+      localStorage.setItem("newUser", "false");
+      dispatch({
+        type: ActionTypes.SET_TOKEN,
+        payload: response.data.token,
+      });
+      dispatch({
+        type: ActionTypes.IS_AUTH,
+        payload: true,
+      });
+      dispatch({
+        type: ActionTypes.SET_SIGNIN_LOADING,
+        payload: false,
+      });
+      navigation("../../");
     } catch (error: any) {
       dispatch({
         type: ActionTypes.SET_SIGNIN_ERROR,
@@ -61,27 +61,26 @@ export const register = (
     try {
       let urlPath = "/auth/register";
       let response = await RestApi.postCall(urlPath, formdata);
-      if (response) {
-        dispatch({
-          type: ActionTypes.SET_USER,
-          payload: { ...response.user },
-        });
-        localStorage.setItem(TOKEN_KEY, response.token);
-        localStorage.setItem("newUser", "true");
-        dispatch({
-          type: ActionTypes.SET_TOKEN,
-          payload: response.token,
-        });
-        dispatch({
-          type: ActionTypes.IS_AUTH,
-          payload: true,
-        });
-        dispatch({
-          type: ActionTypes.SET_SIGNUP_LOADING,
-          payload: false,
-        });
-        navigate("../");
-      }
+
+      dispatch({
+        type: ActionTypes.SET_USER,
+        payload: { ...response.data.user },
+      });
+      localStorage.setItem(TOKEN_KEY, response.data.token);
+      localStorage.setItem("newUser", "true");
+      dispatch({
+        type: ActionTypes.SET_TOKEN,
+        payload: response.data.token,
+      });
+      dispatch({
+        type: ActionTypes.IS_AUTH,
+        payload: true,
+      });
+      dispatch({
+        type: ActionTypes.SET_SIGNUP_LOADING,
+        payload: false,
+      });
+      navigate("../");
     } catch (error: any) {
       dispatch({
         type: ActionTypes.SET_SIGNUP_ERROR,
@@ -94,12 +93,16 @@ export const register = (
 export const getUser = (): ThunkAction<void, any, any, any> => {
   return async (dispatch) => {
     try {
+      api.headers = {
+        "Content-Type": "application/json",
+        Authorization: "Bearer " + localStorage.getItem(TOKEN_KEY),
+      };
       let urlPath = "/auth/getUserData";
       let response = await RestApi.getCall(urlPath);
       if (response) {
         dispatch({
           type: ActionTypes.SET_USER,
-          payload: { ...response },
+          payload: { ...response.data },
         });
       } else {
         localStorage.removeItem(TOKEN_KEY);

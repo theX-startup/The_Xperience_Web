@@ -18,7 +18,7 @@ const ProfileNav = () => {
   const user = useSelector((state: any) => state.auth.user);
   return (
     <Navbar fluid rounded>
-      <NavbarBrand href="https://flowbite-react.com">
+      <NavbarBrand >
         <Link to={"/"}>
           <img
             src={logo}

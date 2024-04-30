@@ -4,6 +4,7 @@ import { useConfettiStore } from "@/hooks/use-confetti-store";
 import RestApi from "@/services/RestApi";
 import { Trash } from "lucide-react";
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 
 interface InternshipActionProps {
@@ -18,32 +19,23 @@ export const InternshipAction = ({
 }: InternshipActionProps) => {
   const [isLoading, setIsLoading] = useState(false);
   const confetti = useConfettiStore();
+  const navigate = useNavigate();
   const onDelete = async () => {
     setIsLoading(true);
     try {
       let urlPath = `/internships/delete/${internshipId}`;
-      await RestApi.deleteCall(urlPath).then((res) => {
+      await RestApi.deleteCall(urlPath).then(() => {
         setIsLoading(false);
-        if (res.message === "Internship deleted successfully") {
-          toast.success("Internship deleted successfully", {
-            position: "top-right",
-            autoClose: 3000,
-            hideProgressBar: false,
-            closeOnClick: true,
-            pauseOnHover: true,
-            draggable: true,
-          });
-          // navigate(`../createInternship/step-2/${internshipId}`);
-        } else {
-          toast.error("Internship deletion failed", {
-            position: "top-right",
-            autoClose: 3000,
-            hideProgressBar: false,
-            closeOnClick: true,
-            pauseOnHover: true,
-            draggable: true,
-          });
-        }
+
+        toast.success("Internship deleted successfully", {
+          position: "top-right",
+          autoClose: 3000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+        });
+        navigate(`../`);
       });
     } catch (error) {
       toast.error("Internship deletion failed", {

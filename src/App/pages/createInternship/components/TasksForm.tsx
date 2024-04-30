@@ -11,9 +11,9 @@ import {
 } from "@/components/ui/form";
 
 import { Button } from "@/components/ui/button";
-import { PlusCircle } from "lucide-react";
+import { Loader2, PlusCircle } from "lucide-react";
 import { useState } from "react";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { createTask } from "../_request";
 import { toast } from "react-toastify";
 import { cn } from "@/lib/utils";
@@ -34,6 +34,9 @@ const TasksForm = (props: props) => {
   const [isCreating, setIsCreating] = useState(false);
   const dispatch = useDispatch<any>();
   const navigation = useNavigate();
+  const taskCreateLoading = useSelector(
+    (state: any) => state.create.taskCraeteLoading
+  );
 
   const toggleCreating = () => {
     setIsCreating((current) => !current);
@@ -52,7 +55,7 @@ const TasksForm = (props: props) => {
   const { isSubmitting, isValid } = form.formState;
 
   const onSubmit = async (data: z.infer<typeof schema>) => {
-    console.log(data);
+    toggleCreating();
     await dispatch(createTask(data, toast, courseId));
   };
 
@@ -106,10 +109,14 @@ const TasksForm = (props: props) => {
         <div
           className={cn(
             "text-sm mt-2",
-            !initialData.tasks?.length && "text-slate-500 italic"
+            !initialData.tasks?.length && "text-slate-500 italic",
+            taskCreateLoading && "flex items-center justify-center h-32"
           )}
         >
-          {!initialData.tasks?.length && "No tasks added yet"}
+          {!initialData.tasks?.length &&
+            !taskCreateLoading &&
+            "No tasks added yet"}
+          {taskCreateLoading && <Loader2 className="animate-spin h-5 w-5 " />}
           <TasksList
             onEdit={onEdit}
             onReorder={() => {}}

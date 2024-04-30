@@ -37,7 +37,6 @@ const CreateInternship = () => {
 
   const onSubmit = (data: z.infer<typeof formSchema>) => {
     try {
-      console.log(data);
       dispatch(createInternship(data, navigation, toast));
     } catch (error) {
       toast.error("Failed to create internship", {
