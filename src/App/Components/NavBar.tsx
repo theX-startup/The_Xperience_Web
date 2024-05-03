@@ -1,15 +1,11 @@
 import logo from "../../assets/logos/logo.png";
 import logoBlack from "../../assets/logos/logoBlack.png";
 import { MdOutlineMenu } from "react-icons/md";
-
 import { Link, useParams } from "react-router-dom";
-
 import { useSelector } from "react-redux";
 import { useState } from "react";
 import { motion } from "framer-motion";
 import { IoMdClose } from "react-icons/io";
-import { IoIosArrowDown } from "react-icons/io";
-import { IoIosArrowUp } from "react-icons/io";
 import { useAuth } from "../../redux/context";
 import { SearchInput } from "@/components/search-input";
 import { BellIcon, LogOut, MessageSquareText } from "lucide-react";
@@ -24,7 +20,6 @@ const NavBar = () => {
     .join("");
   const [menuActive, setMenuActive] = useState(false);
   const [mobileMenuActive, setMobileMenuActive] = useState(false);
-  const [activeMenu, setActiveMenu] = useState("");
   const { onLogout } = useAuth();
   const { internshipId } = useParams();
   const [cookies, setCookies] = useCookies(["state"]);
@@ -60,8 +55,8 @@ const NavBar = () => {
                   exit={{ opacity: 0, x: -20 }}
                   transition={{ duration: 0.2 }}
                 >
-                  <div className="min-h-[35px] w-full flex justify-between items-center pb-5">
-                    <div className="flex items-start gap-1 flex-col">
+                  <div className="min-h-[35px] w-full flex justify-between items-center pb-5 relative">
+                    <div className="flex items-start gap-1 ">
                       {user.picturePath ? (
                         <img
                           src={user.picturePath}
@@ -69,61 +64,42 @@ const NavBar = () => {
                           className="h-[40px] w-[40px] rounded-md"
                         />
                       ) : (
-                        <div className="w-[30px] h-[30px] bg-black rounded cursor-pointer items-center flex justify-center dark:bg-white dark:text-black text-white font-bold relative">
+                        <div className="w-[40px] h-[40px] bg-black rounded cursor-pointer items-center flex justify-center dark:bg-white dark:text-black text-white font-bold relative">
                           <span className="text-[10px]">{initials}</span>
                         </div>
                       )}
-                      <span className="text-sm text-black uppercase dark:text-white">
-                        {user?.fullname}
-                      </span>
-                      <span className="text-xs text-slate-600 uppercase dark:text-white">
-                        {user?.email}
-                      </span>
+                      <div className="flex flex-col">
+                        <span className="text-sm text-black uppercase dark:text-white">
+                          {user?.fullname}
+                        </span>
+                        <span className="text-xs text-slate-400">
+                          {user?.email}
+                        </span>
+                      </div>
                     </div>
                     <IoMdClose
-                      className="text-[20px] dark:text-white text-black cursor-pointer"
+                      className="text-[20px] dark:text-white text-black cursor-pointer absolute right-0 top-0"
                       onClick={() => setMobileMenuActive(!mobileMenuActive)}
                     />
                   </div>
 
                   <div
-                    className={`overflow-hidden pb-3 transition-all duration-500 ${
-                      activeMenu === "profile" ? "max-h-[120px]" : "h-[28px]"
-                    }`}
+                    className={`overflow-hidden transition-all duration-500 border-b pb-2`}
                   >
-                    <div className="flex items-center justify-between pb-2">
+                    <div className="flex items-center justify-between">
                       <Link
-                        to={"profile"}
-                        className="block text-sm hover:text-[#0000ff] text-slate-700 dark:text-slate-200"
+                        to={`profile/${user._id}`}
+                        className="block text-lg hover:text-[#0000ff] text-slate-700 dark:text-slate-200"
                       >
                         Profile
                       </Link>
-                      {activeMenu === "profile" ? (
-                        <IoIosArrowUp
-                          className="text-sm cursor-pointer"
-                          onClick={() =>
-                            setActiveMenu(
-                              activeMenu === "profile" ? "" : "profile"
-                            )
-                          }
-                        />
-                      ) : (
-                        <IoIosArrowDown
-                          className="text-sm cursor-pointer"
-                          onClick={() =>
-                            setActiveMenu(
-                              activeMenu === "profile" ? "" : "profile"
-                            )
-                          }
-                        />
-                      )}
                     </div>
                   </div>
                   <div
                     onClick={() => {
                       onLogout();
                     }}
-                    className=" cursor-pointer block text-sm hover:text-[#0000ff] transition-all duration-500 ease-in-out text-slate-700 dark:text-slate-200"
+                    className=" cursor-pointer block text-lg hover:text-[#0000ff] transition-all duration-500 ease-in-out text-slate-700 dark:text-slate-200 pt-2"
                   >
                     Logout
                   </div>
@@ -221,7 +197,7 @@ const NavBar = () => {
               >
                 <div className="absolute top-[120%] right-0 w-[170px] bg-tertiary rounded shadow-lg">
                   <Link
-                    to={"profile"}
+                    to={`profile/${user._id}`}
                     className="block p-5 text-sm hover:bg-slate-700 transition-all duration-500 ease-in-out dark:text-slate-700 text-slate-200 rounded"
                   >
                     Profile

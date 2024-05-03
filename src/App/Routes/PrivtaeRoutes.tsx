@@ -31,7 +31,7 @@ const PrivtaeRoutes = () => {
         <Route path="CV" element={<CV />} />
         <Route path="performance" element={<PerformancePage />} />
         <Route path="leaderboard" element={<LeaderboardPage />} />
-        <Route path="profile" element={<ProfilePage />} />
+        <Route path="profile/:userId" element={<ProfilePage />} />
         <Route element={<SidebarNav />}>
           <Route path="/dashboard" element={<Dashboard />} />
           <Route path="analytics" element={<Analytics />} />

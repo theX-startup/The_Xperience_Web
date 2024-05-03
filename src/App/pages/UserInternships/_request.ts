@@ -3,16 +3,15 @@ import RestApi from "../../../services/RestApi";
 import { ActionTypes } from "../../../utils/ActionTypes";
 
 export const fetchUserInternships = (
-  userId: any
+
 ): ThunkAction<void, any, any, any> => {
   return async (dispatch: any) => {
     try {
-      let urlPath = `/userinternships/${userId}`;
-      console.log(userId, "userId");
+      let urlPath = `/userinternships`;
       const response = await RestApi.getCall(urlPath);
       dispatch({
         type: ActionTypes.SET_USER_INTERNSHIPS,
-        payload: [...response],
+        payload: [response.data],
       });
     } catch (error: any) {
       dispatch({

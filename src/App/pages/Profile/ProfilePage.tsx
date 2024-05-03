@@ -3,17 +3,25 @@ import { IoLocation } from "react-icons/io5";
 import { useDispatch, useSelector } from "react-redux";
 import { HiUserCircle } from "react-icons/hi";
 import { MdWorkspacesFilled } from "react-icons/md";
-import { MdRateReview } from "react-icons/md";
-import { GrTransaction } from "react-icons/gr";
+// import { MdRateReview } from "react-icons/md";
+// import { GrTransaction } from "react-icons/gr";
 import { useRef, useState } from "react";
 
 import { updateProfile } from "../../../landingPage/pages/Auth/_request";
 import { IoCamera } from "react-icons/io5";
 import { IoCameraReverse } from "react-icons/io5";
+import EnrolledInternship from "./userInternship/enrolled-Internship";
+import { useParams } from "react-router-dom";
+import OwnedInternships from "./userInternship/owned-internship";
+import { useCookies } from "react-cookie";
 
 const ProfilePage = () => {
   const [profilePic, setProfilePic] = useState("");
   const user = useSelector((state: any) => state.auth.user);
+  const params = useParams();
+  const { userId } = params;
+  const ownProfile = userId === user._id;
+  const [cookies] = useCookies(["state"]);
 
   const cloudName = "dc22hgqku";
 
@@ -151,9 +159,11 @@ const ProfilePage = () => {
             </div>
           </Tabs.Item>
         )}
-        <Tabs.Item title={"Internships"} icon={MdWorkspacesFilled}></Tabs.Item>
-        <Tabs.Item title={"Reviews"} icon={MdRateReview}></Tabs.Item>
-        <Tabs.Item title={"Transactions"} icon={GrTransaction}></Tabs.Item>
+        <Tabs.Item title={"Internships"} icon={MdWorkspacesFilled}>
+          {ownProfile ? cookies.state === "INTERN" || undefined || null ? <EnrolledInternship /> : <OwnedInternships /> : <OwnedInternships />}
+        </Tabs.Item>
+        {/* <Tabs.Item title={"Reviews"} icon={MdRateReview}></Tabs.Item>
+        <Tabs.Item title={"Transactions"} icon={GrTransaction}></Tabs.Item> */}
       </Tabs>
     </div>
   );
