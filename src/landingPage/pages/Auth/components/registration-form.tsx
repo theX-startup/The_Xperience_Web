@@ -12,7 +12,7 @@ import {
   FormMessage,
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { register } from "../_request";
 
@@ -47,6 +47,7 @@ export const RegisterForm = () => {
       password: "",
     },
   });
+  const loginLoading = useSelector((state: any) => state.auth.signUpLoading);
 
   // 2. Define a submit handler.
   function onSubmit(values: z.infer<typeof formSchema>) {
@@ -128,7 +129,7 @@ export const RegisterForm = () => {
             </FormItem>
           )}
         />
-        <Button type="submit">Submit</Button>
+        <Button type="submit" disabled={loginLoading}>Submit</Button>
       </form>
     </Form>
   );

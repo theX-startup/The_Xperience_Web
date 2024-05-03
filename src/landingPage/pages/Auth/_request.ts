@@ -2,6 +2,7 @@ import { ThunkAction } from "redux-thunk";
 import RestApi, { api } from "../../../services/RestApi";
 import { ActionTypes } from "../../../utils/ActionTypes";
 import { TOKEN_KEY } from "../../../redux/context";
+import { toast } from "react-toastify";
 
 export const login = (
   formdata: any,
@@ -45,6 +46,7 @@ export const login = (
         type: ActionTypes.SET_SIGNIN_LOADING,
         payload: false,
       });
+      toast.error("Invalid username or password");
     }
   };
 };
@@ -85,6 +87,11 @@ export const register = (
       dispatch({
         type: ActionTypes.SET_SIGNUP_ERROR,
         payload: error.message,
+      });
+      toast.error(error.message);
+      dispatch({
+        type: ActionTypes.SET_SIGNUP_LOADING,
+        payload: false,
       });
     }
   };

@@ -14,7 +14,8 @@ import {
 import { Input } from "@/components/ui/input";
 import { login } from "../_request";
 import { useNavigate } from "react-router-dom";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import { Loader2 } from "lucide-react";
 
 const formSchema = z.object({
   username: z.string().min(2, {
@@ -35,6 +36,7 @@ export const LoginForm = () => {
       password: "",
     },
   });
+  const loginLoading = useSelector((state: any) => state.auth.signInLoading);
 
   // 2. Define a submit handler.
   function onSubmit(values: z.infer<typeof formSchema>) {
@@ -73,7 +75,19 @@ export const LoginForm = () => {
             </FormItem>
           )}
         />
-        <Button type="submit">Submit</Button>
+        <Button
+          type="submit"
+          disabled={loginLoading}
+          className="flex items-center gap-x-3"
+          size={"lg"}
+        >
+          Submit
+          {loginLoading && (
+            <span>
+              <Loader2 size={20} className="animate-spin" />
+            </span>
+          )}
+        </Button>
       </form>
     </Form>
   );
