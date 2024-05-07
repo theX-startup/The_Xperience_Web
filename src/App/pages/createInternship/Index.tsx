@@ -14,8 +14,9 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Link, useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { createInternship } from "./_request";
+import { user } from "@/redux/models";
 
 const formSchema = z.object({
   title: z.string().min(1, {
@@ -24,6 +25,16 @@ const formSchema = z.object({
 });
 
 const CreateInternship = () => {
+  const user: user = useSelector((state: any) => state.auth.user);
+  const requiredFields = [
+    user.fullname,
+    user.username,
+    user.email,
+    user.description,
+    user.picturePath,
+    user.paystack?.bussinessName,
+  ];
+  const isComplete = requiredFields.every(Boolean);
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
     defaultValues: {
@@ -37,7 +48,20 @@ const CreateInternship = () => {
 
   const onSubmit = (data: z.infer<typeof formSchema>) => {
     try {
-      dispatch(createInternship(data, navigation, toast));
+      if (isComplete) {
+        dispatch(createInternship(data, navigation, toast));
+      } else {
+        toast.error(
+          `You need to complete your profile information to create an internship`,
+          {
+            position: "top-right",
+            autoClose: 5000,
+            hideProgressBar: false,
+            closeOnClick: true,
+          }
+        );
+        navigation(`/professional/profile/${user?._id}/personal-info`);
+      }
     } catch (error) {
       toast.error("Failed to create internship", {
         position: "top-right",
@@ -84,7 +108,7 @@ const CreateInternship = () => {
             />
 
             <div className="flex items-center gap-x-2">
-              <Link to={"/dashboard"}>
+              <Link to={"/professional/internships"}>
                 <Button variant="ghost" type="button">
                   cancel
                 </Button>

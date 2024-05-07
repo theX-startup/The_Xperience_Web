@@ -35,7 +35,7 @@ export const getProInternships =
       if (response) {
         dispatch({
           type: ActionTypes.SET_PRO_INTERNSHIP,
-          payload: response,
+          payload: response.data,
         });
         dispatch({
           type: ActionTypes.SET_PRO_INTERNSHIP_LOADING,

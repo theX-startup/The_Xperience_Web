@@ -112,9 +112,9 @@
   font-style: italic;
 }
 
-.bg-primary {
+/* .bg-primary {
   @apply bg-[#0000ff] dark:bg-[#0096FF] text-white;
-}
+} */
 
 .bg-secondary {
   @apply dark:bg-gray-900 bg-white;

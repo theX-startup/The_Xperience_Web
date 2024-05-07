@@ -60,7 +60,7 @@ const TasksForm = (props: props) => {
   };
 
   const onEdit = (id: string) => {
-    navigation(`/createInternship/${courseId}/editTask/${id}`);
+    navigation(`/professional/createInternship/${courseId}/editTask/${id}`);
   };
 
   return (

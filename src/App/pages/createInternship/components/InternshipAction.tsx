@@ -35,7 +35,7 @@ export const InternshipAction = ({
           pauseOnHover: true,
           draggable: true,
         });
-        navigate(`../`);
+        navigate(`../professional/internships`);
       });
     } catch (error) {
       toast.error("Internship deletion failed", {

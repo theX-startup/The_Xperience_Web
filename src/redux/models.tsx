@@ -55,10 +55,21 @@ export interface user {
   email: string;
   description: string;
   picturePath: string;
+  country: string;
   skills: [];
   createdAt: string;
   updatedAt: string;
   __v: number;
+  paystack: paystack;
+}
+
+export interface paystack {
+  userId: string;
+  subaccountId: string;
+  bussinessName: string;
+  accountNumber: string;
+  bank: string;
+  percentageCharge: number;
 }
 
 export interface muxData {}

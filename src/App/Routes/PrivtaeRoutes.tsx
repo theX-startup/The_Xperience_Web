@@ -8,9 +8,7 @@ import LeaderboardPage from "../pages/performance/LeaderboardPage";
 import Analytics from "../pages/Analytics/Index";
 import Earnings from "../pages/Earnings/Index";
 import ProfessionalInternship from "../pages/UserInternships/ProfessionalInternship";
-import Orders from "../pages/orders/Index";
 import ProfileLayout from "./ProfileLayout";
-import SidebarNav from "../Components/Sidebar";
 import Dashboard from "../pages/dashboard";
 import CreateInternshipLayout from "./CreateInternshipLayout";
 import CreateInternship from "../pages/createInternship/Index";
@@ -19,33 +17,44 @@ import EditTask from "../pages/createInternship/EditTask";
 import { InternshipIdPage } from "../pages/Internship/Index";
 import InternshipLayout from "../pages/Internship/layout";
 import { InternshipDetail } from "../pages/Internship/Internship-details";
+import Internships from "../pages/UserInternships/Internships";
 
 const PrivtaeRoutes = () => {
   const location = useLocation();
 
   return (
     <Routes key={location.pathname} location={location}>
-      <Route path="auth/*" element={<Navigate to={"/dashboard"} />} />
+      <Route path="auth/*" element={<Navigate to={"/"} />} />
       <Route element={<Layout />}>
         <Route path="certificate" element={<CertificationPage />} />
         <Route path="CV" element={<CV />} />
         <Route path="performance" element={<PerformancePage />} />
         <Route path="leaderboard" element={<LeaderboardPage />} />
-        <Route path="profile/:userId" element={<ProfilePage />} />
-        <Route element={<SidebarNav />}>
-          <Route path="/dashboard" element={<Dashboard />} />
-          <Route path="analytics" element={<Analytics />} />
-          <Route path="earnings" element={<Earnings />} />
-          <Route path="proInternships" element={<ProfessionalInternship />} />
-          <Route path="orders" element={<Orders />} />
-        </Route>
+        <Route
+          path="professional/profile/:userId/:path"
+          element={<ProfilePage />}
+        />
+        <Route path="/" element={<Dashboard />} />
+        <Route path="professional/analytics" element={<Analytics />} />
+        <Route path="professional/earnings" element={<Earnings />} />
+        <Route path="internships" element={<Internships />} />
+        <Route
+          path="professional/internships"
+          element={<ProfessionalInternship />}
+        />
       </Route>
       <Route element={<ProfileLayout />}></Route>
       <Route element={<CreateInternshipLayout />}>
-        <Route path="createInternship" element={<CreateInternship />} />
-        <Route path="createInternship/step-2/:id" element={<Description />} />
         <Route
-          path="createInternship/:internshipId/editTask/:id"
+          path="professional/createInternship"
+          element={<CreateInternship />}
+        />
+        <Route
+          path="professional/createInternship/step-2/:id"
+          element={<Description />}
+        />
+        <Route
+          path="professional/createInternship/:internshipId/editTask/:id"
           element={<EditTask />}
         />
       </Route>

@@ -20,7 +20,7 @@ const AppRouter = () => {
             {token ? (
               <>
                 <Route path="/*" element={<PrivtaeRoutes />} />
-                <Route index element={<Navigate to={"/dashboard"} />} />
+                <Route path="*" element={<Navigate to={"/"} />} />
               </>
             ) : (
               <>

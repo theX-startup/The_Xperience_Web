@@ -32,7 +32,7 @@ export const createInternship =
         hideProgressBar: false,
         closeOnClick: true,
       });
-      navigation(`/createInternship/step-2/${response.data._id}`);
+      navigation(`/professional/createInternship/step-2/${response.data._id}`);
     } catch (error) {
       dispatch({
         type: ActionTypes.SET_INTERNSHIP_CREATE_LOADING,

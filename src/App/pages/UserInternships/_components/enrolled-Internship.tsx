@@ -1,7 +1,7 @@
 import { CheckCircle, Clock } from "lucide-react";
 import { useSelector } from "react-redux";
 import { redirect } from "react-router-dom";
-import InfoCard from "../components/info-card";
+import InfoCard from "../../Profile/components/info-card";
 import InternshipComponent from "@/App/Components/InternshipComponent";
 
 // type Props = {};

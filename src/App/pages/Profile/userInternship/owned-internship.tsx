@@ -1,12 +1,29 @@
-type Props = {};
+import { useDispatch, useSelector } from "react-redux";
+import { columns } from "../../UserInternships/_components/columns";
+import { DataTable } from "../../UserInternships/_components/data-table";
+import { data } from "../../UserInternships/ProfessionalInternship";
+import { useEffect } from "react";
+import { getProInternships } from "../../UserInternships/_request";
+
+type Props = {
+  ownedProfile: boolean;
+};
 
 const OwnedInternships = ({}: Props) => {
+  const dispatch = useDispatch<any>();
+  const internships = useSelector(
+    (state: any) => state.professional.ProInternships
+  );
+
+  useEffect(() => {
+    dispatch(getProInternships());
+  }, []);
   return (
-    <div className="flex items-center justify-center text-slate-500 h-40">
-      <p>
-        This user has not created any internships yet. Check back later for more
-        updates.
-      </p>
+    <div className="">
+      <DataTable
+        columns={columns}
+        data={(internships?.result as data[]) || []}
+      />
     </div>
   );
 };
