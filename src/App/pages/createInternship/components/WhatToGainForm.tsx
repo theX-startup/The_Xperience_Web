@@ -11,7 +11,7 @@ import {
 } from "@/components/ui/form";
 
 import { Button } from "@/components/ui/button";
-import { Pencil, TrashIcon } from "lucide-react";
+import { Pencil } from "lucide-react";
 import { useState } from "react";
 import { useDispatch } from "react-redux";
 import { updateInternship } from "../_request";
