@@ -13,9 +13,9 @@ export const InternshipDetail = () => {
   return (
     <div className="relative">
       <div className="bg-sky-200/25 h-auto w-full text-black md:p-10 p-5 flex gap-10 flex-col lg:flex-row items-center relative">
-        <div className="lg:w-[60%] flex items-center lg:items-start flex-col">
-          <h1 className="text-2xl font-bold text-center lg:text-start">{internship?.title}</h1>
-          <h1 className="text-base mt-5 text-center lg:text-start">{internship?.description}</h1>
+        <div className="lg:w-[60%] flex items-start flex-col">
+          <h1 className="text-2xl font-bold text-start">{internship?.title}</h1>
+          <h1 className="text-base mt-5 text-start">{internship?.description}</h1>
           <div className="mt-5 text-sm flex flex-row gap-x-5">
             <h1>{internship?.purchases?.length} students</h1>
             <h1>{internship?.tasks?.length} Tasks</h1>
@@ -54,14 +54,14 @@ export const InternshipDetail = () => {
         </div>
       </div>
       <div className="p-2 md:p-5">
-        <div className="h-auto p-10 border rounded mt-10 lg:w-[60%]">
+        <div className="h-auto p-5 md:p-10 border rounded mt-10 lg:w-[60%]">
           <h1 className="text-2xl font-semibold">What You will Learn</h1>
           <div className="grid grid-cols-1 gap-5 mt-5">
             {internship?.WhatToGain?.map((item: string) => {
               return (
                 <div className="flex items-start gap-x-3">
                   <Check className="w-5 h-5 text-sky-700" />
-                  <h1 className="text-xs w-[90%]">{item}</h1>
+                  <h1 className="text-sm w-[90%]">{item}</h1>
                 </div>
               );
             })}

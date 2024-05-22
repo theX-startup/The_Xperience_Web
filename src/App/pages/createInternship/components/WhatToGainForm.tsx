@@ -11,7 +11,7 @@ import {
 } from "@/components/ui/form";
 
 import { Button } from "@/components/ui/button";
-import { Pencil } from "lucide-react";
+import { Pencil, TrashIcon } from "lucide-react";
 import { useState } from "react";
 import { useDispatch } from "react-redux";
 import { updateInternship } from "../_request";
@@ -49,7 +49,7 @@ const WhatToGainForm = (props: props) => {
 
   const onSubmit = async (data: z.infer<typeof schema>) => {
     await dispatch(updateInternship(data, toast, courseId));
-    toggleEdit()
+    toggleEdit();
   };
 
   return (
@@ -80,7 +80,10 @@ const WhatToGainForm = (props: props) => {
                   key={index}
                   className="flex items-center gap-2 list-disc max-w-full text-sm ml-5"
                 >
-                  <li className="max-w-[80%]">{item}</li>
+                  <div className="flex justify-between">
+                    <li className="max-w-[80%]">{item}</li>
+                    {/* <TrashIcon size={20} className="cursor-pointer" /> */}
+                  </div>
                 </ul>
               ))}
         </p>

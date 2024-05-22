@@ -18,7 +18,8 @@ const NavbarRoutes = () => {
       {
         <div className="flex w-full gap-x-5 items-center justify-end md:w-[70%] md:justify-start">
           <div className={cn(
-            isProfessionalPage && "block md:hidden"
+            isProfessionalPage && "block md:hidden",
+            isPlayerPage && "hidden"
           )}>
             <Logo />
           </div>
@@ -29,7 +30,10 @@ const NavbarRoutes = () => {
           )}
         </div>
       }
-      <div className="gap-x-2 ml-auto items-center hidden md:flex">
+      <div className={cn(
+        "gap-x-2 ml-auto items-center hidden md:flex",
+        isPlayerPage && "flex"
+      )}>
         {isProfessionalPage || isPlayerPage ? (
           <Link to={"../"}>
             <Button

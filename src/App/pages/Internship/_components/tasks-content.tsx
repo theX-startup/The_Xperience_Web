@@ -60,7 +60,7 @@ const TasksContent = ({ tasks }: Props) => {
                   {task?.what_you_will_do?.map((item: { title: string }) => {
                     return (
                       <div>
-                        <div className="flex gap-x-3 items-start p-3">
+                        <div className="flex gap-x-3 items-start p-3 text-sm">
                           <Check size={20} />
                           <span className="flex-1">{item.title}</span>
                         </div>
@@ -73,7 +73,7 @@ const TasksContent = ({ tasks }: Props) => {
                   {task?.what_you_will_learn?.map((item: any) => {
                     return (
                       <div>
-                        <div className="flex gap-x-3 items-start p-3">
+                        <div className="flex gap-x-3 items-start p-3 text-sm">
                           <Check size={20}  />
                           <span className="flex-1">{item}</span>
                         </div>

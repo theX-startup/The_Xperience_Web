@@ -46,7 +46,7 @@ const ProfileCard = ({ user }: Props) => {
           </div>
         </div>
         <pre
-          className={`lg:max-w-full whitespace-pre-wrap text-justify mt-5 transition-all ${
+          className={`lg:max-w-full whitespace-pre-wrap text-sm text-justify mt-5 transition-all poppins-regular ${
             seeMore ? "h-auto" : "max-h-[300px]"
           } overflow-hidden`}
         >
