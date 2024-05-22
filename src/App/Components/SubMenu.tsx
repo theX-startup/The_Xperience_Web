@@ -16,7 +16,7 @@ const SubMenu = () => {
   const categories = useSelector((state: any) => state.create.categorys);
   console.log(categories)
   return (
-    <div className="px-5 ">
+    <div className="px-5 md:pt-3">
       <div className="flex gap-2 overflow-x-scroll overflow-y-hidden scroll">
         {categories?.map((category: any, index: any) => {
           const isSelected = currentCategoryId === category._id;

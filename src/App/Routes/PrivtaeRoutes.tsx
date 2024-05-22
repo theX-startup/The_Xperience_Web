@@ -8,7 +8,6 @@ import LeaderboardPage from "../pages/performance/LeaderboardPage";
 import Analytics from "../pages/Analytics/Index";
 import Earnings from "../pages/Earnings/Index";
 import ProfessionalInternship from "../pages/UserInternships/ProfessionalInternship";
-import ProfileLayout from "./ProfileLayout";
 import Dashboard from "../pages/dashboard";
 import CreateInternshipLayout from "./CreateInternshipLayout";
 import CreateInternship from "../pages/createInternship/Index";
@@ -25,11 +24,14 @@ const PrivtaeRoutes = () => {
   return (
     <Routes key={location.pathname} location={location}>
       <Route path="auth/*" element={<Navigate to={"/"} />} />
+
+      {/* Main Routes */}
       <Route element={<Layout />}>
         <Route path="certificate" element={<CertificationPage />} />
         <Route path="CV" element={<CV />} />
         <Route path="performance" element={<PerformancePage />} />
         <Route path="leaderboard" element={<LeaderboardPage />} />
+
         <Route
           path="professional/profile/:userId/:path"
           element={<ProfilePage />}
@@ -43,7 +45,8 @@ const PrivtaeRoutes = () => {
           element={<ProfessionalInternship />}
         />
       </Route>
-      <Route element={<ProfileLayout />}></Route>
+
+      {/* Create Internship Routes */}
       <Route element={<CreateInternshipLayout />}>
         <Route
           path="professional/createInternship"
@@ -58,6 +61,8 @@ const PrivtaeRoutes = () => {
           element={<EditTask />}
         />
       </Route>
+
+      {/* Intenship Routes */}
       <Route path="internship/:internshipId" element={<InternshipLayout />}>
         <Route path="task/:taskId" element={<InternshipIdPage />} />
         <Route element={<InternshipDetail />} index />

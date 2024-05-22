@@ -38,7 +38,6 @@ const Description = () => {
     values.title,
     values.description,
     values.image,
-    values.price,
     values.category,
     values.tasks?.some((task: any) => task.isPublished),
   ];
@@ -101,10 +100,6 @@ const Description = () => {
           label="This internship is not published, it will not be visible to students"
         />
       )}
-      <Banner
-        variant={"warning"}
-        label="If changes do not reflect refresh the page"
-      />
       <div className="p-6 w-full">
         <div className="flex items-center justify-between">
           <div className="flex flex-col gap-y-2">

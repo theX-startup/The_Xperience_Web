@@ -51,7 +51,7 @@ const PriceForm = (props: props) => {
   const onSubmit = async (data: z.infer<typeof schema>) => {
     console.log(data);
     await dispatch(updateInternship(data, toast, courseId));
-    toggleEdit()
+    toggleEdit();
   };
 
   return (
@@ -75,7 +75,7 @@ const PriceForm = (props: props) => {
             !initialData.price && "text-slate-500 italic"
           )}
         >
-          {initialData.price ? formatPrice(initialData.price) : "No Price"}
+          {formatPrice(initialData.price)}
         </p>
       )}
       {isEditing && (
