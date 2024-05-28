@@ -12,7 +12,7 @@ import {
 } from "@/components/ui/form";
 
 import { Button } from "@/components/ui/button";
-import {  Pencil, PlusCircle } from "lucide-react";
+import { Pencil, PlusCircle } from "lucide-react";
 import { useState } from "react";
 import { useDispatch } from "react-redux";
 import { updateTask } from "../_request";
@@ -23,7 +23,7 @@ import { FaTimes } from "react-icons/fa";
 
 interface props {
   initialData: {
-    what_you_will_do: string[];
+    what_you_will_do: { title: string; content: string[] }[];
   };
   taskId: any;
 }
