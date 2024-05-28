@@ -5,6 +5,7 @@ import { addClick, addImpression } from "../pages/dashboard/_request";
 import { IconBadge } from "@/components/icon-badge";
 import { BookMarkedIcon, BookOpen } from "lucide-react";
 import InternshipProgress from "../pages/Internship/_components/Internship-progress";
+import { Badge } from "@/components/ui/badge";
 
 type props = {
   data: {
@@ -94,12 +95,16 @@ const InternshipComponent = (props: props) => {
                 </span>
               </div>
               <div className="text-sm md:text-xs font-semibold">
-                <span className="text-slate-700 font-medium text-md md:text-sm">
-                  {data.price.toLocaleString("en-NG", {
-                    style: "currency",
-                    currency: "NGN",
-                  })}
-                </span>
+                {data.price ? (
+                  <span className="text-slate-700 font-medium text-md md:text-sm">
+                    {data.price.toLocaleString("en-NG", {
+                      style: "currency",
+                      currency: "NGN",
+                    })}
+                  </span>
+                ) : (
+                  <Badge>Free</Badge>
+                )}
               </div>
             </div>
           )}

@@ -40,7 +40,10 @@ export interface task {
   position: number;
   submissionType: string;
   userProgress: userProgress;
-  what_you_will_do: [];
+  what_you_will_do: {
+    title: string;
+    content: [];
+  }[];
   what_you_will_learn: [];
   Grading_Criteria: [];
   videoUrl: string;

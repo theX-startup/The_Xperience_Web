@@ -1,5 +1,4 @@
 import { task } from "@/redux/models";
-import { Check } from "lucide-react";
 import { useState } from "react";
 import { IoIosArrowDown, IoIosArrowUp } from "react-icons/io";
 
@@ -57,14 +56,16 @@ const TasksContent = ({ tasks }: Props) => {
               {activeTasks.includes(task._id.toString()) && (
                 <div className="h-auto bg-sky-100/20 p-5">
                   <h1 className="text-xl font-medium mb-3">What you will do</h1>
-                  {task?.what_you_will_do?.map((item: { title: string }) => {
+                  {task?.what_you_will_do?.map((item) => {
                     return (
-                      <div>
-                        <div className="flex gap-x-3 items-start p-3 text-sm">
-                          <Check size={20} />
-                          <span className="flex-1">{item.title}</span>
-                        </div>
-                      </div>
+                      <ul className="list-disc p-3 text-sm">
+                        <li className="flex-1">{item.title}</li>
+                        <ul className="list-disc pl-5 pt-2">
+                          {item?.content?.map((content: any) => {
+                            return <li className="flex-1">{content}</li>;
+                          })}
+                        </ul>
+                      </ul>
                     );
                   })}
                   <h1 className="text-xl font-medium mb-3 mt-5">
@@ -72,12 +73,24 @@ const TasksContent = ({ tasks }: Props) => {
                   </h1>
                   {task?.what_you_will_learn?.map((item: any) => {
                     return (
-                      <div>
-                        <div className="flex gap-x-3 items-start p-3 text-sm">
-                          <Check size={20}  />
-                          <span className="flex-1">{item}</span>
-                        </div>
-                      </div>
+                      <ul className="p-3 text-sm list-disc">
+                        <li className="flex-1">{item}</li>
+                      </ul>
+                    );
+                  })}
+                  <h1 className="text-xl font-medium mb-3 mt-5">
+                    Grading Criteria
+                  </h1>
+                  {task?.Grading_Criteria?.map((item: any) => {
+                    return (
+                      <ul className="list-disc p-3 text-sm">
+                        <li className="flex-1">{item.title}</li>
+                        <ul className="list-disc pl-5 pt-2">
+                          {item?.content?.map((content: any) => {
+                            return <li className="flex-1">{content}</li>;
+                          })}
+                        </ul>
+                      </ul>
                     );
                   })}
                 </div>

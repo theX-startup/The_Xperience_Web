@@ -21,14 +21,14 @@ const UserCard = ({ mobileView }: Props) => {
   const routes = isProfessionalPage ? professionalRoutes : guestRoutes;
   return (
     <div>
-      <div className={cn("h-24", mobileView && "bg-sky-100/20")}>
-        <div className="flex w-full items-center h-full justify-center gap-x-3">
+      <div className={cn("h-24 p-2 border", mobileView && "bg-sky-100/20")}>
+        <div className="flex w-full items-center h-full justify-start gap-x-3">
           <button className="h-[60px] w-[60px]" type="button">
             {user?.picturePath ? (
               <img
                 src={user.picturePath}
                 alt="user"
-                className="h-full w-[80%] rounded-sm"
+                className="h-full w-[100%] rounded-sm object-cover"
               />
             ) : (
               <div className="h-full w-full rounded-sm bg-black flex items-center justify-center">
@@ -41,7 +41,7 @@ const UserCard = ({ mobileView }: Props) => {
               to={`/professional/profile/${user?._id}/internships`}
               className={cn(mobileView && "flex items-center gap-x-2")}
             >
-              <h1 className="text-lg font-medium hover:text-sky-500 transition-all">
+              <h1 className="text-md font-medium hover:text-sky-500 transition-all">
                 {user?.fullname}
               </h1>
               {mobileView && (
@@ -51,7 +51,7 @@ const UserCard = ({ mobileView }: Props) => {
                 />
               )}
             </Link>
-            <p className="text-sm text-slate-500">{user?.email}</p>
+            <p className="text-xs text-slate-500">{user?.email}</p>
           </div>
         </div>
       </div>

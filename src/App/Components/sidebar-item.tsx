@@ -8,9 +8,10 @@ type Props = {
   label: string;
   href: string;
   sub_menu?: { label: string; path: string }[];
+  active?: boolean;
 };
 
-const SidebarItem = ({ icon: Icon, label, href, sub_menu }: Props) => {
+const SidebarItem = ({ icon: Icon, label, href, sub_menu, active }: Props) => {
   const pathname = useLocation().pathname;
   const router = useNavigate();
 
@@ -24,15 +25,18 @@ const SidebarItem = ({ icon: Icon, label, href, sub_menu }: Props) => {
   };
 
   return (
-    <div>
+    <div className="">
       <button
         onClick={onClick}
         type="button"
+        disabled={!active}
+        title={!active ? "Coming soon" : ""}
         className={cn(
-          "flex items-center gap-x-2 text-slate-500 text-sm font-[500] pl-6 transition-all hover:text-slate-600 hover:bg-slate-300/20 w-full",
+          "relative flex items-center gap-x-2 text-slate-500 text-sm font-[500] pl-6 transition-all hover:text-slate-600 hover:bg-slate-300/20 w-full",
           isActive &&
             Icon &&
-            "text-sky-700 bg-sky-200/20 hover:bg-sky-200/20 hover:text-sky-700"
+            "text-sky-700 bg-sky-200/20 hover:bg-sky-200/20 hover:text-sky-700",
+          !active && "cursor-not-allowed opacity-50 "
         )}
       >
         <div className="flex items-center gap-x-2 py-4">
@@ -77,6 +81,7 @@ const SidebarItem = ({ icon: Icon, label, href, sub_menu }: Props) => {
           )}
         />
       </button>
+
       {isActive && sub_menu && sub_menu?.length > 0 && (
         <div className="md:pl-6 w-full">
           {sub_menu.map((item, index) => (
@@ -86,8 +91,7 @@ const SidebarItem = ({ icon: Icon, label, href, sub_menu }: Props) => {
               type="button"
               className={cn(
                 "flex items-center gap-x-2 text-slate-500 text-sm font-[500] pl-6 transition-all hover:text-slate-600 w-full",
-                pathname === item.path &&
-                  "text-sky-700"
+                pathname === item.path && "text-sky-700"
               )}
             >
               <div className="flex items-center gap-x-2 py-4">

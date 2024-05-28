@@ -34,7 +34,7 @@ const PaystackSubaccount = (props: props) => {
   const { initialData, options } = props;
   const [isEditing, setIsEditing] = useState(false);
   const [bankDetailsLoading, setBankDetailsLoading] = useState(false);
-
+  console.log(initialData);
 
   const toggleEdit = () => {
     setIsEditing((current) => !current);
@@ -58,7 +58,7 @@ const PaystackSubaccount = (props: props) => {
 
   const onSubmit = async (data: z.infer<typeof schema>) => {
     try {
-      await RestApi.postCall("/paystack/create/subaccount", {
+      await RestApi.postCall("/paystack/request/subaccount", {
         account_number: data.account_number,
         bank_code: data.bank_code,
         business_name: data.bussiness_name,
@@ -92,17 +92,19 @@ const PaystackSubaccount = (props: props) => {
     <div className="mt-6 border bg-slate-100 rounded-md p-4">
       <div className="font-medium flex items-center justify-between">
         Bank Details
-        <Button onClick={toggleEdit} variant="ghost">
-          {isEditing && <>Cancel</>}
-          {!isEditing && (
-            <>
-              <Pencil className="h-4 w-4 mr-2" />
-              Edit Bank details
-            </>
-          )}
-        </Button>
+        {!Object.keys(initialData?.paystack || {}) && (
+          <Button onClick={toggleEdit} variant="ghost">
+            {isEditing && <>Cancel</>}
+            {!isEditing && (
+              <>
+                <Pencil className="h-4 w-4 mr-2" />
+                Edit Bank details
+              </>
+            )}
+          </Button>
+        )}
       </div>
-      {!isEditing && (
+      {!isEditing && !initialData?.paystack && (
         <p
           className={cn(
             "text-sm mt-2",
@@ -111,6 +113,22 @@ const PaystackSubaccount = (props: props) => {
         >
           "No bank details provided"
         </p>
+      )}
+      {initialData?.paystack && Object.keys(initialData?.paystack) && !isEditing && (
+        <div className="mt-2">
+          <div className="flex items-center gap-x-2">
+            <span className="font-semibold">Account Number:</span>
+            <span>{initialData?.paystack?.accountNumber}</span>
+          </div>
+          <div className="flex items-center gap-x-2 mt-2">
+            <span className="font-semibold">Bank Name:</span>
+            <span>{initialData?.paystack?.bank}</span>
+          </div>
+          <div className="flex items-center gap-x-2 mt-2">
+            <span className="font-semibold">Account Name:</span>
+            <span>{initialData?.paystack?.bussinessName}</span>
+          </div>
+        </div>
       )}
       {isEditing && (
         <Form {...form}>
@@ -181,7 +199,7 @@ const PaystackSubaccount = (props: props) => {
             }
             <div className="flex items-center gap-x-2">
               <Button type="submit" disabled={!isValid || isSubmitting}>
-                Save
+                Request for Sub-Account
               </Button>
             </div>
           </form>

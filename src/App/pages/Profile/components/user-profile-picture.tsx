@@ -123,15 +123,15 @@ const UserProfilePicture = (props: props) => {
       </div>
       {!isEditing &&
         (!initialData.picturePath ? (
-          <div className="flex items-center justify-center h-60 bg-slate-200 rounded-md">
+          <div className="flex items-center justify-center min-h-24 bg-slate-200 rounded-md">
             <ImageIcon className="h-10 w-10 text-slate-500" />
           </div>
         ) : (
-          <div className="relative aspect-video mt-2">
+          <div className="relative mt-2">
             <img
               src={initialData.picturePath}
               alt="upload"
-              className="object-cover rounded-md"
+              className="object-contain rounded-md"
             />
           </div>
         ))}

@@ -20,7 +20,7 @@ const InternshipEnrollButton = ({ price, internshipId }: Props) => {
 
   const componentProps = {
     email: user.email,
-    amount: Number(price) * 100,
+    amount: Number(price || 100) * 100,
     metadata: {
       name: user.fullname,
       phone: user.mobileNo,
@@ -37,9 +37,10 @@ const InternshipEnrollButton = ({ price, internshipId }: Props) => {
         },
       ],
     },
-    publicKey: "pk_test_77cb40e30f91f1176756dff61a825e1ff76e40c6",
+    publicKey: "pk_live_f025df48560ad5edc8c856dc27ef12c4eb0d32a3",
     text: "Pay Now",
-    subaccount: "ACCT_utxtd88yof1qtdq",
+    subaccount:
+      internship.price === 0 ? "" : internship?.user?.paystack?.subaccountId,
   };
 
   const onSuccess = (res: any) => {
@@ -80,10 +81,18 @@ const InternshipEnrollButton = ({ price, internshipId }: Props) => {
   return (
     <Button
       onClick={() => {
+        // if (internship.price === 0) {
+        //   const body = {
+        //     internshipId: internshipId,
+        //     transactionId: "free",
+        //   };
+        //   dispatch(addInternship(body));
+        // } else {
         initializePayment({
           onSuccess,
           onClose,
         });
+        // }
       }}
       disabled={addInternshipLoading}
     >

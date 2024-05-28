@@ -14,18 +14,21 @@ export const guestRoutes = [
     label: "Dashbaord",
     path: "/",
     sub_menu: [],
+    active: true,
   },
   {
     icon: Layout,
     label: "Internships",
     path: "/internships",
     sub_menu: [],
+    active: true,
   },
   {
     icon: MessageSquare,
     label: "Community",
     path: "/internships",
     sub_menu: [],
+    active: false,
   },
 ];
 
@@ -35,6 +38,7 @@ export const professionalRoutes = [
     label: "Internships",
     path: "/professional/internships",
     sub_menu: [],
+    active: true,
   },
   {
     icon: BarChart,
@@ -50,12 +54,14 @@ export const professionalRoutes = [
         path: "/professional/analytics/interns",
       },
     ],
+    active: false,
   },
   {
     icon: MessageSquareTextIcon,
     label: "Community",
     path: "/professional/community",
     sub_menu: [],
+    active: false,
   },
 ];
 
@@ -77,6 +83,7 @@ const SidebarRoutes = ({ mobileView }: props) => {
           label={route.label}
           href={route.path}
           sub_menu={route.sub_menu}
+          active={route.active}
         />
       ))}
     </div>

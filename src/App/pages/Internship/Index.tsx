@@ -70,7 +70,9 @@ export const InternshipIdPage = () => {
         </div>
         <div>
           <div className="p-4 flex flex-col md:flex-row justify-between items-center">
-            <h1 className="text-2xl font-semibold mb-2">{task?.task?.title}</h1>
+            <h1 className="text-2xl font-semibold mb-2">
+              {task?.task?.title} ({task?.task?.minimumScore} marks)
+            </h1>
             {Purchase ? (
               <InternshipProgressButton
                 internshipId={internshipId || ""}

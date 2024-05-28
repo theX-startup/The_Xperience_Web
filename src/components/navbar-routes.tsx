@@ -31,7 +31,7 @@ const NavbarRoutes = () => {
         </div>
       }
       <div className={cn(
-        "gap-x-2 ml-auto items-center hidden md:flex",
+        "gap-x-2 ml-auto items-center hidden md:flex ",
         isPlayerPage && "flex"
       )}>
         {isProfessionalPage || isPlayerPage ? (

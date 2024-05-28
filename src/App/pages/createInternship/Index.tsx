@@ -32,6 +32,7 @@ const CreateInternship = () => {
     user.email,
     user.description,
     user.picturePath,
+    user.paystack,
   ];
   const isComplete = requiredFields.every(Boolean);
   const form = useForm<z.infer<typeof formSchema>>({

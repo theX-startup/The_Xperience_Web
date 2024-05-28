@@ -23,13 +23,13 @@ const ProfilePage = () => {
 
   return (
     <div className="min-h-[80vh] ">
-      <div className="md:p-5 flex md:gap-5 gap-2 items-center text_sm">
+      <div className="md:p-5 flex md:gap-5 gap-2 items-center text-sm">
         <div className="rounded-md relative">
           {user.picturePath ? (
             <img
               src={ user.picturePath}
               alt=""
-              className="rounded-md w-[80px] h-[80px] md:w-[100px] md:h-[100px]"
+              className="rounded-md w-[80px] h-[80px] md:w-[100px] md:h-[100px] object-cover"
             />
           ) : (
             <div className="w-[80px] bg-black h-[80px] rounded-md text-white justify-center items-center flex md:w-[100px] md:h-[100px]">

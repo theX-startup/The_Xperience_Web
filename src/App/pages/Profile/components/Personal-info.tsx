@@ -60,7 +60,7 @@ const PersonalInfo = ({ user }: Props) => {
             <UserProfilePicture initialData={user} />
           </div>
           <div>
-            <PaystackSubaccount options={banks} />
+            <PaystackSubaccount options={banks} initialData={user} />
           </div>
         </div>
       </div>
