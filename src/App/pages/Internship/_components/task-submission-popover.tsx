@@ -5,7 +5,7 @@ import {
 } from "@/components/ui/popover";
 import { Button } from "@/components/ui/button";
 import { useState } from "react";
-import { CheckCircle, Clipboard, Loader2, XCircle } from "lucide-react";
+import { CheckCircle, Loader2, XCircle } from "lucide-react";
 import { useNavigate } from "react-router-dom";
 import { useConfettiStore } from "@/hooks/use-confetti-store";
 import RestApi from "@/services/RestApi";
