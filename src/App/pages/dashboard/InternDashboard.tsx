@@ -1,6 +1,5 @@
 import { useDispatch, useSelector } from "react-redux";
 import InternshipComponent from "../../Components/InternshipComponent";
-import { motion } from "framer-motion";
 import SubMenu from "../../Components/SubMenu";
 import { useEffect } from "react";
 import { getInternships } from "./_request";
@@ -48,17 +47,11 @@ const InternDashboard = () => {
             {internships.map((internship: any, index: any) => {
               if (index < 12) {
                 return (
-                  <motion.div
-                    layoutId={index.toString()}
-                    key={index}
-                    className="cursor-pointer"
-                  >
-                    <InternshipComponent
-                      data={internship}
-                      key={internship._id}
-                      index={index}
-                    />
-                  </motion.div>
+                  <InternshipComponent
+                    data={internship}
+                    key={internship._id}
+                    index={index}
+                  />
                 );
               }
             })}

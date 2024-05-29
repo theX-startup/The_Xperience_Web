@@ -5,7 +5,7 @@ import {
 } from "@/components/ui/popover";
 import { Button } from "@/components/ui/button";
 import { useState } from "react";
-import { CheckCircle, Loader2, XCircle } from "lucide-react";
+import { CheckCircle, Clipboard, Loader2, XCircle } from "lucide-react";
 import { useNavigate } from "react-router-dom";
 import { useConfettiStore } from "@/hooks/use-confetti-store";
 import RestApi from "@/services/RestApi";
@@ -25,7 +25,7 @@ export const SubmitTaskSolution = ({
   nextTaskId,
   taskId,
 }: Props) => {
-    console.log("isCompleted", isCompleted)
+  console.log("isCompleted", isCompleted);
   const [loading, setLoading] = useState(false);
   const [fileUploadLoading, setFileUploadLoading] = useState(false);
   const [fileUploadSuccess, setFileUploadSuccess] = useState(false);
@@ -47,7 +47,7 @@ export const SubmitTaskSolution = ({
     }
 
     if (!isCompleted && nextTaskId) {
-      navigate(`../../internship/${internshipId}/task/${nextTaskId}`);
+      navigate(`../../details/internship/${internshipId}/task/${nextTaskId}`);
     }
 
     toast.success("Task Project Updated");
@@ -115,11 +115,16 @@ export const SubmitTaskSolution = ({
             )}
             {fileUploadSuccess && <p>Your File is Ready for Submission</p>}
             {!fileUploadSuccess && !fileUploadLoading && (
-              <Input type="file" accept=".pdf" />
+              <div className="flex w-full max-w-sm items-center space-x-2">
+                <Input
+                  type="email"
+                  placeholder="Input link to your task solution"
+                  value={url}
+                  onChange={(e) => setUrl(e.target.value)}
+                />
+              </div>
             )}
-            <Button disabled={fileUploadLoading} variant="success">
-              Submit
-            </Button>
+            <Button variant="success" onClick={onClick}>Submit</Button>
           </div>
         )}
       </PopoverContent>

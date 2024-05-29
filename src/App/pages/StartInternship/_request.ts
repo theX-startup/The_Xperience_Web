@@ -13,7 +13,7 @@ export const addInternship = (body: {
         type: ActionTypes.SET_ADD_INTERNSHIP_LOADING,
         payload: true,
       });
-      let urlPath = `/addInternship`;
+      let urlPath = `/internships/start`;
       const res = await RestApi.postCall(urlPath, body);
       if (res) {
         toast.success("Internship Added Successfully", {

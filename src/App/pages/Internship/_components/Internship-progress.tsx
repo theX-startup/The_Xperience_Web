@@ -22,7 +22,7 @@ const InternshipProgress = ({ variant, value, size }: Props) => {
       <Progress className="h-2" value={value} variant={variant} />
       <p
         className={cn(
-          "font-medium mt-2 text-sky-700",
+          "font-medium mt-2 text-sky-700 text-xs md:text-sm",
           colorByVariant[variant || "default"],
           sizeByVariant[size || "default"]
         )}

@@ -1,5 +1,3 @@
-import RestApi from "@/services/RestApi";
-import { useEffect, useState } from "react";
 import { TaskSideBarItem } from "./task-sidebar-item";
 import InternshipProgress from "./Internship-progress";
 
@@ -10,18 +8,7 @@ interface props {
 }
 export const InternshipSideBar = ({ internship, progressCount }: props) => {
   // const user = useSelector((state: any) => state.auth.user);
-  const [Purchase, setPurchase] = useState(null);
-
-
-  const purchase = async () => {
-    const urlPath = `/purchase/get/${internship?._id}`;
-    const res = await RestApi.getCall(urlPath);
-    setPurchase(res);
-  };
-
-  useEffect(() => {
-    purchase();
-  }, []);
+  const Purchase = internship?.purchased;
 
 
 

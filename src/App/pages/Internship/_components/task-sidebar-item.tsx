@@ -25,7 +25,7 @@ export const TaskSideBarItem = ({
   const isActive = taskId === id;
 
   const onClick = () => {
-    navigation(`../internship/${internshipId}/task/${id}`);
+    navigation(`../details/internship/${internshipId}/task/${id}`);
   };
 
   return (

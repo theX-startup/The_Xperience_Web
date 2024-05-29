@@ -1,5 +1,5 @@
 import { useEffect } from "react";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import { addClick, addImpression } from "../pages/dashboard/_request";
 import { IconBadge } from "@/components/icon-badge";
@@ -35,7 +35,7 @@ const InternshipComponent = (props: props) => {
   const { data } = props;
   // const navigate = useNavigate();
   const dispatch = useDispatch<any>();
-  // const user = useSelector((state: any) => state.auth.user);
+  const user = useSelector((state: any) => state.auth.user);
 
   useEffect(() => {
     if (props.data !== undefined) {
@@ -46,8 +46,16 @@ const InternshipComponent = (props: props) => {
     }
   }, []);
 
+  const purchased = data.purchases?.find(
+    (purchase) => purchase.userId === user._id
+  )
+    ? true
+    : false;
+
+  console.log(purchased);
+
   return (
-    <Link to={`/internship/${data._id}`}>
+    <Link to={`/details/internship/${data._id}`}>
       <div
         className="group hover:shadow-sm transition overflow-hidden border rounded-lg p-3 h-full"
         onClick={() => {
@@ -64,6 +72,9 @@ const InternshipComponent = (props: props) => {
           <div className="text-lg md:text-base font-medium group-hover:text-sky-700 transition line-clamp-2">
             {data.title}
           </div>
+          <Link to={""} className="text-xs text-muted-foreground underline">
+            {data?.user?.fullname}
+          </Link>
           <p className="text-xs text-muted-foreground">
             {data?.category?.name}
           </p>
@@ -72,12 +83,12 @@ const InternshipComponent = (props: props) => {
               <IconBadge size={"sm"} icon={BookOpen} />
               <span className="font-sans">
                 {data?.tasks?.length}{" "}
-                {data?.tasks?.length === 1 ? "Chapter" : "Chapters"}
+                {data?.tasks?.length === 1 ? "Task" : "Tasks"}
               </span>
             </div>
           </div>
 
-          {data?.progress ? (
+          {purchased ? (
             <div>
               <InternshipProgress
                 value={data?.progress}

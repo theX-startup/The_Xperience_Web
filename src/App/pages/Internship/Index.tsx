@@ -1,9 +1,8 @@
 import Loader from "@/App/Components/Loader";
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
 import { getTask } from "./_request";
-import RestApi from "@/services/RestApi";
 import { Banner } from "@/components/banner";
 import { VideoPlayer } from "./_components/video-player";
 import InternshipEnrollButton from "./_components/Internship-enroll-button";
@@ -20,24 +19,15 @@ interface task {
 }
 export const InternshipIdPage = () => {
   const task: task = useSelector((state: any) => state.internships.task);
-  const [Purchase, setPurchase] = useState(null);
+
   const taskLoading = useSelector(
     (state: any) => state.internships.taskLoading
   );
   const dispatch = useDispatch<any>();
   const internship = useSelector((state: any) => state.internships.internship);
+  const Purchase = internship?.purchased;
 
   const { taskId, internshipId } = useParams();
-
-  const purchase = async () => {
-    const urlPath = `/purchase/get/${internshipId}`;
-    const res = await RestApi.getCall(urlPath);
-    setPurchase(res);
-  };
-
-  useEffect(() => {
-    purchase();
-  }, []);
 
   useEffect(() => {
     dispatch(getTask(taskId || "", internshipId || ""));

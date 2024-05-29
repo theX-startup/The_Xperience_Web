@@ -63,7 +63,7 @@ const PrivtaeRoutes = () => {
       </Route>
 
       {/* Intenship Routes */}
-      <Route path="internship/:internshipId" element={<InternshipLayout />}>
+      <Route path="details/internship/:internshipId" element={<InternshipLayout />}>
         <Route path="task/:taskId" element={<InternshipIdPage />} />
         <Route element={<InternshipDetail />} index />
       </Route>

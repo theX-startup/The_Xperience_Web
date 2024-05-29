@@ -19,6 +19,7 @@ const PersonalInfo = ({ user }: Props) => {
     user.email,
     user.description,
     user.picturePath,
+    user.paystack,
   ];
   const completedFields = requiredFields.filter(Boolean).length;
   const totalFields = requiredFields.length;

@@ -15,7 +15,7 @@ const InfoCard = ({ icon, label, numberOfItems, varient }: Props) => {
       <div>
         <p className="font-medium">{label}</p>
         <p className="text-gray-500 text-sm">
-          {numberOfItems} {numberOfItems === 1 ? "Intern" : "Internships"}
+          {numberOfItems} {numberOfItems === 1 ? "Internship" : "Internships"}
         </p>
       </div>
     </div>

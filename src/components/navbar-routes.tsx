@@ -10,7 +10,7 @@ const NavbarRoutes = () => {
   const pathname = useLocation().pathname;
 
   const isProfessionalPage = pathname.startsWith("/professional");
-  const isPlayerPage = pathname?.includes("/internship");
+  const isPlayerPage = pathname?.includes("/details");
 
   const isDashboard = pathname === "/";
   return (
